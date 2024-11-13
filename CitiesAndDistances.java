@@ -2,6 +2,12 @@ public class CitiesAndDistances {
     //Class that contains the 15 available cities and the distances between each one
     final static String[] cities = new String[15];
     final static double[][] distances = new double[15][15];
+
+    static {
+        Cities();    // Automatically initialize cities
+        Distances(); // Automatically initialize distances
+    }
+
     public static void Cities() {
         //The first method that declares an array and then fills it with the cities
 
@@ -90,7 +96,77 @@ public class CitiesAndDistances {
         distances[11][3] = 680;
         distances[12][3] = 1164;
         distances[13][3] = 1407;
-        distances[14][3] = 1223;
+        distances[5][4] = 223; //All the distances beginning from Tirana apart from the ones that have already been created the other way around
+        distances[6][4] = 473;
+        distances[7][4] = 158;
+        distances[8][4] = 257;
+        distances[9][4] = 858;
+        distances[10][4] = 603;
+        distances[11][4] = 389;
+        distances[12][4] = 786;
+        distances[13][4] = 1330;
+        distances[14][4] = 924;
+        distances[6][5] = 236;  //All the distances beginning from Skopje apart from the ones that have already been created the other way around
+        distances[7][5] = 330;
+        distances[8][5] = 91.3;
+        distances[9][5] = 629;
+        distances[10][5] = 432;
+        distances[11][5] = 507;
+        distances[12][5] = 825;
+        distances[13][5] = 1100;
+        distances[14][5] = 963;
+        distances[7][6] = 520; //All the distances beginning from Sofia apart from the ones that have already been created the other way around
+        distances[8][6] = 333;
+        distances[9][6] = 383;
+        distances[10][6] = 392;
+        distances[11][6] = 581;
+        distances[12][6] = 785;
+        distances[13][6] = 852;
+        distances[14][6] = 924;
+        distances[8][7] = 254;//All the distances beginning from Podgorica apart from the ones that have already been created the other way around
+        distances[9][7] = 822;
+        distances[10][7] = 447;
+        distances[11][7] = 230;
+        distances[12][7] = 627;
+        distances[13][7] = 1314;
+        distances[14][7] = 773;
+        distances[9][8] = 721;//All the distances beginning from Pristina apart from the ones that have already been created the other way around
+        distances[10][8] = 459;
+        distances[11][8] = 429;
+        distances[12][8] = 883;
+        distances[13][8] = 1193;
+        distances[14][8] = 1024;
+        distances[10][9] = 597;//All the distances beginning from Bucharest apart from the ones that have already been created the other way around
+        distances[11][9] = 877;
+        distances[12][9] = 990;
+        distances[13][9] = 474;
+        distances[14][9] = 1128;
+        distances[11][10] = 301;//All the distances beginning from Belgrade apart from the ones that have already been created the other way around
+        distances[12][10] = 396;
+        distances[13][10] = 960;
+        distances[14][10] = 534;
+        distances[12][11] = 402;//All the distances beginning from Sarajevo apart from the ones that have already been created the other way around
+        distances[13][11] = 1249;
+        distances[14][11] = 540;
+        distances[13][12] = 1335;//All the distances beginning from Zagreb apart from the ones that have already been created the other way around
+        distances[14][12] = 141;
+        distances[14][13] = 1401;//The distance between Ljubljana and Chisinau because all the other distances have been covered before 
+        for(int j=0; j < 15; j++) {
+            for(int i =0;i<15;i++) {
+                if(j>i){
+                    distances[i][j] = distances[j][i];
+                }
+            }
+        }
     }
-
+    public static double getDistances(int x,int y) {
+        return distances[x][y];
+    }
+    public static void printDistances(){
+        for(int i=0 ; i<15;i++){
+            for(int j=0;j<15;j++){
+                System.out.println(distances[i][j]);
+            }
+        }
+    }
 }
