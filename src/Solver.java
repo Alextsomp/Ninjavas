@@ -1,5 +1,44 @@
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Solver {
+    /*
+     * private final int N, start;
+     * private final double[][] distance;
+     * private List<Integer> tour = new ArrayList<>();
+     */
+    private boolean ranSolver = false; // υποδεικνυει αν εχει εκτελεστει ο αλγοριθμος
+    private double minDistance = Double.POSITIVE_INFINITY; // αποθηκευει την ελαχιστη αποσταση της μεχρι τοτε διαδρομης
+
+    if(N<=2)throw new IllegalStateException("N <= 2 not yet supported.");if(N!=distance[0].length)throw new IllegalStateException("Matrix must be square (n x n)");if(start<0||start>=N)throw new IllegalArgumentException("Invalid start node.");
+
+    public double getTourCost() {
+        if (!ranSolver) //αν ειναι false
+            solve(); // καλείται η μέθοδος solve() για να εκτελέσει τον αλγόριθμο και να υπολογίσει το ελάχιστο κόστος της διαδρομής
+        return minDistance; // επιστρεφει το ελαχιστο κοστος
+    }
+
+    // αλγοριθμος
+    public void solve() {
+        if (ranSolver) //αν εχει εκτελεστει ο αλγοριθμος επεστρεψε
+            return;
+        //κατασταση οπου ολες οι πολεις εχουν επισκεφθει
+        final int END_STATE = (1 << N) - 1;
+        // αποθηκεύει τις βέλτιστες τιμές που αντιστοιχούν στο ελάχιστο κόστος που απαιτείται για να φτάσεις σε μια συγκεκριμένη πόλη με συγκεκριμένες πόλεις επισκεμμένες.
+        Double[][] memo = new Double[N][1 << N];
+
+        for (int end = 0; end < N; end++) { //end ειναι καθε φορα η πολη στην οποια κατευθυνεται
+            if (end == start) continue; // αποτρέπει τον υπολογισμό της πόλης εκκίνησης προς τον εαυτό της.
+            /*
+            *υπολογισμος διαδρομης μεχρι 2 πολεις:
+            *η αποσταση της διαδρομης
+            *στην οποια εχει ξεκινησει απο την start και εχει επισκεφθει την πολη end
+            */
+            memo[end][(1 << start) | (1 << end)] = distance[start][end];
+        }
+    }
+
     public int[] nearestNeighbour(int start, double dist[][], List<Integer>selected ) {
         double sum = 0;
         int n = selected.size();
