@@ -55,6 +55,24 @@ public class Solver {
              */
             memo[end][(1 << startCity) | (1 << end)] = distances[startCity][end];
         }
+        for (int r = 3; r <= N; r++) { //it starts with a subset of 3 cities, it is the minimum number of cities that can be visited
+            for (int subset : combinations(r, N)) { //all the possible combinations of r cities 
+                if (notIn(start, subset)) continue; //all subsets must contain the starting city
+                    for (int next = 0; next < N; next++) { //next is the last stop after visiting all the cities in the subset
+                        if (next == start || notIn(next, subset)) continue; //because the distance is 0 and next is not in the subset
+                            int subsetWithoutNext = subset ^ (1 << next); //next is removed from the subset
+                            double minDist = Double.POSITIVE_INFINITY; //stores the minimum distance for this subset with next being the last city
+                            for (int end = 0; end < N; end++) { //end is the city that will lead to next
+                                if (end == start || end == next || notIn(end, subset)) continue; //if it is the same as start or next, or if it is not in the subset
+                                    double newDistance = memo[end][subsetWithoutNext] + distance[end][next]; //the distance from end to next, having visited all the cities of subsetWithoutNext
+                                    if (newDistance < minDist) {
+                                        minDist = newDistance; //if it is smaller than minDist, it becomes the new minimum distance
+                                    }
+                            }
+                            memo[next][subset] = minDist; //the minimum distance of the route is saved to memo
+                    }
+            }
+        }
     }
 
     public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
