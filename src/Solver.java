@@ -55,6 +55,7 @@ public class Solver {
              */
             memo[end][(1 << startCity) | (1 << end)] = distances[startCity][end];
         }
+<<<<<<< HEAD
         for (int r = 3; r <= N; r++) { // it starts with a subset of 3 cities, it is the minimum number of cities that
                                        // can be visited
             for (int subset : combinations(r, N)) { // all the possible combinations of r cities
@@ -102,6 +103,36 @@ public class Solver {
         int state = END_STATE; // state stores the bitmask END_STATE which represents the state where all the
                                // cities have been visited
         tour.add(startCity); // the start is added to the list with the optimal route
+=======
+        for (int r = 3; r <= N; r++) { //it starts with a subset of 3 cities, it is the minimum number of cities that can be visited
+            for (int subset : combinations(r, N)) { //all the possible combinations of r cities 
+                if (notIn(start, subset)) continue; //all subsets must contain the starting city
+                    for (int next = 0; next < N; next++) { //next is the last stop after visiting all the cities in the subset
+                        if (next == start || notIn(next, subset)) continue; //because the distance is 0 and next is not in the subset
+                            int subsetWithoutNext = subset ^ (1 << next); //next is removed from the subset
+                            double minDist = Double.POSITIVE_INFINITY; //stores the minimum distance for this subset with next being the last city
+                            for (int end = 0; end < N; end++) { //end is the city that will lead to next
+                                if (end == start || end == next || notIn(end, subset)) continue; //if it is the same as start or next, or if it is not in the subset
+                                    double newDistance = memo[end][subsetWithoutNext] + distance[end][next]; //the distance from end to next, having visited all the cities of subsetWithoutNext
+                                    if (newDistance < minDist) {
+                                        minDist = newDistance; //if it is smaller than minDist, it becomes the new minimum distance
+                                    }
+                            }
+                            memo[next][subset] = minDist; //the minimum distance of the route is saved to memo
+                    }
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            if (i == start) continue; //because the distance is 0
+            double tourCost = memo[i][END_STATE] + distance[i][start]; //the cost to go from i to the start, having visited all the other cities
+            if (tourCost < minTourCost) {
+                minTourCost = tourCost; //if it is smaller than the current minimum distance, minTourCost gets updated
+            }
+        }
+        int lastIndex = start; //lastIndex stores the starting city
+        int state = END_STATE; //state stores the bitmask END_STATE which represents the state where all the cities have been visited
+        tour.add(start); //the start is added to the list with the optimal route
+>>>>>>> 2c0c8a0bde63434f10dabbae4da2c929677f4601
     }
 
     public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
