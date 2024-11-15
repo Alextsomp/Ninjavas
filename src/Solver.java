@@ -73,6 +73,16 @@ public class Solver {
                     }
             }
         }
+        for (int i = 0; i < N; i++) {
+            if (i == start) continue; //because the distance is 0
+            double tourCost = memo[i][END_STATE] + distance[i][start]; //the cost to go from i to the start, having visited all the other cities
+            if (tourCost < minTourCost) {
+                minTourCost = tourCost; //if it is smaller than the current minimum distance, minTourCost gets updated
+            }
+        }
+        int lastIndex = start; //lastIndex stores the starting city
+        int state = END_STATE; //state stores the bitmask END_STATE which represents the state where all the cities have been visited
+        tour.add(start); //the start is added to the list with the optimal route
     }
 
     public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
