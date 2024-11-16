@@ -102,6 +102,38 @@ public class Solver {
         int state = END_STATE; // state stores the bitmask END_STATE which represents the state where all the
                                // cities have been visited
         tour.add(startCity); // the start is added to the list with the optimal route
+
+        // Reconstruct TSP path from memo table.
+        for (int i = 1; i < N; i++) { // the loop is for every city except the first
+
+            int index = -1;
+            // finds the next city of the optimal route through memo table
+            for (int j = 0; j < N; j++) {
+                if (j == startCity || notIn(j, state)) // ignore first city or cities that are not in the current state
+                    continue;
+                if (index == -1)
+                    index = j;
+                // adds to the current distance, the distance between index and the last index
+                double prevDist = memo[index][state] + distances[index][lastIndex];
+                // adds to the current distance, the distance between j and the last index
+                double newDist = memo[j][state] + distances[j][lastIndex];
+                if (newDist < prevDist) {
+                    index = j;
+                }
+            }
+            // adds index to the optimal route
+            tour.add(index);
+            // removes index from the unvisited cities
+            state = state ^ (1 << index);
+            lastIndex = index;
+        }
+        // when the loop is finished, the first city is added in the end of the optimal
+        // route
+        tour.add(startCity);
+        // reverts the optimal route
+        Collections.reverse(tour);
+
+        ranSolver = true;
     }
 
     public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
