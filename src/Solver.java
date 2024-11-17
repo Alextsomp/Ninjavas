@@ -145,7 +145,6 @@ public class Solver {
     }
 
     public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
-        double sum = 0;
         int n = selected.size();
         int k = 1;
         int[] Best = new int[n + 2];
@@ -168,9 +167,17 @@ public class Solver {
             k = k + 1;
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
-            sum = sum + MIN;
         }
-        sum = sum + dist[start][selected.get(thesiMIN)];
         return Best;
     }
+}
+
+//ο πίνακας best  θα είναι το output της μεθόδου BestRoute2.
+public double totalDist2(int best[] ,double dist[][] ,List<Integer>selected ) {
+    int m = selected.size() + 2;
+    double sum = 0;
+    for (int i = 1; i <= m-1 ; i++) {
+        sum = sum + dist[best[i]][best[i+1]];
+    }
+    return sum;
 }
