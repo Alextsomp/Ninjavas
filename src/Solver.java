@@ -170,14 +170,16 @@ public class Solver {
         }
         return Best;
     }
+
+    //ο πίνακας best  θα είναι το output της μεθόδου BestRoute2.
+    public double totalDist2(int best[], double dist[][] , List<Integer>selected) {
+        int m = selected.size() + 2;
+        double sum = 0;
+        for (int i = 1; i <= m-1; i++) {
+            sum = sum + dist[best[i]][best[i+1]];
+        }
+        return sum;
+    }
 }
 
-//ο πίνακας best  θα είναι το output της μεθόδου BestRoute2.
-public double totalDist2(int best[] ,double dist[][] ,List<Integer>selected ) {
-    int m = selected.size() + 2;
-    double sum = 0;
-    for (int i = 1; i <= m-1 ; i++) {
-        sum = sum + dist[best[i]][best[i+1]];
-    }
-    return sum;
-}
+
