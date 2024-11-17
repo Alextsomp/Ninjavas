@@ -93,6 +93,9 @@ public class Solver {
             for (int next = 0; next < N; next++) {
                 if (next == lastIndex || notIn(next, state))
                     continue;
+                if (memo[next][state] == null) {
+                    memo[next][state] = Double.POSITIVE_INFINITY;
+                }
                 double currentCost = memo[next][state] + distances[next][lastIndex];
                 if (currentCost < minCost) {
                     minCost = currentCost;
