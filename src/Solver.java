@@ -178,6 +178,22 @@ public class Solver {
         }
         return sum;
     }
+
+    //μέθοδος για σύγκριση αποστάσεων ώστε να βρεθεί ο καλύτερος αλγόριθμος
+    public int[] bestRoute(double sum1, double sum2, List<Integer>selected) { 
+        //sum1= συνολική απόσταση αλγορίθμου 1
+        //sum2= συνολική απόσταση αλγορίθμου 2
+        //List= είναι από τη main, με τις ενδιάμεσες πόλεις που θα επιλέξει ο χρήστης
+
+        int i = selected.size() + 2;
+        int[] x = new int[i];
+        if (sum1 < sum2) {
+            x = solve();
+        } else {
+            x = nearestNeighbour();
+        }
+        return x;
+    }
 }
 
 
