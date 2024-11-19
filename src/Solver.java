@@ -144,12 +144,10 @@ public class Solver {
         }
     }
 
-    public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
+    public List<Integer> nearestNeighbour(int start, double dist[][], List<Integer> selected) {
         int n = selected.size();
-        int k = 1;
-        int[] Best = new int[n + 2];
-        Best[0] = start;
-        Best[n + 1] = start;
+        List<Integer> Best = new ArrayList<>();
+        Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
         int poli = start;
         int thesiMIN = 0;
         for (int i = 1; i <= n; i++) {
@@ -163,20 +161,20 @@ public class Solver {
                     }
                 }
             }
-            Best[k] = selected.get(thesiMIN);
-            k = k + 1;
+            Best.add(selected.get(thesiMIN));
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
+        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
         return Best;
     }
 
-    //ο πίνακας best  θα είναι το output της μεθόδου BestRoute2.
-    public double totalDist2(int best[], double dist[][] , List<Integer>selected) {
-        int m = selected.size() + 2;
+    //ο πίνακας best  θα είναι το output της μεθόδου nearestNeighbour.
+    public double totalDist2(List<Integer>best, double dist[][] ) {
+        int m = best.size();
         double sum = 0;
         for (int i = 1; i <= m-1; i++) {
-            sum = sum + dist[best[i]][best[i+1]];
+            sum = sum + dist[best.get(i)][best.get(i+1)];
         }
         return sum;
     }
