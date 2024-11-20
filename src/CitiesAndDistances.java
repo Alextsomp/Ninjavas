@@ -169,4 +169,12 @@ public class CitiesAndDistances {
             }
         }
     }
+    public static boolean checkExistance(String[] cities, String city) {
+        for(int i =0;i<15;i++) {
+            if (cities[i].equalsIgnoreCase(city)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

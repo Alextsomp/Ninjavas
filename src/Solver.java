@@ -13,7 +13,7 @@ public class Solver {
             throw new IllegalArgumentException("The list of selected cities cannot be null.");
         }
 
-        int N = selected.size();
+        int N = selected.size(); //N stores the number of cities that was selected
 
         if (N <= 1) {
             throw new IllegalArgumentException("The list of selected cities must contain at least two cities.");
@@ -36,8 +36,8 @@ public class Solver {
             throw new IllegalArgumentException("The starting city index is out of bounds.");
         }
 
-        // Χάρτης πόλεων στο υποσύνολο
-        Map<Integer, Integer> cityToIndex = new HashMap<>();
+        // Cities Map in the subset
+        Map<Integer, Integer> cityToIndex = new HashMap<>(); //the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
         for (int i = 0; i < N; i++) {
             cityToIndex.put(selected.get(i), i);
@@ -46,33 +46,33 @@ public class Solver {
 
         int startIndex = cityToIndex.get(startCity);
 
-        // State όπου έχουν επισκεφθεί όλες οι πόλεις
+        // the state where all the cities have been visited
         final int END_STATE = (1 << N) - 1;
 
-        // Αποθηκεύει τις βέλτιστες τιμές για τη συγκεκριμένη κατάσταση
+        // Αποθηκεύει τις βέλτιστες τιμές για την συγκεκριμένη κατάσταση
         Double[][] memo = new Double[N][1 << N];
 
         // Αρχικοποίηση του πίνακα memo για το πρώτο βήμα
         for (int end = 0; end < N; end++) {
             if (end == startIndex)
-                continue;
+                continue; //because the distance is 0
             memo[end][(1 << startIndex) | (1 << end)] = distances[startIndex][end];
         }
 
         // Υπολογισμός για κάθε υποσύνολο πόλεων
         for (int r = 3; r <= N; r++) {
-            for (int subset : combinations(r, N)) {
-                if (notIn(startIndex, subset))
+            for (int subset : combinations(r, N)) { //all the possible combinations of r cities from N
+                if (notIn(startIndex, subset)) //if the starting city is not in the subset
                     continue;
                 for (int next = 0; next < N; next++) {
-                    if (next == startIndex || notIn(next, subset))
+                    if (next == startIndex || notIn(next, subset)) //if the next city is the same as the starting city or not in the subset
                         continue;
-                    int subsetWithoutNext = subset ^ (1 << next);
+                    int subsetWithoutNext = subset ^ (1 << next); //next is removed from the subset
                     double minDistance = Double.POSITIVE_INFINITY;
                     for (int end = 0; end < N; end++) {
-                        if (end == startIndex || end == next || notIn(end, subset))
+                        if (end == startIndex || end == next || notIn(end, subset)) //if the end is the same as the starting city or the next or if it is not in the subset
                             continue;
-                        double newDistance = memo[end][subsetWithoutNext] + distances[end][next];
+                        double newDistance = memo[end][subsetWithoutNext] + distances[end][next]; //the distance from end to next, having visited all of the other cities
                         if (newDistance < minDistance) {
                             minDistance = newDistance;
                         }
@@ -82,28 +82,28 @@ public class Solver {
             }
         }
 
-        int lastIndex = startIndex;
-        int state = END_STATE;
-        List<Integer> tour = new ArrayList<>();
+        int lastIndex = startIndex; //sets the starting city as the last one
+        int state = END_STATE; //END_STATE is the state where all the cities have been visited
+        List<Integer> tour = new ArrayList<>(); //this list will store the optimal route
         tour.add(startCity);
 
-        for (int i = 1; i < N; i++) {
-            int bestNextIndex = -1;
+        for (int i = 1; i < N; i++) { //a loop for every city in the route, except from the start and the end
+            int bestNextIndex = -1; //the next best city has not been found yet
             double minCost = Double.POSITIVE_INFINITY;
-            for (int next = 0; next < N; next++) {
+            for (int next = 0; next < N; next++) { //a loop that goes through every possible city that can be the best previous city
                 if (next == lastIndex || notIn(next, state))
                     continue;
                 if (memo[next][state] == null) {
                     memo[next][state] = Double.POSITIVE_INFINITY;
                 }
-                double currentCost = memo[next][state] + distances[next][lastIndex];
+                double currentCost = memo[next][state] + distances[next][lastIndex]; //the total distance to get to next from the lastindex, having visited all of the other cities
                 if (currentCost < minCost) {
                     minCost = currentCost;
-                    bestNextIndex = next;
+                    bestNextIndex = next; //it sets the current city as the best next one
                 }
             }
-            tour.add(indexToCity.get(bestNextIndex));
-            state ^= (1 << bestNextIndex);
+            tour.add(indexToCity.get(bestNextIndex)); //the city is added to the list
+            state ^= (1 << bestNextIndex); //the city is removed from the cities that we have to visit
             lastIndex = bestNextIndex;
         }
 
@@ -144,12 +144,10 @@ public class Solver {
         }
     }
 
-    public int[] nearestNeighbour(int start, double dist[][], List<Integer> selected) {
+    public List<Integer> nearestNeighbour(int start, double dist[][], List<Integer> selected) {
         int n = selected.size();
-        int k = 1;
-        int[] Best = new int[n + 2];
-        Best[0] = start;
-        Best[n + 1] = start;
+        List<Integer> Best = new ArrayList<>();
+        Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
         int poli = start;
         int thesiMIN = 0;
         for (int i = 1; i <= n; i++) {
@@ -163,20 +161,20 @@ public class Solver {
                     }
                 }
             }
-            Best[k] = selected.get(thesiMIN);
-            k = k + 1;
+            Best.add(selected.get(thesiMIN));
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
+        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
         return Best;
     }
 
-    //ο πίνακας best  θα είναι το output της μεθόδου BestRoute2.
-    public double totalDist2(int best[], double dist[][] , List<Integer>selected) {
-        int m = selected.size() + 2;
+    //ο πίνακας best  θα είναι το output της μεθόδου nearestNeighbour.
+    public double totalDist2(List<Integer>best, double dist[][] ) {
+        int m = best.size();
         double sum = 0;
         for (int i = 1; i <= m-1; i++) {
-            sum = sum + dist[best[i]][best[i+1]];
+            sum = sum + dist[best.get(i)][best.get(i+1)];
         }
         return sum;
     }
