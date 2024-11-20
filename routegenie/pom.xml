@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.routegenie.maven</groupId>
+    <artifactId>route-genie</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <description>this is a genie planning trips in balkan</description>
+
+    <licenses>
+        <license>
+            <name>Apache license</name>
+        </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <developers>
+        <name>Alexandros Tsompanis</name>
+        <name>Efthymia iordanidi</name>
+        <name>Maria Kikrili</name>
+        <name>Ioannis Petrakis</name>
+        <name>Gerasimos Marios Bachas</name>
+        <name>Aggelos Panagiotis Nikolaidis</name>
+        <name>Melina Fatourou</name>
+        <name>Anastasia Karra</name>
+    </developers>
+
+</project>
