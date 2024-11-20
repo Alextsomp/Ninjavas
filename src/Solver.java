@@ -153,7 +153,7 @@ public class Solver {
         for (int i = 1; i <= n; i++) {
             thesiMIN = 0;
             double MIN = 10000;
-            for (int j = 1; j <= n; j++) {
+            for (int j = 0; j <= n-1; j++) {
                 if (selected.get(j) != 0) {
                     if (dist[poli][selected.get(j)] < MIN) {
                         MIN = dist[poli][selected.get(j)];
@@ -173,7 +173,7 @@ public class Solver {
     public double totalDist2(List<Integer>best, double dist[][] ) {
         int m = best.size();
         double sum = 0;
-        for (int i = 1; i <= m-1; i++) {
+        for (int i = 0; i <= m-2; i++) {
             sum = sum + dist[best.get(i)][best.get(i+1)];
         }
         return sum;
