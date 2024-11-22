@@ -10,7 +10,9 @@
 
     <packaging>jar</packaging>
 
-    <description>this is a genie planning trips in balkan</description>
+    <description>RouteGenie is a roadtrip optimisation app where users can select their prefered
+    cities to visit as well as their starting point, and RouteGenie will return them the optimal
+    route for them to cover the least amount of distance in kilometers.</description>
 
     <licenses>
         <license>
