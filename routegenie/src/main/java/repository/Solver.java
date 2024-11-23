@@ -170,7 +170,7 @@ public class Solver {
     }
 
     //ο πίνακας best  θα είναι το output της μεθόδου nearestNeighbour.
-    public double totalDist2(List<Integer>best, double dist[][] ) {
+    public double totalDist(List<Integer>best, double dist[][] ) {
         int m = best.size();
         double sum = 0;
         for (int i = 0; i <= m-2; i++) {

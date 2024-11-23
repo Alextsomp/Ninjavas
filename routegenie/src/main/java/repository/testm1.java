@@ -5,7 +5,7 @@ public class testm1 {
                 // Ensure cities are initialized
                 CitiesAndDistances.Cities();
                 Scanner sc = new Scanner(System.in);
-                ArrayList<Integer> citieschoosen = new ArrayList<>();
+                ArrayList<Integer> citiesChosen = new ArrayList<>();
                 int c;
                 int c1 = -1;
                 String[] ct = CitiesAndDistances.getCities();
@@ -13,20 +13,21 @@ public class testm1 {
                 for (int i = 0; i < 15; i++) {
                     System.out.println(i + ": " + ct[i]);
                 }
-                do{
-                c1 = sc.nextInt();
+                do {
+                    c1 = sc.nextInt(); 
                     if (CitiesAndDistances.checkExistance(ct, c1)) {
-                        citieschoosen.add(c1);
+                        citiesChosen.add(c1);
                     } else {
-                        System.out.println("Enter a number between 0-14.");
+                        System.out.println("Please enter a number between 0-14.");
                     }
-                }while(c1==-1);
+                } while(c1==-1);
+                
                 System.out.println("Choose the cities you want to visit by inserting the number which the city corresponds to from 0-14:");
                 do {
                     System.out.println("Available cities:");
                     // Print available cities that have not been chosen
-                    for (int i = 0; i < 15; i++) {
-                        if (!citieschoosen.contains(i)) {
+                 for (int i = 0; i < 15; i++) {
+                        if (!citiesChosen.contains(i)) {
                             System.out.println(i + ": " + ct[i]);
                         }
                     }
@@ -35,8 +36,8 @@ public class testm1 {
                         break; // End input when user enters 15
                     }
                     if (CitiesAndDistances.checkExistance(ct, c)) {
-                        if (!citieschoosen.contains(c)) {
-                            citieschoosen.add(c);
+                        if (!citiesChosen.contains(c)) {
+                            citiesChosen.add(c);
                         } else {
                             System.out.println("This city has already been added. Please select a different city.");
                         }
@@ -49,9 +50,11 @@ public class testm1 {
                     
                     // Check if the user entered 15 to stop the loop
                 } while (c != 15);
-                citieschoosen.add(c1);
-                System.out.println("Cities chosen: " + citieschoosen);
+                citiesChosen.add(c1);
+             
+                System.out.println("Cities chosen: " + citiesChosen);
+
+                CitiesAndDistances.printCities(citiesChosen);
                   
     }
-
-}
+} 
