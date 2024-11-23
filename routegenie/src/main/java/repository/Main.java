@@ -1,4 +1,4 @@
-package routegenie.src.main.java.routegenie;
+package routegenie.src.main.java.repository;
 
 public class Main {
     public static void main(String[] args) {
