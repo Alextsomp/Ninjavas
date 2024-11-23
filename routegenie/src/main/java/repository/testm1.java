@@ -20,7 +20,7 @@ public class testm1 {
                     } else {
                         System.out.println("Please enter a number between 0-14.");
                     }
-                } while(c1==-1);
+                } while(c1 > 14 || c1 < 0 );
                 
                 System.out.println("Choose the cities you want to visit by inserting the number which the city corresponds to from 0-14:");
                 do {
