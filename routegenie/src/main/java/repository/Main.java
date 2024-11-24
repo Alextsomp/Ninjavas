@@ -105,8 +105,6 @@ public class Main {
                 System.out.println("The total distance for your trip is goint to be: " + ANSI_GREEN + totalDistanceNN + ANSI_RESET);
                 }
                 
-                
-                sc.close();
-                  
+                sc.close();      
     }
 } 
