@@ -1,4 +1,4 @@
-package routegenie.src.main.java.repository;
+package repository;
 import java.util.ArrayList;
 
 public class CitiesAndDistances {

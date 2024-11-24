@@ -1,4 +1,4 @@
-package routegenie.src.main.java.repository;
+package repository;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -8,7 +8,8 @@ import java.util.HashMap;
 //Class that solves the tsp problem
 public class Solver {
     // algorithm
-    public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected) {
+    public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected) 
+        throws IllegalArgumentException, IllegalStateException {
 
         if (selected == null) {
             throw new IllegalArgumentException("The list of selected cities cannot be null.");
@@ -40,6 +41,7 @@ public class Solver {
         // Cities Map in the subset
         Map<Integer, Integer> cityToIndex = new HashMap<>(); //the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
+        
         for (int i = 0; i < N; i++) {
             cityToIndex.put(selected.get(i), i);
             indexToCity.put(i, selected.get(i));
@@ -68,11 +70,13 @@ public class Solver {
                 for (int next = 0; next < N; next++) {
                     if (next == startIndex || notIn(next, subset)) //if the next city is the same as the starting city or not in the subset
                         continue;
+                    
                     int subsetWithoutNext = subset ^ (1 << next); //next is removed from the subset
                     double minDistance = Double.POSITIVE_INFINITY;
                     for (int end = 0; end < N; end++) {
                         if (end == startIndex || end == next || notIn(end, subset)) //if the end is the same as the starting city or the next or if it is not in the subset
                             continue;
+                        
                         double newDistance = memo[end][subsetWithoutNext] + distances[end][next]; //the distance from end to next, having visited all of the other cities
                         if (newDistance < minDistance) {
                             minDistance = newDistance;
@@ -166,7 +170,7 @@ public class Solver {
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
-        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
+        // Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
         return Best;
     }
 
