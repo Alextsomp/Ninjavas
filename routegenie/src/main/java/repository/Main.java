@@ -80,7 +80,7 @@ public class Main {
                 // System.out.println(cityNames[bestRoutesSolver.get(i)]);
                 // }
 
-                if (totalDistanceNN < totalDistanceSolver) {
+                if (totalDistanceNN > totalDistanceSolver) {
                     System.out.println("The best algorithm for your trip is" + ANSI_YELLOW + " Solver." + ANSI_RESET);
                     System.out.println("According to" + ANSI_YELLOW + " Solver" + ANSI_RESET + ", the best route for your trip is: ");
                 for (int i = 0; i < bestRoutesSolver.size(); i++) {
