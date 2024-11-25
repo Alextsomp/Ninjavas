@@ -152,7 +152,7 @@ public class Solver {
     public List<Integer> nearestNeighbour(int start, double dist[][], List<Integer> selected) {
         int n = selected.size();
         List<Integer> Best = new ArrayList<>();
-        //Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
+        Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
         int poli = start;
         int thesiMIN = 0;
         for (int i = 1; i <= n; i++) {
@@ -170,7 +170,7 @@ public class Solver {
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
-        // Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
+        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
         return Best;
     }
 
