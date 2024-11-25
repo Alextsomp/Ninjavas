@@ -170,7 +170,7 @@ public class Solver {
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
-        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
+        //Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
         return Best;
     }
 
