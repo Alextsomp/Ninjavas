@@ -80,29 +80,29 @@ public class Main {
                 // System.out.println(cityNames[bestRoutesSolver.get(i)]);
                 // }
 
-                if (totalDistanceNN > totalDistanceSolver) {
-                System.out.println("The best algorithm for your trip is" + ANSI_YELLOW + " Solver." + ANSI_RESET);
-                System.out.println("According to" + ANSI_YELLOW + " Solver" + ANSI_RESET + ", the best route for your trip is: ");
+                if (totalDistanceNN < totalDistanceSolver) {
+                    System.out.println("The best algorithm for your trip is" + ANSI_YELLOW + " Solver." + ANSI_RESET);
+                    System.out.println("According to" + ANSI_YELLOW + " Solver" + ANSI_RESET + ", the best route for your trip is: ");
                 for (int i = 0; i < bestRoutesSolver.size(); i++) {
-                System.out.printf("%d) %s\n", i+1 , cityNames[bestRoutesSolver.get(i)]);
+                    System.out.printf("%d) %s\n", i+1 , cityNames[bestRoutesSolver.get(i)]);
                 }
-                System.out.println("And the total distance is goint to be: " + ANSI_GREEN + totalDistanceSolver + ANSI_RESET);
+                    System.out.println("And the total distance is goint to be: " + ANSI_GREEN + totalDistanceSolver + ANSI_RESET);
                 
                 } else if (totalDistanceSolver > totalDistanceNN) {
-                System.out.println("The best algorithm for this case is" + ANSI_YELLOW + " NN." + ANSI_RESET);
-                System.out.println("According to" + ANSI_YELLOW + " NN" + ANSI_RESET + ", the best route for your trip is: ");
+                    System.out.println("The best algorithm for this case is" + ANSI_YELLOW + " NN." + ANSI_RESET);
+                    System.out.println("According to" + ANSI_YELLOW + " NN" + ANSI_RESET + ", the best route for your trip is: ");
                 for (int i = 0; i < bestRoutesSolver.size(); i++) {
-                System.out.printf("%d) %s\n", i+1 , cityNames[bestRoutesNN.get(i)]);
+                    System.out.printf("%d) %s\n", i+1 , cityNames[bestRoutesNN.get(i)]);
                 }
-                System.out.println("The total distance for your trip is goint to be: " + ANSI_GREEN + totalDistanceNN + ANSI_RESET);
+                    System.out.println("The total distance for your trip is goint to be: " + ANSI_GREEN + totalDistanceNN + ANSI_RESET);
                 
                 } else {
-                System.out.println(ANSI_YELLOW + "Both algorithms agree!" + ANSI_RESET);
-                System.out.println("The best route for your trip is: ");
+                    System.out.println(ANSI_YELLOW + "Both algorithms agree!" + ANSI_RESET);
+                    System.out.println("The best route for your trip is: ");
                 for (int i = 0; i < bestRoutesNN.size(); i++) {
-                System.out.printf("%d) %s\n", i , cityNames[bestRoutesNN.get(i)]);
+                    System.out.printf("%d) %s\n", i+1 , cityNames[bestRoutesNN.get(i)]);
                 }
-                System.out.println("The total distance for your trip is goint to be: " + ANSI_GREEN + totalDistanceNN + ANSI_RESET);
+                    System.out.println("The total distance for your trip is goint to be: " + ANSI_GREEN + totalDistanceNN + ANSI_RESET);
                 }
                 
                 sc.close();      
