@@ -121,8 +121,8 @@ public class Solver {
         return tour;
     }
 
-    private static boolean notIn(int elem, int subset) {
-        return ((1 << elem) & subset) == 0;
+    private static boolean notIn(int elem, int subset) { //checks whether a given element is present in the subset
+        return ((1 << elem) & subset) == 0; //checks if the elem bit is in subset is set to 1, if not, it returns true, meaning it is not in the subset
     }
 
     // Αυτή η μέθοδος δημιουργεί όλους τους συνδυασμούς bit μεγέθους n με r bits σε
