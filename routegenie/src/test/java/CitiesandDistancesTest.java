@@ -27,4 +27,27 @@ public class CitiesandDistancesTest {
             "Sofia\n";
         assertEquals(expectedOutput, outContent.toString());
     }
+
+    @Test
+
+    void testPrintDistances() {
+        double[][] distances = new double[15][15];
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                distances[i][j] = i * j * 1.0;
+            }
+        }
+        CitiesAndDistances.distances = distances;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent)); 
+        CitiesAndDistances.printDistances();
+        System.setOut(System.out);
+        StringBuilder expectedOutput = new StringBuilder();
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                expectedOutput.append(distances[i][j]).append("\n");
+            }
+        }
+        assertEquals(expectedOutput.toString(), outContent.toString());
+    }
 }
