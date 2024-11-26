@@ -72,4 +72,20 @@ public class SolverTest {
         List<Integer> expected = List.of();
         assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει άδειο σύνολο όταν r > n.");
     }
+
+    @Test
+    public void testCombinations() {
+        List<Integer> subsets = new ArrayList<>();
+        int r = 2; // Μέγεθος συνδυασμών
+        int n = 3; // Συνολικός αριθμός στοιχείων 
+        combinations(0, 0, r, n, subsets);
+        // Αναμενόμενοι συνδυασμοί
+        List<Integer> expected = List.of(
+            0b011,
+            0b101,
+            0b110  
+        );
+        assertEquals(expected, subsets);
+    }
+
 }
