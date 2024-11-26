@@ -87,5 +87,15 @@ public class SolverTest {
         );
         assertEquals(expected, subsets);
     }
-
+    @Test
+    public void NotInTest() {
+        // Bitmask subset: 0b101 (περιλαμβάνει στοιχεία 2 και 0, δεν περιλαμβάνει το 1)
+        int subset = 0b101;
+        // Δοκιμή για στοιχείο που δεν περιλαμβάνεται
+        assertTrue(notIn(1, subset), "Το στοιχείο 1 ΔΕΝ πρέπει να υπάρχει στο subset");
+        // Δοκιμή για στοιχεία που περιλαμβάνονται
+        assertFalse(notIn(0, subset), "Το στοιχείο 0 πρέπει να υπάρχει στο subset");
+        assertFalse(notIn(2, subset), "Το στοιχείο 2 πρέπει να υπάρχει στο subset");
+    }
+ 
 }
