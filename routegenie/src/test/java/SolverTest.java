@@ -13,7 +13,7 @@ public class SolverTest {
    }
 
    @Test
-    void nearestNeighbourTest () {
+    public void nearestNeighbourTest () {
         double[][] distances = {
             {0, 494, 678, 798},
             {494, 0, 397, 292},
@@ -27,7 +27,7 @@ public class SolverTest {
         assertEquals(expectedTour, result, "the method nearestNeighbour does not return the right tour");
     }
     @Test
-    void combinationsTest() {
+    public void combinationsTest() {
         // παραδειγμα για ν=4 στοιχεια και ρ=2 μεγεθος συνδυασμων
         int n = 4;
         int r = 2;
@@ -37,7 +37,7 @@ public class SolverTest {
         assertTrue(result.containsAll(expected) && expected.containsAll(result), "οι συνδυασμοι δεν ειναι σωστοι");
     }
     @Test
-    void CombinationsEdgeCaseTest() {
+    public void CombinationsEdgeCaseTest() {
         // Έλεγχος για περίπτωση r = 0 (πρέπει να υπάρχει μόνο το κενό σύνολο)
         int n = 5;
         int r = 0;
@@ -49,7 +49,7 @@ public class SolverTest {
         assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει σωστά το κενό σύνολο όταν r = 0.");
     }
     @Test
-    void CombinationsFullSetTest() {
+    public void CombinationsFullSetTest() {
         // Έλεγχος για περίπτωση r = n (πρέπει να επιστρέφει το πλήρες σύνολο)
         int n = 3;
         int r = 3;
@@ -61,7 +61,7 @@ public class SolverTest {
         assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει σωστά το πλήρες σύνολο όταν r = n.");
     }
     @Test
-    void CombinationsInvalidCaseTest() {
+    public void CombinationsInvalidCaseTest() {
         // Έλεγχος για περίπτωση r > n (πρέπει να επιστρέφει άδειο σύνολο)
         int n = 3;
         int r = 4;
@@ -97,5 +97,20 @@ public class SolverTest {
         assertFalse(notIn(0, subset), "Το στοιχείο 0 πρέπει να υπάρχει στο subset");
         assertFalse(notIn(2, subset), "Το στοιχείο 2 πρέπει να υπάρχει στο subset");
     }
- 
+ @Test
+    public void testSolve() {
+        double[][] distances = {
+            {0, 494, 678, 798},
+            {494, 0, 397, 292},
+            {678, 397, 0, 473},
+            {798, 292, 473, 0}
+        };
+        List<Integer> selectedCities = Arrays.asList(0, 1, 2, 3);
+        int startCity = 0;
+        List<Integer> expectedTour = Arrays.asList(0, 1, 3, 2, 0);
+        List<Integer> actualTour = solver.solve(distances, startCity, selectedCities);
+        // Έλεγχος αν η διαδρομή είναι σωστή
+        assertEquals(expectedTour, actualTour, "The computed tour does not match the expected tour.");
+    }
+
 }
