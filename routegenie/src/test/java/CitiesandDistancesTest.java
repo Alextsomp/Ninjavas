@@ -54,4 +54,14 @@ public class CitiesandDistancesTest {
         }
         assertEquals(expectedOutput.toString(), outContent.toString());
     }
+
+    @Test
+    public void checkExistenceTest() {
+        String[] cities = {"Athens", "Thessaloniki", "Patras"};
+        assertTrue(checkExistance(cities, 0), "Η πόλη στη θέση 0 θα έπρεπε να υπάρχει.");
+        assertTrue(checkExistance(cities, 2), "Η πόλη στη θέση 2 θα έπρεπε να υπάρχει.");
+        assertFalse(checkExistance(cities, -1), "Η πόλη στη θέση -1 δεν θα έπρεπε να υπάρχει.");
+        assertFalse(checkExistance(cities, 3), "Η πόλη στη θέση 3 δεν θα έπρεπε να υπάρχει.");
+        assertFalse(checkExistance(cities, 100), "Η πόλη στη θέση 100 δεν θα έπρεπε να υπάρχει.");
+    }
 }

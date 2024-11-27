@@ -113,4 +113,39 @@ public class SolverTest {
         assertEquals(expectedTour, actualTour, "The computed tour does not match the expected tour.");
     }
 
+    @Test 
+    public void totalDistTest() {
+        double[][] distances = {
+            {0, 494, 678, 798},
+            {494, 0, 397, 292},
+            {678, 397, 0, 473},
+            {798, 292, 473, 0}
+        };
+        List<Integer> best = Array.asList(0, 1, 3, 2);
+        double expectedTotalDistance = 494 + 292 + 473;
+        double actualTotalDistance = totalDist(best, distances);
+        assertEquals(expectedTotalDistance, actualTotalDistance, "Η μέθοδος totalDist δεν υπολόγισε σωστά το άθροισμα των αποστάσεων!");
+    }
+
+    @Test
+    public void bestRouteTest() {
+        double[][] distances = {
+            {0, 494, 678, 798},
+            {494, 0, 397, 292},
+            {678, 397, 0, 473},
+            {798, 292, 473, 0}
+        };
+        List<Integer> selected = Arrays.asList(1, 2, 3);
+        int startCity = 0;
+        double sum1 = 50;
+        double sum2 = 100;
+        List<Integer> expectedSolveRoute = Arrays.asList(0, 1, 2, 3);
+        List<Integer> actualSolveRoute = bestRoute(sum1, sum2, selected, distances, startCity);
+        assertEquals(expectedSolveRoute, actualSolveRoute,"Έπρεπε να κληθεί η μέθοδος Solve!");
+        sum1 = 120;
+        sum2 = 100;
+        List<Integer> expectedNearestRoute = Arrays.asList(0, 3, 2, 1);
+        List<Integer> actualNearestRoute = bestRoute(sum1, sum2, selected, distances, startCity);
+        assertEquals(expectedNearestRoute, actualNearestRoute, "Η μέθοδος nearestNeighbour δεν κλήθηκε σωστά όταν sum1 >= sum2!");
+    }
 }
