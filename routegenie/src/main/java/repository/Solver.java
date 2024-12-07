@@ -192,11 +192,11 @@ public class Solver {
         //distances= table with the distances between cities
         //startCity= the starting city
 
-        List<Integer> bestRoute; //Λίστα για την βέλτιστη διαδρομή
+        List<Integer> bestRoute; //List for the best route
         if (sum1 < sum2) {
-            bestRoute = solve(distances, startCity, selected); //Χρησιμοποίησε τον 1ο αλγόριθμο
+            bestRoute = solve(distances, startCity, selected); //Use 1st algorithm
         } else {
-            bestRoute = nearestNeighbour(startCity, distances, new ArrayList<>(selected)); //Χρησιμοποίησε τον 2ο αλγόριθμο
+            bestRoute = nearestNeighbour(startCity, distances, new ArrayList<>(selected)); //Use 2nd algorithm
         }
         return bestRoute;
     }
