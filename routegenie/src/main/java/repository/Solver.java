@@ -184,13 +184,13 @@ public class Solver {
         return sum;
     }
 
-    //μέθοδος για σύγκριση αποστάσεων ώστε να βρεθεί ο καλύτερος αλγόριθμος
+    //compare distances to find the best algorithm
     public List<Integer> bestRoute(double sum1, double sum2, List<Integer>selected, double [][] distances, int startCity) { 
-        //sum1= συνολική απόσταση αλγορίθμου 1
-        //sum2= συνολική απόσταση αλγορίθμου 2
-        //selected= είναι από τη main, με τις ενδιάμεσες πόλεις που θα επιλέξει ο χρήστης
-        //distances= πίνακας με τις αποστάσεις μεταξύ των πόλεων
-        //startCity= η πόλη αφετηρία
+        //sum1= total distance 1st algorithm
+        //sum2= total distance 2nd algorithm
+        //selected= from main method, contains the cities the user wnats to visit (minus the 1st)
+        //distances= table with the distances between cities
+        //startCity= the starting city
 
         List<Integer> bestRoute; //Λίστα για την βέλτιστη διαδρομή
         if (sum1 < sum2) {
