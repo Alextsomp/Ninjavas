@@ -152,7 +152,7 @@ public class Solver {
     public List<Integer> nearestNeighbour(int start, double dist[][], List<Integer> selected) {
         int n = selected.size();
         List<Integer> Best = new ArrayList<>();
-        Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
+        Best.add(start); //The first city will be the starting point
         int poli = start;
         int thesiMIN = 0;
         for (int i = 1; i <= n; i++) {
@@ -170,11 +170,11 @@ public class Solver {
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
-        //Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
+        //Best.add(start); // User will eventually return to the starting point
         return Best;
     }
 
-    //ο πίνακας best  θα είναι το output της μεθόδου nearestNeighbour.
+    //The List "best" will be the output of method "nearestNeighbour".
     public double totalDist(List<Integer>best, double dist[][] ) {
         int m = best.size();
         double sum = 0;
