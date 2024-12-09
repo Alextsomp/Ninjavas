@@ -12,20 +12,20 @@ public class Solver {
         throws IllegalArgumentException, IllegalStateException {
 
         if (selected == null) {
-            throw new IllegalArgumentException("The list of selected cities cannot be null.");
+            throw new IllegalArgumentException("The list of selected cities cannot be null."); //no cities are selected
         }
 
         int N = selected.size(); //N stores the number of cities that was selected
 
         if (N <= 1) {
-            throw new IllegalArgumentException("The list of selected cities must contain at least two cities.");
+            throw new IllegalArgumentException("The list of selected cities must contain at least two cities."); 
         }
 
         if (!selected.contains(startCity)) {
             throw new IllegalArgumentException("The starting city must be included in the list of selected cities.");
         }
 
-        // Έλεγχος εάν ο πίνακας αποστάσεων είναι συνεπής
+        // Checks if the matrix is consistent
         if (distances == null || distances.length == 0) {
             throw new IllegalArgumentException("The distance matrix cannot be null or empty.");
         }
@@ -42,27 +42,27 @@ public class Solver {
         Map<Integer, Integer> cityToIndex = new HashMap<>(); //the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
         
-        for (int i = 0; i < N; i++) {
-            cityToIndex.put(selected.get(i), i);
-            indexToCity.put(i, selected.get(i));
+        for (int i = 0; i < N; i++) { //the loop iterates through the 'selected' list, using 'i' as the index
+            cityToIndex.put(selected.get(i), i); //stores the mapping of each city to its corresponding numeric index
+            indexToCity.put(i, selected.get(i)); //stores the mapping of each index to its corresponding city
         }
 
-        int startIndex = cityToIndex.get(startCity);
+        int startIndex = cityToIndex.get(startCity); //startIndex stores the index of the starting city
 
         // the state where all the cities have been visited
         final int END_STATE = (1 << N) - 1;
 
-        // Αποθηκεύει τις βέλτιστες τιμές για την συγκεκριμένη κατάσταση
+        // Stores the optimal values for the current state
         Double[][] memo = new Double[N][1 << N];
 
-        // Αρχικοποίηση του πίνακα memo για το πρώτο βήμα
+        //Initialization of the matrix memo for the first step
         for (int end = 0; end < N; end++) {
             if (end == startIndex)
                 continue; //because the distance is 0
             memo[end][(1 << startIndex) | (1 << end)] = distances[startIndex][end];
         }
 
-        // Υπολογισμός για κάθε υποσύνολο πόλεων
+        // Calculation for all of the subsets of cities
         for (int r = 3; r <= N; r++) {
             for (int subset : combinations(r, N)) { //all the possible combinations of r cities from N
                 if (notIn(startIndex, subset)) //if the starting city is not in the subset
