@@ -112,9 +112,9 @@ public class Solver {
             lastIndex = bestNextIndex;
         }
 
-        tour.add(startCity);
-        Collections.reverse(tour);
-        if (tour.get(0) != startCity || tour.get(tour.size() - 1) != startCity) {
+        tour.add(startCity); // startCity is added to the end of the list 'tour' to ensure it starts and ends with the same city
+        Collections.reverse(tour); // Reverses the order of the tour
+        if (tour.get(0) != startCity || tour.get(tour.size() - 1) != startCity) { // checks is the first and last city are the same
             throw new IllegalStateException("The tour does not start and end at the starting city.");
         }
 
@@ -125,26 +125,24 @@ public class Solver {
         return ((1 << elem) & subset) == 0; //checks if the elem bit is in subset is set to 1, if not, it returns true, meaning it is not in the subset
     }
 
-    // Αυτή η μέθοδος δημιουργεί όλους τους συνδυασμούς bit μεγέθους n με r bits σε
-    // 1
-    public static List<Integer> combinations(int r, int n) {
-        List<Integer> subsets = new ArrayList<>();
-        combinations(0, 0, r, n, subsets);
+    public static List<Integer> combinations(int r, int n) { // it returns a list in which every value represents a different combination
+        List<Integer> subsets = new ArrayList<>(); // subsets stored the combinations
+        combinations(0, 0, r, n, subsets); // r is the number of elements we have to choose, n is the total number of elements
         return subsets;
     }
 
     private static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
-        int elementsLeftToPick = n - at;
-        if (elementsLeftToPick < r)
+        int elementsLeftToPick = n - at; // calculates how many elements are left to pick starting from the current position
+        if (elementsLeftToPick < r) // if there are less elements left than needed
             return;
 
-        if (r == 0) {
-            subsets.add(set);
+        if (r == 0) { // if no more elements need to be picked
+            subsets.add(set); // 'set' is the current combination as a bitmask
         } else {
-            for (int i = at; i < n; i++) {
-                set |= 1 << i;
-                combinations(set, i + 1, r - 1, n, subsets);
-                set &= ~(1 << i);
+            for (int i = at; i < n; i++) { // iterates through all the elements from the current position to the end
+                set |= 1 << i; // the bit of the current element is set to 1, in order for it to be added to the combination
+                combinations(set, i + 1, r - 1, n, subsets); // recursively picks the remaining elements, starting from the next position
+                set &= ~(1 << i); // the bit of the current element is set to 0, in order for it to be removed from the combination
             }
         }
     }
