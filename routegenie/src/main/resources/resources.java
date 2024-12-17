@@ -34,7 +34,7 @@ public class Main extends Application {
 	
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) { //method that starts the application
 		try {
 			root = new VBox();
 			Scene scene = new Scene(root,400,400);
@@ -57,26 +57,26 @@ public class Main extends Application {
 		}
 	}
 	public static void main(String[] args) {
-		launch(args);
+		launch(args); //launches the javafx application
 	}
-	public void load() {
+	public void load() { //creates the necessary components
 		
-		Label firstName = new Label("First Name");
+		Label firstName = new Label("First Name"); //textfields for the user to fill with their name and submit with a buttton
 		Label lastName = new Label("Last Name");
 		TextField tf1 = new TextField();
 		TextField tf2 = new TextField();
 		Button btn = new Button("Submit");
 		btn.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
 		
-		btn.setOnAction(e -> {
-			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText());
-			tf1.setText("");
+		btn.setOnAction(e -> { //Assigns an action to the button when clicked
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); //Prints the input from the text fields to the console
+			tf1.setText(""); //clears the textfields after submission
 			tf2.setText("");
 		});
 		
 		root.getChildren().addAll(firstName, tf1, lastName, tf2, btn);
 		
-		CheckBox c1 = new CheckBox("1. Athens");
+		CheckBox c1 = new CheckBox("1. Athens"); //creation of 14 checkboxes with the app's cities
 		CheckBox c2 = new CheckBox("2. Thessaloniki");
 		CheckBox c3 = new CheckBox("3. Patras");
 		CheckBox c4 = new CheckBox("4. Ioannina");
@@ -102,7 +102,7 @@ public class Main extends Application {
 		
 		EventHandler<ActionEvent> updateSelectedCities = e -> {
 			StringBuilder selectedCities = new StringBuilder("Selected Cities: ");
-			if (c1.isSelected()) selectedCities.append("Athens, ");
+			if (c1.isSelected()) selectedCities.append("Athens, "); //checks if a city is selected
             if (c2.isSelected()) selectedCities.append("Thessaloniki, ");
             if (c3.isSelected()) selectedCities.append("Patras, ");
             if (c4.isSelected()) selectedCities.append("Ioannina, ");
@@ -121,10 +121,10 @@ public class Main extends Application {
             if (result.equals("Selected Cities:")) {
                 result = "Selected Cities: None";
             }
-            selectedCitiesText.setText(result);
+            selectedCitiesText.setText(result); // updates the text displaying the selected cities
         };
 		
-		c1.setOnAction(updateSelectedCities);
+		c1.setOnAction(updateSelectedCities); //Any possible change will trigger the update logic
 		c2.setOnAction(updateSelectedCities);
 		c3.setOnAction(updateSelectedCities);
 		c4.setOnAction(updateSelectedCities);
