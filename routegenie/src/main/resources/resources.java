@@ -56,5 +56,91 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	public static void main(String[] args) {
+		launch(args);
+	}
+	public void load() {
+		
+		Label firstName = new Label("First Name");
+		Label lastName = new Label("Last Name");
+		TextField tf1 = new TextField();
+		TextField tf2 = new TextField();
+		Button btn = new Button("Submit");
+		btn.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+		
+		btn.setOnAction(e -> {
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText());
+			tf1.setText("");
+			tf2.setText("");
+		});
+		
+		root.getChildren().addAll(firstName, tf1, lastName, tf2, btn);
+		
+		CheckBox c1 = new CheckBox("1. Athens");
+		CheckBox c2 = new CheckBox("2. Thessaloniki");
+		CheckBox c3 = new CheckBox("3. Patras");
+		CheckBox c4 = new CheckBox("4. Ioannina");
+		CheckBox c5 = new CheckBox("5. Tirana");
+		CheckBox c6 = new CheckBox("6. Skopje");
+		CheckBox c7 = new CheckBox("7. Sofia");
+		CheckBox c8 = new CheckBox("8. Podgorica");
+		CheckBox c9 = new CheckBox("9. Bucharest");
+		CheckBox c10 = new CheckBox("10. Belgrade");
+		CheckBox c11 = new CheckBox("11. Sarajevo");
+		CheckBox c12 = new CheckBox("12. Zagreb");
+		CheckBox c13 = new CheckBox("13. Chisinau");
+		CheckBox c14 = new CheckBox("14. Ljubljana");
+		
+		VBox vbox = new VBox();
+		vbox.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
+		vbox.setSpacing(10);
+		
+		Text selectedCitiesText = new Text("Selected cities: none");
+		
+		vbox.getChildren().add(selectedCitiesText);
+		
+		
+		EventHandler<ActionEvent> updateSelectedCities = e -> {
+			StringBuilder selectedCities = new StringBuilder("Selected Cities: ");
+			if (c1.isSelected()) selectedCities.append("Athens, ");
+            if (c2.isSelected()) selectedCities.append("Thessaloniki, ");
+            if (c3.isSelected()) selectedCities.append("Patras, ");
+            if (c4.isSelected()) selectedCities.append("Ioannina, ");
+            if (c5.isSelected()) selectedCities.append("Tirana, ");
+            if (c6.isSelected()) selectedCities.append("Skopje, ");
+            if (c7.isSelected()) selectedCities.append("Sofia, ");
+            if (c8.isSelected()) selectedCities.append("Podgorica, ");
+            if (c9.isSelected()) selectedCities.append("Bucharest, ");
+            if (c10.isSelected()) selectedCities.append("Belgrade, ");
+            if (c11.isSelected()) selectedCities.append("Sarajevo, ");
+            if (c12.isSelected()) selectedCities.append("Zagreb, ");
+            if (c13.isSelected()) selectedCities.append("Chisinau, ");
+            if (c14.isSelected()) selectedCities.append("Ljubljana, ");
+
+            String result = selectedCities.toString().replaceAll(", $", "");
+            if (result.equals("Selected Cities:")) {
+                result = "Selected Cities: None";
+            }
+            selectedCitiesText.setText(result);
+        };
+		
+		c1.setOnAction(updateSelectedCities);
+		c2.setOnAction(updateSelectedCities);
+		c3.setOnAction(updateSelectedCities);
+		c4.setOnAction(updateSelectedCities);
+		c5.setOnAction(updateSelectedCities);
+		c6.setOnAction(updateSelectedCities);
+		c7.setOnAction(updateSelectedCities);
+		c8.setOnAction(updateSelectedCities);
+		c9.setOnAction(updateSelectedCities);
+		c10.setOnAction(updateSelectedCities);
+		c11.setOnAction(updateSelectedCities);
+		c12.setOnAction(updateSelectedCities);
+		c13.setOnAction(updateSelectedCities);
+		c14.setOnAction(updateSelectedCities);
+		
+		root.getChildren().add(vbox);
+	}
 }
+
 	
