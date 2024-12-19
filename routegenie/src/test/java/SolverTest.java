@@ -2,15 +2,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
-import java.beans.Transient;
 import java.util.ArrayList;
+import repository.Solver;
+import org.junit.jupiter.api.BeforeEach;
 
 public class SolverTest {
-   
+    
+    private Solver solver;
+    
     @BeforeEach
-   public void setup(){
-    Solver solver = new Solver();
+    public void setup(){
+    solver = new Solver();
    }
+   
+   @Test
+    public void testSolverInitialization() {
+        assertNotNull(solver);
+    }
 
    @Test
     public void nearestNeighbourTest () {
@@ -20,83 +28,86 @@ public class SolverTest {
             {678, 397, 0, 473},
             {798, 292, 473, 0}
         };
-        int Startcity = 0;
         List<Integer> selected = new ArrayList<>(Arrays.asList(1, 2, 3));
-        List<integer> expectedTour = Arrays.asList(0, 1, 3, 2);
-        List<Integer> result = Solver.nearestNeighbour(0, distances, selected);
-        assertEquals(expectedTour, result, "the method nearestNeighbour does not return the right tour");
+        List<Integer> expectedTour = Arrays.asList(0, 1, 3, 2);
+        List<Integer> result = solver.nearestNeighbour(0, distances, selected);
+        assertEquals(expectedTour, result, "nearestNeighbour method does not return the right tour");
     }
     @Test
     public void combinationsTest() {
-        // παραδειγμα για ν=4 στοιχεια και ρ=2 μεγεθος συνδυασμων
+        //example of 4 elements and 2 combinations
         int n = 4;
         int r = 2;
         List<Integer> result = Solver.combinations(r, n);
-        List<Integer> expected = List.of(3, 5, 6, 9, 10, 12);//αναμενομενοι συνδυασμοι
-        assertEquals(expected.size(), result.size(), "ο αριθμος των συνδυασμων δεν ειναι σωστος");
-        assertTrue(result.containsAll(expected) && expected.containsAll(result), "οι συνδυασμοι δεν ειναι σωστοι");
+        List<Integer> expected = List.of(3, 5, 6, 9, 10, 12);//expected combinations
+        assertEquals(expected.size(), result.size(), "the number of combinations is not right");
+        assertTrue(result.containsAll(expected) && expected.containsAll(result), "combinations are not right");
     }
     @Test
     public void CombinationsEdgeCaseTest() {
-        // Έλεγχος για περίπτωση r = 0 (πρέπει να υπάρχει μόνο το κενό σύνολο)
+        //case when r=0
         int n = 5;
         int r = 0;
 
         List<Integer> result = Solver.combinations(r, n);
-
-        // Αναμενόμενο αποτέλεσμα: μόνο το κενό σύνολο
+        //zero space expected
         List<Integer> expected = List.of(0);
-        assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει σωστά το κενό σύνολο όταν r = 0.");
+        assertEquals(expected, result, "The method does not return the right result when r=0, it has nothing to return.");
     }
     @Test
     public void CombinationsFullSetTest() {
-        // Έλεγχος για περίπτωση r = n (πρέπει να επιστρέφει το πλήρες σύνολο)
+        //Case when r=n
+        //(it has to return all sets of combinations)
         int n = 3;
         int r = 3;
         List<Integer> result = Solver.combinations(r, n);
 
-        // Αναμενόμενο αποτέλεσμα: μόνο το πλήρες σύνολο
-        // 111 (δυαδικά), δηλαδή 7
+        //Expected all sets
+        //111 (binary), which means 7
         List<Integer> expected = List.of(7);
-        assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει σωστά το πλήρες σύνολο όταν r = n.");
+        assertEquals(expected, result, "The method does not return the right result when r=0, all sets of combinations must be included");
     }
+
     @Test
     public void CombinationsInvalidCaseTest() {
-        // Έλεγχος για περίπτωση r > n (πρέπει να επιστρέφει άδειο σύνολο)
+        //case when r>n
+        //(null space expected)
         int n = 3;
         int r = 4;
 
         List<Integer> result = Solver.combinations(r, n);
 
-        // Αναμενόμενο αποτέλεσμα: κανένας συνδυασμός
+        //expected result: no combinations.
         List<Integer> expected = List.of();
-        assertEquals(expected, result, "Η μέθοδος δεν επιστρέφει άδειο σύνολο όταν r > n.");
+        assertEquals(expected, result, "The method does not return the null space when r>n.");
     }
 
     @Test
     public void testCombinations() {
         List<Integer> subsets = new ArrayList<>();
-        int r = 2; // Μέγεθος συνδυασμών
-        int n = 3; // Συνολικός αριθμός στοιχείων 
-        combinations(0, 0, r, n, subsets);
-        // Αναμενόμενοι συνδυασμοί
+        int r = 2; //number of combinations
+        int n = 3; //number of elements
+        Solver.combinations(0, 0, r, n, subsets);
+        //expected combinations
         List<Integer> expected = List.of(
             0b011,
             0b101,
-            0b110  
+            0b110
         );
         assertEquals(expected, subsets);
     }
+    
     @Test
     public void NotInTest() {
-        // Bitmask subset: 0b101 (περιλαμβάνει στοιχεία 2 και 0, δεν περιλαμβάνει το 1)
+        // Bitmask subset: 0b101 (it contains the elements 2 and 0, not the element 1)
         int subset = 0b101;
-        // Δοκιμή για στοιχείο που δεν περιλαμβάνεται
-        assertTrue(notIn(1, subset), "Το στοιχείο 1 ΔΕΝ πρέπει να υπάρχει στο subset");
+        // Check for an element that is not included
+        assertTrue(Solver.notIn(1, subset), "Element 1 must not be included in the subset");
         // Δοκιμή για στοιχεία που περιλαμβάνονται
-        assertFalse(notIn(0, subset), "Το στοιχείο 0 πρέπει να υπάρχει στο subset");
-        assertFalse(notIn(2, subset), "Το στοιχείο 2 πρέπει να υπάρχει στο subset");
+        assertFalse(Solver.notIn(0, subset), "Element 0 must be included in the subset");
+        assertFalse(Solver.notIn(2, subset), "Element 2 must be included in the subset");
     }
+
  @Test
     public void testSolve() {
         double[][] distances = {
@@ -109,7 +120,7 @@ public class SolverTest {
         int startCity = 0;
         List<Integer> expectedTour = Arrays.asList(0, 1, 3, 2, 0);
         List<Integer> actualTour = solver.solve(distances, startCity, selectedCities);
-        // Έλεγχος αν η διαδρομή είναι σωστή
+        // Check if the tour is right
         assertEquals(expectedTour, actualTour, "The computed tour does not match the expected tour.");
     }
 
@@ -121,10 +132,10 @@ public class SolverTest {
             {678, 397, 0, 473},
             {798, 292, 473, 0}
         };
-        List<Integer> best = Array.asList(0, 1, 3, 2);
+        List<Integer> best = Arrays.asList(0, 1, 3, 2);
         double expectedTotalDistance = 494 + 292 + 473;
-        double actualTotalDistance = totalDist(best, distances);
-        assertEquals(expectedTotalDistance, actualTotalDistance, "Η μέθοδος totalDist δεν υπολόγισε σωστά το άθροισμα των αποστάσεων!");
+        double actualTotalDistance = solver.totalDist(best, distances);
+        assertEquals(expectedTotalDistance, actualTotalDistance, "totalDist method did not calculate correctly the sum of the distances");
     }
 
     @Test
@@ -140,12 +151,12 @@ public class SolverTest {
         double sum1 = 50;
         double sum2 = 100;
         List<Integer> expectedSolveRoute = Arrays.asList(0, 1, 2, 3);
-        List<Integer> actualSolveRoute = bestRoute(sum1, sum2, selected, distances, startCity);
-        assertEquals(expectedSolveRoute, actualSolveRoute,"Έπρεπε να κληθεί η μέθοδος Solve!");
+        List<Integer> actualSolveRoute = solver.bestRoute(sum1, sum2, selected, distances, startCity);
+        assertEquals(expectedSolveRoute, actualSolveRoute,"solve method must have been called");
         sum1 = 120;
         sum2 = 100;
         List<Integer> expectedNearestRoute = Arrays.asList(0, 3, 2, 1);
-        List<Integer> actualNearestRoute = bestRoute(sum1, sum2, selected, distances, startCity);
-        assertEquals(expectedNearestRoute, actualNearestRoute, "Η μέθοδος nearestNeighbour δεν κλήθηκε σωστά όταν sum1 >= sum2!");
+        List<Integer> actualNearestRoute = solver.bestRoute(sum1, sum2, selected, distances, startCity);
+        assertEquals(expectedNearestRoute, actualNearestRoute, "nearestNeighbour method must have been called");
     }
 }
