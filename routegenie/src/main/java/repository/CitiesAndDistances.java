@@ -1,3 +1,6 @@
+package repository;
+import java.util.ArrayList;
+
 public class CitiesAndDistances {
     //Class that contains the 15 available cities and the distances between each one
     final static String[] cities = new String[15];
@@ -175,5 +178,16 @@ public class CitiesAndDistances {
             return true;    
         }
         return false;
+    }
+
+    public static void printCities(ArrayList<Integer> citiesChosen) {
+        CitiesAndDistances.Cities();
+        System.out.println("The cities that you have chosen are: ");
+        for(int cityIndex : citiesChosen) {
+            if (cityIndex >= 0 && cityIndex < cities.length) {
+            System.out.println(cities[cityIndex]);
+           
+            }
+        }
     }
 }

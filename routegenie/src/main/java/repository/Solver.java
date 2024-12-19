@@ -1,3 +1,4 @@
+package repository;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -7,7 +8,8 @@ import java.util.HashMap;
 //Class that solves the tsp problem
 public class Solver {
     // algorithm
-    public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected) {
+    public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected) 
+        throws IllegalArgumentException, IllegalStateException {
 
         if (selected == null) {
             throw new IllegalArgumentException("The list of selected cities cannot be null.");
@@ -39,6 +41,7 @@ public class Solver {
         // Cities Map in the subset
         Map<Integer, Integer> cityToIndex = new HashMap<>(); //the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
+        
         for (int i = 0; i < N; i++) {
             cityToIndex.put(selected.get(i), i);
             indexToCity.put(i, selected.get(i));
@@ -67,11 +70,13 @@ public class Solver {
                 for (int next = 0; next < N; next++) {
                     if (next == startIndex || notIn(next, subset)) //if the next city is the same as the starting city or not in the subset
                         continue;
+                    
                     int subsetWithoutNext = subset ^ (1 << next); //next is removed from the subset
                     double minDistance = Double.POSITIVE_INFINITY;
                     for (int end = 0; end < N; end++) {
                         if (end == startIndex || end == next || notIn(end, subset)) //if the end is the same as the starting city or the next or if it is not in the subset
                             continue;
+                        
                         double newDistance = memo[end][subsetWithoutNext] + distances[end][next]; //the distance from end to next, having visited all of the other cities
                         if (newDistance < minDistance) {
                             minDistance = newDistance;
@@ -116,8 +121,8 @@ public class Solver {
         return tour;
     }
 
-    private static boolean notIn(int elem, int subset) {
-        return ((1 << elem) & subset) == 0;
+    private static boolean notIn(int elem, int subset) { //checks whether a given element is present in the subset
+        return ((1 << elem) & subset) == 0; //checks if the elem bit is in subset is set to 1, if not, it returns true, meaning it is not in the subset
     }
 
     // Αυτή η μέθοδος δημιουργεί όλους τους συνδυασμούς bit μεγέθους n με r bits σε
@@ -147,7 +152,7 @@ public class Solver {
     public List<Integer> nearestNeighbour(int start, double dist[][], List<Integer> selected) {
         int n = selected.size();
         List<Integer> Best = new ArrayList<>();
-        Best.add(start); //Η πρώτη πόλη θα είναι η αφετηρία
+        Best.add(start); //The first city will be the starting point
         int poli = start;
         int thesiMIN = 0;
         for (int i = 1; i <= n; i++) {
@@ -165,12 +170,12 @@ public class Solver {
             poli = selected.get(thesiMIN);
             selected.set(thesiMIN, 0);
         }
-        Best.add(start); // Η τελευταία πόλη θα είναι η αφετηρία
+        //Best.add(start); // User will eventually return to the starting point
         return Best;
     }
 
-    //ο πίνακας best  θα είναι το output της μεθόδου nearestNeighbour.
-    public double totalDist2(List<Integer>best, double dist[][] ) {
+    //The List "best" will be the output of method "nearestNeighbour".
+    public double totalDist(List<Integer>best, double dist[][] ) {
         int m = best.size();
         double sum = 0;
         for (int i = 0; i <= m-2; i++) {
@@ -179,19 +184,19 @@ public class Solver {
         return sum;
     }
 
-    //μέθοδος για σύγκριση αποστάσεων ώστε να βρεθεί ο καλύτερος αλγόριθμος
+    //compare distances to find the best algorithm
     public List<Integer> bestRoute(double sum1, double sum2, List<Integer>selected, double [][] distances, int startCity) { 
-        //sum1= συνολική απόσταση αλγορίθμου 1
-        //sum2= συνολική απόσταση αλγορίθμου 2
-        //selected= είναι από τη main, με τις ενδιάμεσες πόλεις που θα επιλέξει ο χρήστης
-        //distances= πίνακας με τις αποστάσεις μεταξύ των πόλεων
-        //startCity= η πόλη αφετηρία
+        //sum1= total distance 1st algorithm
+        //sum2= total distance 2nd algorithm
+        //selected= from main method, contains the cities the user wnats to visit (minus the 1st)
+        //distances= table with the distances between cities
+        //startCity= the starting city
 
-        List<Integer> bestRoute; //Λίστα για την βέλτιστη διαδρομή
+        List<Integer> bestRoute; //List for the best route
         if (sum1 < sum2) {
-            bestRoute = solve(distances, startCity, selected); //Χρησιμοποίησε τον 1ο αλγόριθμο
+            bestRoute = solve(distances, startCity, selected); //Use 1st algorithm
         } else {
-            bestRoute = nearestNeighbour(startCity, distances, new ArrayList<>(selected)); //Χρησιμοποίησε τον 2ο αλγόριθμο
+            bestRoute = nearestNeighbour(startCity, distances, new ArrayList<>(selected)); //Use 2nd algorithm
         }
         return bestRoute;
     }
