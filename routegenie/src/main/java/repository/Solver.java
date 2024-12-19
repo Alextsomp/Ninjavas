@@ -121,7 +121,7 @@ public class Solver {
         return tour;
     }
 
-    private static boolean notIn(int elem, int subset) { //checks whether a given element is present in the subset
+    public static boolean notIn(int elem, int subset) { //checks whether a given element is present in the subset
         return ((1 << elem) & subset) == 0; //checks if the elem bit is in subset is set to 1, if not, it returns true, meaning it is not in the subset
     }
 
@@ -131,7 +131,7 @@ public class Solver {
         return subsets;
     }
 
-    private static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
+    public static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
         int elementsLeftToPick = n - at; // calculates how many elements are left to pick starting from the current position
         if (elementsLeftToPick < r) // if there are less elements left than needed
             return;
