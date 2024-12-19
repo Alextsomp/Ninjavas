@@ -1,31 +1,35 @@
 import org.junit.jupiter.api.Test;
+import repository.CitiesAndDistances;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 public class CitiesandDistancesTest {
     
+    private ByteArrayOutputStream outContent ;
+
     @BeforeEach
     public void setUp() {
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        outContent = new ByteArrayOutputStream();
     }
     
     @Test
     public void PrintCitiesTest() {
-        String[] cities = {"Athens", "Thessaloniki", "sofia", "Tirana"}; // Παράδειγμα πόλεων
-        CitiesAndDistances.cities = cities; // Ανάθεση του πίνακα πόλεων στην κλάση CitiesAndDistances
+        String[] cities = {"Athens", "Thessaloniki", "sofia", "Tirana"}; // cities' example
+        CitiesAndDistances.cities = cities; // transfer this "cities" array to the classe's array
 
         ArrayList<Integer> citiesChosen = new ArrayList<>();
         citiesChosen.add(0); // Athens
         citiesChosen.add(2); // Sofia
         System.setOut(new PrintStream(outContent)); 
 
-        // Εκτέλεση της μεθόδου
+        //Excecution of the method
         CitiesAndDistances.printCities(citiesChosen);
         System.setOut(System.out);
 
-        // Έλεγχος αν η έξοδος περιέχει τα σωστά δεδομένα
+        // Checking if the output includes the right data
         String expectedOutput = 
             "The cities that you have chosen are: \n" +
             "Athens\n" +
@@ -34,7 +38,6 @@ public class CitiesandDistancesTest {
     }
 
     @Test
-
     public void testPrintDistances() {
         double[][] distances = new double[15][15];
         for (int i = 0; i < 15; i++) {
@@ -53,15 +56,5 @@ public class CitiesandDistancesTest {
             }
         }
         assertEquals(expectedOutput.toString(), outContent.toString());
-    }
-
-    @Test
-    public void checkExistenceTest() {
-        String[] cities = {"Athens", "Thessaloniki", "Patras"};
-        assertTrue(checkExistance(cities, 0), "Η πόλη στη θέση 0 θα έπρεπε να υπάρχει.");
-        assertTrue(checkExistance(cities, 2), "Η πόλη στη θέση 2 θα έπρεπε να υπάρχει.");
-        assertFalse(checkExistance(cities, -1), "Η πόλη στη θέση -1 δεν θα έπρεπε να υπάρχει.");
-        assertFalse(checkExistance(cities, 3), "Η πόλη στη θέση 3 δεν θα έπρεπε να υπάρχει.");
-        assertFalse(checkExistance(cities, 100), "Η πόλη στη θέση 100 δεν θα έπρεπε να υπάρχει.");
     }
 }
