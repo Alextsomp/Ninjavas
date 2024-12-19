@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class CitiesandDistancesTest {
     
-    private ByteArrayOutputStream outContent ;
+    private ByteArrayOutputStream outContent;
 
     @BeforeEach
     public void setUp() {
@@ -57,4 +57,33 @@ public class CitiesandDistancesTest {
         }
         assertEquals(expectedOutput.toString(), outContent.toString());
     }
-}
+    
+        @Test
+        public void testCheckExistance_ValidCityIndex() {
+            String[] cities = {"Athens", "Sofia", "Paris"};
+    
+            // Check for a valid city index
+            assertTrue(CitiesAndDistances.checkExistance(cities, 0), "City index 0 should exist.");
+            assertTrue(CitiesAndDistances.checkExistance(cities, 1), "City index 1 should exist.");
+            assertTrue(CitiesAndDistances.checkExistance(cities, 2), "City index 2 should exist.");
+        }
+    
+        @Test
+        public void testCheckExistance_InvalidCityIndex() {
+            String[] cities = {"Athens", "Sofia", "Paris"};
+    
+            // Check for invalid indexes
+            assertFalse(CitiesAndDistances.checkExistance(cities, -1), "Negative city index should not exist.");
+            assertFalse(CitiesAndDistances.checkExistance(cities, 3), "City index equal to array length should not exist.");
+            assertFalse(CitiesAndDistances.checkExistance(cities, 100), "City index larger than array length should not exist.");
+        }
+    
+        @Test
+        public void testCheckExistance_EmptyCityArray() {
+            String[] cities = {};
+    
+            // Check for empty array
+            assertFalse(CitiesAndDistances.checkExistance(cities, 0), "City index in an empty array should not exist.");
+        }
+    }
+    
