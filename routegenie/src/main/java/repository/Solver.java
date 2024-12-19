@@ -11,34 +11,15 @@ public class Solver {
     // algorithm
     public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected)
             throws IllegalArgumentException, IllegalStateException {
-        // Solver object to call methods
-        Solver solver = new Solver();
-        solver.validateInputs(distances, startCity, selected);
-
-        int N = selected.size(); // N stores the number of cities that was selected
-
-        // Cities Map in the subset
-        Map<Integer, Integer> cityToIndex = new HashMap<>(); // the HashMaps store key-value pairs
-        Map<Integer, Integer> indexToCity = new HashMap<>();
-        solver.initializeCityMappings(selected, cityToIndex, indexToCity);
-
-        int startIndex = cityToIndex.get(startCity); // startIndex stores the index of the starting city
-        // the state where all the cities have been visited
-        final int END_STATE = (1 << N) - 1;
-        // Stores the optimal values for the current state
-        Double[][] memo = new Double[N][1 << N];
-
-        solver.initializeMemo(distances, memo, startIndex, N);
-        solver.calculateSubsets(distances, memo, startIndex, N);
-
-        return solver.buildTour(distances, memo, startCity, cityToIndex, indexToCity, END_STATE, startIndex);
-    }
-
-    // method to check the validation of inputs
-    private void validateInputs(double[][] distances, int startCity, List<Integer> selected) {
 
         if (selected == null) {
             throw new IllegalArgumentException("The list of selected cities cannot be null."); // no cities are selected
+        }
+
+        int N = selected.size(); // N stores the number of cities that was selected
+
+        if (N <= 1) {
+            throw new IllegalArgumentException("The list of selected cities must contain at least two cities.");
         }
 
         if (!selected.contains(startCity)) {
@@ -57,36 +38,32 @@ public class Solver {
         if (startCity < 0 || startCity >= distances.length) {
             throw new IllegalArgumentException("The starting city index is out of bounds.");
         }
-    }
 
-    // method to initialize the two Maps
-    private void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
-            Map<Integer, Integer> indexToCity) {
-        /*
-         * the loop iterates through the 'selected' list, using 'i' as the index,
-         * it stores the mapping of each city to its corresponding numeric index
-         * and the mapping of each index to its corresponding city
-         */
-        for (int i = 0; i < selected.size(); i++) {
-            cityToIndex.put(selected.get(i), i);
-            indexToCity.put(i, selected.get(i));
+        // Cities Map in the subset
+        Map<Integer, Integer> cityToIndex = new HashMap<>(); // the HashMaps store key-value pairs
+        Map<Integer, Integer> indexToCity = new HashMap<>();
+
+        for (int i = 0; i < N; i++) { // the loop iterates through the 'selected' list, using 'i' as the index
+            cityToIndex.put(selected.get(i), i); // stores the mapping of each city to its corresponding numeric index
+            indexToCity.put(i, selected.get(i)); // stores the mapping of each index to its corresponding city
         }
-    }
 
-    // method to initialize the matrix memo for the first step
-    private void initializeMemo(double[][] distances, Double[][] memo, int startIndex, int N) {
+        int startIndex = cityToIndex.get(startCity); // startIndex stores the index of the starting city
 
+        // the state where all the cities have been visited
+        final int END_STATE = (1 << N) - 1;
+
+        // Stores the optimal values for the current state
+        Double[][] memo = new Double[N][1 << N];
+
+        // Initialization of the matrix memo for the first step
         for (int end = 0; end < N; end++) {
-            if (end == startIndex) {
+            if (end == startIndex)
                 continue; // because the distance is 0
-            }
             memo[end][(1 << startIndex) | (1 << end)] = distances[startIndex][end];
         }
-    }
 
-    // method to calculate all of the subsets of the cities
-    private void calculateSubsets(double[][] distances, Double[][] memo, int startIndex, int N) {
-
+        // Calculation for all of the subsets of cities
         for (int r = 3; r <= N; r++) {
             for (int subset : combinations(r, N)) { // all the possible combinations of r cities from N
                 if (notIn(startIndex, subset)) // if the starting city is not in the subset
@@ -116,25 +93,17 @@ public class Solver {
                 }
             }
         }
-    }
-
-    // method for constructing the optimal tour
-    private List<Integer> buildTour(double[][] distances, Double[][] memo, int startCity,
-            Map<Integer, Integer> cityToIndex, Map<Integer, Integer> indexToCity,
-            int END_STATE, int startIndex) {
 
         int lastIndex = startIndex; // sets the starting city as the last one
         int state = END_STATE; // END_STATE is the state where all the cities have been visited
         List<Integer> tour = new ArrayList<>(); // this list will store the optimal route
         tour.add(startCity);
 
-        for (int i = 1; i < cityToIndex.size(); i++) { // a loop for every city in the route, except from the start and
-                                                       // the end
+        for (int i = 1; i < N; i++) { // a loop for every city in the route, except from the start and the end
             int bestNextIndex = -1; // the next best city has not been found yet
             double minCost = Double.POSITIVE_INFINITY;
-            for (int next = 0; next < cityToIndex.size(); next++) { // a loop that goes through every possible city that
-                                                                    // can be the best
-                // previous city
+            for (int next = 0; next < N; next++) { // a loop that goes through every possible city that can be the best
+                                                   // previous city
                 if (next == lastIndex || notIn(next, state))
                     continue;
                 if (memo[next][state] == null) {
@@ -164,45 +133,35 @@ public class Solver {
         return tour;
     }
 
-    // method to check whether a given element is present in the subset
-    public static boolean notIn(int elem, int subset) {
+    public static boolean notIn(int elem, int subset) { // checks whether a given element is present in the subset
         return ((1 << elem) & subset) == 0; // checks if the elem bit is in subset is set to 1, if not, it returns true,
                                             // meaning it is not in the subset
     }
 
-    // method that returns a list in which every value represents a different
-    // combination
-    public static List<Integer> combinations(int r, int n) {
+    public static List<Integer> combinations(int r, int n) { // it returns a list in which every value represents a
+                                                             // different combination
         List<Integer> subsets = new ArrayList<>(); // subsets stored the combinations
         combinations(0, 0, r, n, subsets); // r is the number of elements we have to choose, n is the total number of
                                            // elements
         return subsets;
     }
 
-    // method to calculate the possible combinations of r cities from N
     public static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
         int elementsLeftToPick = n - at; // calculates how many elements are left to pick starting from the current
                                          // position
-
         if (elementsLeftToPick < r) // if there are less elements left than needed
             return;
-        // if no more elements need to be picked, 'set', which is the current
-        // combination as a bitmask, is added to the subset
-        if (r == 0) {
-            subsets.add(set);
+
+        if (r == 0) { // if no more elements need to be picked
+            subsets.add(set); // 'set' is the current combination as a bitmask
         } else {
-            /*
-             * it iterates through all the elements from the current position to the end,
-             * the bit of the current element is set to 1 (in order for it to be added to
-             * the combination)
-             * and then starting from the next position, it recursively picks the remaining
-             * elements.
-             * Afterwards, the bit is set to 0, because it gets removed from the combination
-             */
-            for (int i = at; i < n; i++) {
-                set |= 1 << i;
-                combinations(set, i + 1, r - 1, n, subsets);
-                set &= ~(1 << i);
+            for (int i = at; i < n; i++) { // iterates through all the elements from the current position to the end
+                set |= 1 << i; // the bit of the current element is set to 1, in order for it to be added to
+                               // the combination
+                combinations(set, i + 1, r - 1, n, subsets); // recursively picks the remaining elements, starting from
+                                                             // the next position
+                set &= ~(1 << i); // the bit of the current element is set to 0, in order for it to be removed
+                                  // from the combination
             }
         }
     }
