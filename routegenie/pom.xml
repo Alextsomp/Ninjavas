@@ -10,7 +10,9 @@
 
     <packaging>jar</packaging>
 
-    <description>this is a genie planning trips in balkan</description>
+    <description>RouteGenie is a roadtrip optimisation app where users can select their prefered
+    cities to visit as well as their starting point, and RouteGenie will return them the optimal
+    route for them to cover the least amount of distance in kilometers.</description>
 
     <licenses>
         <license>
@@ -24,14 +26,71 @@
     </properties>
 
     <developers>
+    <developer>
         <name>Alexandros Tsompanis</name>
-        <name>Efthymia iordanidi</name>
+    </developer>
+    <developer>
+        <name>Efthymia Iordanidi</name>
+    </developer>
+    <developer>
         <name>Maria Kikrili</name>
+    </developer>
+    <developer>
         <name>Ioannis Petrakis</name>
+    </developer>
+    <developer>
         <name>Gerasimos Marios Bachas</name>
+    </developer>
+    <developer>
         <name>Aggelos Panagiotis Nikolaidis</name>
+    </developer>
+    <developer>
         <name>Melina Fatourou</name>
+    </developer>
+    <developer>
         <name>Anastasia Karra</name>
-    </developers>
+    </developer>
+</developers>
 
+    <dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter</artifactId>
+        <version>5.10.0</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+ <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <mainClass>repository.Main</mainClass>
+                </configuration>
+            </plugin>
+
+            <plugin>
+               <groupId>org.jacoco</groupId>
+               <artifactId>jacoco-maven-plugin</artifactId>
+               <version>0.8.10</version>
+               <executions>
+                   <execution>
+                       <goals>
+                           <goal>prepare-agent</goal>
+                       </goals>
+                   </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 </project>
