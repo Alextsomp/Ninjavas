@@ -96,6 +96,7 @@ public class CitiesAndDistances {
         distances[11][3] = 680;
         distances[12][3] = 1164;
         distances[13][3] = 1407;
+        distances[14][3] = 1392;
         distances[5][4] = 223; //All the distances beginning from Tirana apart from the ones that have already been created the other way around
         distances[6][4] = 473;
         distances[7][4] = 158;
