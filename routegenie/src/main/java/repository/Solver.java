@@ -62,10 +62,12 @@ public class Solver {
     // method to initialize the two Maps
     private void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
             Map<Integer, Integer> indexToCity) {
-
-        for (int i = 0; i < N; i++) { // the loop iterates through the 'selected' list, using 'i' as the index
-            cityToIndex.put(selected.get(i), i); // stores the mapping of each city to its corresponding numeric index
-            indexToCity.put(i, selected.get(i)); // stores the mapping of each index to its corresponding city
+        /* the loop iterates through the 'selected' list, using 'i' as the index,
+         it stores the mapping of each city to its corresponding numeric index 
+         and the mapping of each index to its corresponding city */
+        for (int i = 0; i < N; i++) { 
+            cityToIndex.put(selected.get(i), i);
+            indexToCity.put(i, selected.get(i));
         }
     }
 
@@ -177,19 +179,21 @@ public class Solver {
     public static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
         int elementsLeftToPick = n - at; // calculates how many elements are left to pick starting from the current
                                          // position
+                                         
         if (elementsLeftToPick < r) // if there are less elements left than needed
             return;
-
-        if (r == 0) { // if no more elements need to be picked
-            subsets.add(set); // 'set' is the current combination as a bitmask
+        // if no more elements need to be picked, 'set', which is the current combination as a bitmask, is added to the subset
+        if (r == 0) {
+            subsets.add(set);
         } else {
-            for (int i = at; i < n; i++) { // iterates through all the elements from the current position to the end
-                set |= 1 << i; // the bit of the current element is set to 1, in order for it to be added to
-                               // the combination
-                combinations(set, i + 1, r - 1, n, subsets); // recursively picks the remaining elements, starting from
-                                                             // the next position
-                set &= ~(1 << i); // the bit of the current element is set to 0, in order for it to be removed
-                                  // from the combination
+            /* it iterates through all the elements from the current position to the end,
+            the bit of the current element is set to 1 (in order for it to be added to the combination)
+            and then starting from the next position, it recursively picks the remaining elements.
+            Afterwards, the bit is set to 0, because it gets removed from the combination */
+            for (int i = at; i < n; i++) { 
+                set |= 1 << i; 
+                combinations(set, i + 1, r - 1, n, subsets); 
+                set &= ~(1 << i); 
             }
         }
     }
