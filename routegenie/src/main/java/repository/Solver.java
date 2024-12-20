@@ -33,7 +33,7 @@ public class Solver {
         return solver.buildTour(distances, memo, startCity, cityToIndex, indexToCity, END_STATE, startIndex);
     }
 
-    private void validateInputs(double[][] distances, int startCity, List<Integer> selected) {
+    public void validateInputs(double[][] distances, int startCity, List<Integer> selected) {
 
         if (selected == null) {
             throw new IllegalArgumentException("The list of selected cities cannot be null."); // no cities are selected
@@ -57,7 +57,7 @@ public class Solver {
         }
     }
 
-    private void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
+    public void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
             Map<Integer, Integer> indexToCity) {
 
         for (int i = 0; i < selected.size(); i++) { // the loop iterates through the 'selected' list, using 'i' as the
@@ -67,7 +67,7 @@ public class Solver {
         }
     }
 
-    private void initializeMemo(double[][] distances, Double[][] memo, int startIndex, int N) {
+    public void initializeMemo(double[][] distances, Double[][] memo, int startIndex, int N) {
         // Initialization of the matrix memo for the first step
         for (int end = 0; end < N; end++) {
             if (end == startIndex)
@@ -76,7 +76,7 @@ public class Solver {
         }
     }
 
-    private void calculateSubsets(double[][] distances, Double[][] memo, int startIndex, int N) {
+    public void calculateSubsets(double[][] distances, Double[][] memo, int startIndex, int N) {
         // Calculation for all of the subsets of cities
         for (int r = 3; r <= N; r++) {
             for (int subset : combinations(r, N)) { // all the possible combinations of r cities from N
@@ -109,7 +109,7 @@ public class Solver {
         }
     }
 
-    private List<Integer> buildTour(double[][] distances, Double[][] memo, int startCity,
+    public List<Integer> buildTour(double[][] distances, Double[][] memo, int startCity,
             Map<Integer, Integer> cityToIndex, Map<Integer, Integer> indexToCity,
             int END_STATE, int startIndex) {
 
