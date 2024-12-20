@@ -20,6 +20,128 @@ public class SolverTest {
         assertNotNull(solver);
     }
 
+    @Test
+    void testValidateInputs_withValidInputs() {
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = 0;
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        assertDoesNotThrow(() -> solver.validateInputs(distances, startCity, selected),
+            "validateInputs should not throw an exception for valid inputs");
+    }
+
+    @Test
+    void testValidateInputs_withNullSelectedList() {
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = 0;
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, null),
+            "Expected validateInputs to throw IllegalArgumentException for null selected list"
+        );
+
+        assertTrue(exception.getMessage().contains("The list of selected cities cannot be null"),
+            "Exception message should mention that the selected list cannot be null");
+    }
+
+    @Test
+    void testValidateInputs_withStartCityNotInSelected() {
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = 4; // Invalid start city not in selected
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, selected),
+            "Expected validateInputs to throw IllegalArgumentException for start city not in selected"
+        );
+
+        assertTrue(exception.getMessage().contains("The starting city must be included"),
+            "Exception message should mention that the starting city must be included");
+    }
+
+    @Test
+    void testValidateInputs_withNullOrEmptyDistances() {
+        double[][] distances = null;
+        int startCity = 0;
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, selected),
+            "Expected validateInputs to throw IllegalArgumentException for null distances"
+        );
+
+        assertTrue(exception.getMessage().contains("The distance matrix cannot be null"),
+            "Exception message should mention that the distance matrix cannot be null");
+
+        distances = new double[0][0]; // Empty distances
+        exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, selected),
+            "Expected validateInputs to throw IllegalArgumentException for empty distances"
+        );
+
+        assertTrue(exception.getMessage().contains("The distance matrix cannot be null"),
+            "Exception message should mention that the distance matrix cannot be null");
+    }
+
+    @Test
+    void testValidateInputs_withNonSquareDistances() {
+        double[][] distances = {
+            {0, 10, 15},
+            {10, 0, 35}
+        }; // Non-square matrix
+        int startCity = 0;
+        List<Integer> selected = Arrays.asList(0, 1, 2);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, selected),
+            "Expected validateInputs to throw IllegalArgumentException for non-square distances"
+        );
+
+        assertTrue(exception.getMessage().contains("The distance matrix must be square"),
+            "Exception message should mention that the distance matrix must be square");
+    }
+
+    @Test
+    void testValidateInputs_withStartCityOutOfBounds() {
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = -1; // Out of bounds
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.validateInputs(distances, startCity, selected),
+            "Expected validateInputs to throw IllegalArgumentException for start city out of bounds"
+        );
+
+        assertTrue(exception.getMessage().contains("The starting city index is out of bounds"),
+            "Exception message should mention that the starting city index is out of bounds");
+    }
+
    @Test
     public void nearestNeighbourTest () {
         double[][] distances = {
