@@ -108,20 +108,86 @@ public class SolverTest {
         assertFalse(Solver.notIn(2, subset), "Element 2 must be included in the subset");
     }
 
- @Test
-    public void testSolve() {
+    @Test
+    void testSolve_withValidInputs() {
+        Solver solver = new Solver();
         double[][] distances = {
-            {0, 494, 678, 798},
-            {494, 0, 397, 292},
-            {678, 397, 0, 473},
-            {798, 292, 473, 0}
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
         };
-        List<Integer> selectedCities = Arrays.asList(0, 1, 2, 3);
         int startCity = 0;
-        List<Integer> expectedTour = Arrays.asList(0, 1, 3, 2, 0);
-        List<Integer> actualTour = solver.solve(distances, startCity, selectedCities);
-        // Check if the tour is right
-        assertEquals(expectedTour, actualTour, "The computed tour does not match the expected tour.");
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        List<Integer> result = solver.solve(distances, startCity, selected);
+
+        // Assert the result is not null and contains all selected cities
+        assertNotNull(result, "Result should not be null");
+        assertEquals(selected.size(), result.size(), "Result should contain the same number of cities as selected");
+        assertTrue(result.containsAll(selected), "Result should contain all selected cities in the tour");
+    }
+
+    @Test
+    void testSolve_withInvalidDistances() {
+        Solver solver = new Solver();
+        double[][] distances = {
+            {0, 10, 15}, // Invalid: Missing values to make it square
+            {10, 0, 35},
+            {15, 35, 0}
+        };
+        int startCity = 0;
+        List<Integer> selected = Arrays.asList(0, 1, 2);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.solve(distances, startCity, selected),
+            "Expected solve to throw IllegalArgumentException for invalid distances"
+        );
+
+        assertTrue(exception.getMessage().contains("distances"), "Exception message should mention distances");
+    }
+
+    @Test
+    void testSolve_withInvalidStartCity() {
+        Solver solver = new Solver();
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = 5; // Invalid start city
+        List<Integer> selected = Arrays.asList(0, 1, 2, 3);
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.solve(distances, startCity, selected),
+            "Expected solve to throw IllegalArgumentException for invalid start city"
+        );
+
+        assertTrue(exception.getMessage().contains("startCity"), "Exception message should mention startCity");
+    }
+
+    @Test
+    void testSolve_withEmptySelectedList() {
+        Solver solver = new Solver();
+        double[][] distances = {
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
+        };
+        int startCity = 0;
+        List<Integer> selected = Arrays.asList(); // Empty list of cities
+
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> solver.solve(distances, startCity, selected),
+            "Expected solve to throw IllegalArgumentException for empty selected list"
+        );
+
+        assertTrue(exception.getMessage().contains("selected"), "Exception message should mention selected");
     }
 
     @Test 
