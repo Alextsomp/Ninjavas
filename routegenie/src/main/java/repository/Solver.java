@@ -192,6 +192,7 @@ public class Solver {
         List<Integer> Best = new ArrayList<>();
         Best.add(start); // The first city will be the starting point
         int StartingPoint = start;
+        selected.set(0,0);
         int NextCity = 0;
         for (int i = 1; i <= n; i++) {
             NextCity = 0;
