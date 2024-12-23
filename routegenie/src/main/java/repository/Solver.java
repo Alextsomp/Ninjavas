@@ -193,9 +193,9 @@ public class Solver {
         Best.add(start); // The first city will be the starting point
         int StartingPoint = start;
         selected.set(0,0);
-        int NextCity = -1;
+        int NextCity = 0;
         for (int i = 1; i <= n; i++) {
-            NextCity = -1;
+            NextCity = 0;
             double MIN = 10000;
             for (int j = 0; j <= n - 1; j++) {
                 if (selected.get(j) != 0) {
