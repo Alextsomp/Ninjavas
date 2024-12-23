@@ -17,12 +17,10 @@ public class CitiesandDistancesTest {
     
     @Test
     public void PrintCitiesTest() {
-        String[] cities = {"Athens", "Thessaloniki", "sofia", "Tirana"}; // cities' example
-        CitiesAndDistances.cities = cities; // transfer this "cities" array to the classe's array
 
         ArrayList<Integer> citiesChosen = new ArrayList<>();
         citiesChosen.add(0); // Athens
-        citiesChosen.add(2); // Sofia
+        citiesChosen.add(2); // Patras
         System.setOut(new PrintStream(outContent)); 
 
         //Excecution of the method
@@ -33,7 +31,7 @@ public class CitiesandDistancesTest {
         String expectedOutput = 
             "The cities that you have chosen are: \n" +
             "Athens\n" +
-            "Sofia\n";
+            "Patras\n";
         assertEquals(expectedOutput, outContent.toString());
     }
 

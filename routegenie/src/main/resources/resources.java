@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
@@ -82,7 +83,7 @@ public class Main extends Application {
 
 		topContent.getChildren().addAll(title, welcome);
 
-		TextField info = new TextField("Please enter your first and last name);");
+		Label info = new Label("Please enter your first and last name);");
 
 		Label firstName = new Label("First Name"); // textfields for the user to fill with their name and submit with a
 													// buttton
@@ -111,7 +112,7 @@ public class Main extends Application {
 
 		VBox nameFields = new VBox(10);
 
-		nameFields.getChildren().addAll(firstName, tf1, lastName, tf2, btn);
+		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
 
 		CheckBox c1 = new CheckBox("1. Athens"); // creation of 14 checkboxes with the app's cities
 
@@ -237,10 +238,30 @@ public class Main extends Application {
 
 		c14.setOnAction(updateSelectedCities);
 
+		Label originLabel = new Label("Please select your starting city");
+		ComboBox<String> originComboBox = new ComboBox<>();
+		originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
+		originComboBox.setPromptText("Choose a city");
+		VBox originCitySelection = new VBox(10);
+		originCitySelection.getChildren().addAll(originLabel, originComboBox);
+		
+		
+		Button submitCitiesBtn = new Button("Submit Cities");
+		
+		submitCitiesBtn.setDisable(true);
+		
+		originComboBox.setOnAction(e -> {
+			submitCitiesBtn.setDisable(false);
+		});
+		
+        submitCitiesBtn.setOnAction(e -> {
+        	System.out.println("Starting City:" + originComboBox.getValue());
+        	System.out.println(selectedCitiesText.getText());
+        });
+        cities.getChildren().add(submitCitiesBtn);
+		
 		VBox mainLayout = new VBox(20);
-
-		mainLayout.getChildren().addAll(topContent, nameFields, cities);
-
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cities, submitCitiesBtn);
 		root.setCenter(mainLayout);
 
 	}

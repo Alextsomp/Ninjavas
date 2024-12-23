@@ -11,12 +11,11 @@ public class Solver {
     // algorithm
     public List<Integer> solve(double[][] distances, int startCity, List<Integer> selected)
             throws IllegalArgumentException, IllegalStateException {
-        // Solver object to call methods
+
         Solver solver = new Solver();
         solver.validateInputs(distances, startCity, selected);
 
         int N = selected.size(); // N stores the number of cities that was selected
-
         // Cities Map in the subset
         Map<Integer, Integer> cityToIndex = new HashMap<>(); // the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
@@ -34,8 +33,7 @@ public class Solver {
         return solver.buildTour(distances, memo, startCity, cityToIndex, indexToCity, END_STATE, startIndex);
     }
 
-    // method to check the validation of inputs
-    private void validateInputs(double[][] distances, int startCity, List<Integer> selected) {
+    public void validateInputs(double[][] distances, int startCity, List<Integer> selected) {
 
         if (selected == null) {
             throw new IllegalArgumentException("The list of selected cities cannot be null."); // no cities are selected
@@ -59,30 +57,27 @@ public class Solver {
         }
     }
 
-    // method to initialize the two Maps
-    private void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
+    public void initializeCityMappings(List<Integer> selected, Map<Integer, Integer> cityToIndex,
             Map<Integer, Integer> indexToCity) {
 
-        for (int i = 0; i < N; i++) { // the loop iterates through the 'selected' list, using 'i' as the index
+        for (int i = 0; i < selected.size(); i++) { // the loop iterates through the 'selected' list, using 'i' as the
+                                                    // index
             cityToIndex.put(selected.get(i), i); // stores the mapping of each city to its corresponding numeric index
             indexToCity.put(i, selected.get(i)); // stores the mapping of each index to its corresponding city
         }
     }
 
-    // method to initialize the matrix memo for the first step
-    private void initializeMemo(double[][] distances, Double[][] memo, int startIndex, int N) {
-
+    public void initializeMemo(double[][] distances, Double[][] memo, int startIndex, int N) {
+        // Initialization of the matrix memo for the first step
         for (int end = 0; end < N; end++) {
-            if (end == startIndex) {
+            if (end == startIndex)
                 continue; // because the distance is 0
-            }
             memo[end][(1 << startIndex) | (1 << end)] = distances[startIndex][end];
         }
     }
 
-    // method to calculate all of the subsets of the cities
-    private void calculateSubsets(double[][] distances, Double[][] memo, int startIndex, int N) {
-
+    public void calculateSubsets(double[][] distances, Double[][] memo, int startIndex, int N) {
+        // Calculation for all of the subsets of cities
         for (int r = 3; r <= N; r++) {
             for (int subset : combinations(r, N)) { // all the possible combinations of r cities from N
                 if (notIn(startIndex, subset)) // if the starting city is not in the subset
@@ -114,8 +109,7 @@ public class Solver {
         }
     }
 
-    // method for constructing the optimal tour
-    private List<Integer> buildTour(double[][] distances, Double[][] memo, int startCity,
+    public List<Integer> buildTour(double[][] distances, Double[][] memo, int startCity,
             Map<Integer, Integer> cityToIndex, Map<Integer, Integer> indexToCity,
             int END_STATE, int startIndex) {
 
@@ -124,11 +118,13 @@ public class Solver {
         List<Integer> tour = new ArrayList<>(); // this list will store the optimal route
         tour.add(startCity);
 
-        for (int i = 1; i < N; i++) { // a loop for every city in the route, except from the start and the end
+        for (int i = 1; i < cityToIndex.size(); i++) { // a loop for every city in the route, except from the start and
+                                                       // the end
             int bestNextIndex = -1; // the next best city has not been found yet
             double minCost = Double.POSITIVE_INFINITY;
-            for (int next = 0; next < N; next++) { // a loop that goes through every possible city that can be the best
-                                                   // previous city
+            for (int next = 0; next < cityToIndex.size(); next++) { // a loop that goes through every possible city that
+                                                                    // can be the best
+                // previous city
                 if (next == lastIndex || notIn(next, state))
                     continue;
                 if (memo[next][state] == null) {
@@ -158,22 +154,19 @@ public class Solver {
         return tour;
     }
 
-    // method to check whether a given element is present in the subset
-    public static boolean notIn(int elem, int subset) {
+    public static boolean notIn(int elem, int subset) { // checks whether a given element is present in the subset
         return ((1 << elem) & subset) == 0; // checks if the elem bit is in subset is set to 1, if not, it returns true,
                                             // meaning it is not in the subset
     }
 
-    // method that returns a list in which every value represents a different
-    // combination
-    public static List<Integer> combinations(int r, int n) {
+    public static List<Integer> combinations(int r, int n) { // it returns a list in which every value represents a
+                                                             // different combination
         List<Integer> subsets = new ArrayList<>(); // subsets stored the combinations
         combinations(0, 0, r, n, subsets); // r is the number of elements we have to choose, n is the total number of
                                            // elements
         return subsets;
     }
 
-    // method to calculate the possible combinations of r cities from N
     public static void combinations(int set, int at, int r, int n, List<Integer> subsets) {
         int elementsLeftToPick = n - at; // calculates how many elements are left to pick starting from the current
                                          // position
@@ -198,22 +191,25 @@ public class Solver {
         int n = selected.size();
         List<Integer> Best = new ArrayList<>();
         Best.add(start); // The first city will be the starting point
-        int poli = start;
-        int thesiMIN = 0;
+        int StartingPoint = start;
+        selected.set(0,0);
+        int NextCity = -1;
         for (int i = 1; i <= n; i++) {
-            thesiMIN = 0;
+            NextCity = -1;
             double MIN = 10000;
             for (int j = 0; j <= n - 1; j++) {
                 if (selected.get(j) != 0) {
-                    if (dist[poli][selected.get(j)] < MIN) {
-                        MIN = dist[poli][selected.get(j)];
-                        thesiMIN = j;
+                    if (dist[StartingPoint][selected.get(j)] < MIN) {
+                        MIN = dist[StartingPoint][selected.get(j)];
+                        NextCity = j;
                     }
                 }
             }
-            Best.add(selected.get(thesiMIN));
-            poli = selected.get(thesiMIN);
-            selected.set(thesiMIN, 0);
+            if (!Best.contains(NextCity)) {
+                Best.add(selected.get(NextCity));
+                StartingPoint = selected.get(NextCity);
+                selected.set(NextCity, 0);
+            }
         }
         // Best.add(start); // User will eventually return to the starting point
         return Best;
@@ -240,7 +236,7 @@ public class Solver {
         // startCity= the starting city
 
         List<Integer> bestRoute; // List for the best route
-        if (sum1 < sum2) {
+        if (sum1 <= sum2) {
             bestRoute = solve(distances, startCity, selected); // Use 1st algorithm
         } else {
             bestRoute = nearestNeighbour(startCity, distances, new ArrayList<>(selected)); // Use 2nd algorithm
