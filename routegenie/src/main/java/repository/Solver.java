@@ -205,11 +205,9 @@ public class Solver {
                     }
                 }
             }
-            if (!Best.contains(NextCity)) {
-                Best.add(selected.get(NextCity));
-                StartingPoint = selected.get(NextCity);
-                selected.set(NextCity, 0);
-            }
+            Best.add(selected.get(NextCity));
+            StartingPoint = selected.get(NextCity);
+            selected.set(NextCity, 0);
         }
         // Best.add(start); // User will eventually return to the starting point
         return Best;
