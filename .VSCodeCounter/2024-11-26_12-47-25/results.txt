@@ -1,0 +1,41 @@
+Date : 2024-11-26 12:47:25
+Directory : c:\Ninjavas
+Total : 7 files,  722 codes, 30 comments, 63 blanks, all 815 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |          6 |        654 |         30 |         55 |        739 |
+| XML      |          1 |         68 |          0 |          8 |         76 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                      | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                         |          7 |        722 |         30 |         63 |        815 |
+| routegenie                                                                |          7 |        722 |         30 |         63 |        815 |
+| routegenie (Files)                                                        |          1 |         68 |          0 |          8 |         76 |
+| routegenie\src                                                            |          3 |        427 |         30 |         54 |        511 |
+| routegenie\src\main                                                       |          3 |        427 |         30 |         54 |        511 |
+| routegenie\src\main\java                                                  |          3 |        427 |         30 |         54 |        511 |
+| routegenie\src\main\java\repository                                       |          3 |        427 |         30 |         54 |        511 |
+| routegenie\target                                                         |          3 |        227 |          0 |          1 |        228 |
+| routegenie\target\classes                                                 |          3 |        227 |          0 |          1 |        228 |
+| routegenie\target\classes\repository                                      |          3 |        227 |          0 |          1 |        228 |
++---------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                  | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Ninjavas\routegenie\pom.xml                                            | XML      |         68 |          0 |          8 |         76 |
+| c:\Ninjavas\routegenie\src\main\java\repository\CitiesAndDistances.java   | Java     |        183 |          2 |          7 |        192 |
+| c:\Ninjavas\routegenie\src\main\java\repository\Main.java                 | Java     |         88 |         10 |         15 |        113 |
+| c:\Ninjavas\routegenie\src\main\java\repository\Solver.java               | Java     |        156 |         18 |         32 |        206 |
+| c:\Ninjavas\routegenie\target\classes\repository\CitiesAndDistances.class | Java     |         58 |          0 |          0 |         58 |
+| c:\Ninjavas\routegenie\target\classes\repository\Main.class               | Java     |         80 |          0 |          1 |         81 |
+| c:\Ninjavas\routegenie\target\classes\repository\Solver.class             | Java     |         89 |          0 |          0 |         89 |
+| Total                                                                     |          |        722 |         30 |         63 |        815 |
++---------------------------------------------------------------------------+----------+------------+------------+------------+------------+
