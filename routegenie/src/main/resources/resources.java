@@ -41,7 +41,7 @@ public class Main extends Application {
 
 			root = new BorderPane();
 
-			Scene scene = new Scene(root, 400, 400);
+			Scene scene = new Scene(root, 400, 400, javafx.scene.paint.Color.LIGHTBLUE);
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
@@ -76,10 +76,12 @@ public class Main extends Application {
 	public void load() { // creates the necessary components
 
 		Label title = new Label("RouteGenie");
+		title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
 
 		Label welcome = new Label("Welcome to RouteGenie!");
 
 		VBox topContent = new VBox(10);
+		topContent.setAlignment(Pos.CENTER);
 
 		topContent.getChildren().addAll(title, welcome);
 
@@ -87,6 +89,7 @@ public class Main extends Application {
 		ImageView cityImageView = new ImageView();
 		cityImageView.setFitWidth(300); // Set width for the image
 	    cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
+		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 		
 		Label info = new Label("Please enter your first and last name);");
 
@@ -116,6 +119,7 @@ public class Main extends Application {
 		});
 
 		VBox nameFields = new VBox(10);
+		nameFields.setAlignment(Pos.CENTER_LEFT);
 
 		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
 
@@ -273,8 +277,14 @@ public class Main extends Application {
 		
 		
 		VBox mainLayout = new VBox(20);
+		mainLayout.setPadding(new Insets(15));
 		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
-		root.setCenter(mainLayout);
+		
+		// Wrap the layout in a ScrollPane for overflow handling
+	    ScrollPane scrollPane = new ScrollPane(mainLayout);
+	    scrollPane.setFitToWidth(true);
+
+	    root.setCenter(scrollPane);
 
 	}
 
