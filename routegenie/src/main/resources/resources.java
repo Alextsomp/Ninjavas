@@ -238,6 +238,7 @@ public class Main extends Application {
 
 		c14.setOnAction(updateSelectedCities);
 
+		//create a combobox where the user selects his starting city
 		Label originLabel = new Label("Please select your starting city");
 		ComboBox<String> originComboBox = new ComboBox<>();
 		originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
@@ -248,17 +249,22 @@ public class Main extends Application {
 		
 		Button submitCitiesBtn = new Button("Submit Cities");
 		
+		// Initially disable the submit button until a starting city is selected
 		submitCitiesBtn.setDisable(true);
 		
 		originComboBox.setOnAction(e -> {
+			// Enable the submit button when a city is selected from the ComboBox
 			submitCitiesBtn.setDisable(false);
 		});
 		
         submitCitiesBtn.setOnAction(e -> {
-        	System.out.println("Starting City:" + originComboBox.getValue());
-        	System.out.println(selectedCitiesText.getText());
+        	// Print the selected starting city from the ComboBox
+			System.out.println("Starting City:" + originComboBox.getValue());
+        	// Print the selected cities text 
+			System.out.println(selectedCitiesText.getText());
         });
-        cities.getChildren().add(submitCitiesBtn);
+        //Add the submit button to the cities section for layout purposes
+		cities.getChildren().add(submitCitiesBtn);
 		
 		VBox mainLayout = new VBox(20);
 		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cities, submitCitiesBtn);
