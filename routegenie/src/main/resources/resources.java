@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Light;
@@ -41,19 +42,13 @@ public class Main extends Application {
 
 			root = new BorderPane();
 
-			Scene scene = new Scene(root, 400, 400, javafx.scene.paint.Color.LIGHTBLUE);
-
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
-			// Set background color for the root container
-
-			root.setStyle("-fx-background-color: lightblue;"); // Light blue background color
+			Scene scene = new Scene(root, 400, 400);
 
 			// Set up the scene
 
 			primaryStage.setScene(scene);
 
-			primaryStage.setTitle("Colorful Menu Example");
+			primaryStage.setTitle("RouteGenie App");
 
 			primaryStage.show();
 
@@ -76,9 +71,10 @@ public class Main extends Application {
 	public void load() { // creates the necessary components
 
 		Label title = new Label("RouteGenie");
-		title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+		title.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: darkblue;");
 
 		Label welcome = new Label("Welcome to RouteGenie!");
+		welcome.setStyle("-fx-font-size: 20px;");
 
 		VBox topContent = new VBox(10);
 		topContent.setAlignment(Pos.CENTER);
@@ -92,19 +88,23 @@ public class Main extends Application {
 		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 		
 		Label info = new Label("Please enter your first and last name);");
+		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
 
 		Label firstName = new Label("First Name"); // textfields for the user to fill with their name and submit with a
 													// buttton
-
+		firstName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+		
 		Label lastName = new Label("Last Name");
+		lastName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
 
 		TextField tf1 = new TextField();
+		tf1.setMaxWidth(300);
 
 		TextField tf2 = new TextField();
+		tf2.setMaxWidth(300);
 
 		Button btn = new Button("Submit");
-
-		btn.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
+		btn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
 
 		btn.setOnAction(e -> { // Assigns an action to the button when clicked
 
@@ -118,9 +118,9 @@ public class Main extends Application {
 
 		});
 
-		VBox nameFields = new VBox(10);
+		VBox nameFields = new VBox(20);
+		nameFields.setStyle("-fx-font-size: 14px;");
 		nameFields.setAlignment(Pos.CENTER_LEFT);
-
 		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
 
 		CheckBox c1 = new CheckBox("1. Athens"); // creation of 14 checkboxes with the app's cities
@@ -158,13 +158,14 @@ public class Main extends Application {
 	            checkbox.setDisable(true);
 	        }
 		
-		VBox cities = new VBox(15);
+		VBox cities = new VBox(10);
 
 		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
 
 		cities.setSpacing(10);
 
 		Text selectedCitiesText = new Text("Selected cities: none");
+		selectedCitiesText.setStyle("-fx-font-size: 14px;");
 
 		cities.getChildren().add(selectedCitiesText);
 
@@ -189,10 +190,14 @@ public class Main extends Application {
 
         // ComboBox for starting city
         Label originLabel = new Label("Please select your starting city");
-        ComboBox<String> originComboBox = new ComboBox<>();
+		originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+        
+		ComboBox<String> originComboBox = new ComboBox<>();
         originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
         originComboBox.setPromptText("Choose a city");
-        VBox originCitySelection = new VBox(10);
+		originComboBox.setPrefWidth(200);
+        
+		VBox originCitySelection = new VBox(10);
         originCitySelection.getChildren().addAll(originLabel, originComboBox);
 
 
@@ -271,12 +276,16 @@ public class Main extends Application {
        
         // Button to submit the selected cities
         Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
-        submitSelectedCitiesBtn.setOnAction(e -> {
+		submitSelectedCitiesBtn.setStyle("-fx-font-size: 13px;");
+        
+		submitSelectedCitiesBtn.setOnAction(e -> {
             System.out.println(selectedCitiesText.getText());
         });
 		
 		
 		VBox mainLayout = new VBox(20);
+		
+		mainLayout.setStyle("-fx-background-color: lightblue;");
 		mainLayout.setPadding(new Insets(15));
 		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
 		
