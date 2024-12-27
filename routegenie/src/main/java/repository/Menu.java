@@ -11,12 +11,12 @@ public class Menu {
     String ANSI_RED = "\u001B[31m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_CYAN = "\u001B[36m";
-    
+    //The first messages of the app
     public void PrintMenu(){
         System.out.println("\nHello there fellow" + ANSI_CYAN + " RoadTripper" + ANSI_RESET + "! Welcome to the" + ANSI_CYAN + " RouteGenie " + ANSI_RESET + "application! Let's begin with your new trip!\n");
-        System.out.println("\nNow we will provide the available cities and you will first choose then from which youwillbegin your route!");
+        System.out.println("\nNow we will provide the available cities ,from which you will choose the cities you want to visit");
     }
-
+    //This method is used to add only the available cities you want to visit in a list
     public <Integer> ChooseCities(int firstCityIndex, String[] cityNames, int citiesIndex){
         CitiesAndDistances cad2 = new CitiesAndDistances();
         ArrayList<Integer> citiesChosen = new ArrayList<>();
@@ -38,6 +38,7 @@ public class Menu {
             // Print available cities that have not been chosen
             for (int i = 0; i < 15; i++) {
                 if (!citiesChosen.contains(i)) {
+                    //Checks if you have already choosen the city you enter
                     System.out.println(ANSI_YELLOW + i + ") " + ANSI_RESET + cityNames[i]);
                 }
             }
@@ -49,6 +50,7 @@ public class Menu {
                 if (!citiesChosen.contains(citiesIndex)) {
                     citiesChosen.add(citiesIndex);
                 } else {
+                    //If you have entered the city prior to now, it throws this message and makes you choose another
                     System.out.println("\nThis city has already been added. Please select a" + ANSI_RED + " different " + ANSI_RESET + "city that is still available.\n");
                 }
             } else {
