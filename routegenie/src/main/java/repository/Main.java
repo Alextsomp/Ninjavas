@@ -2,31 +2,35 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import main.java.repository.Comparsion;
+import main.java.repository.Menu;
 public class Main {
     public static void main(String[] args) {
                 
-                 String ANSI_YELLOW = "\u001B[33m";
+                 /*String ANSI_YELLOW = "\u001B[33m";
                  String ANSI_RESET = "\u001B[0m";
                  String ANSI_RED = "\u001B[31m";
                  String ANSI_GREEN = "\u001B[32m";
                  String ANSI_CYAN = "\u001B[36m";
-        
+                */
                 // Ensure cities are initialized
-                CitiesAndDistances.Cities();
-                Solver solver = new Solver();
-                CitiesAndDistances.Distances();
-                double[][] distances = CitiesAndDistances.distances;
                 
-                Scanner sc = new Scanner(System.in);
-                ArrayList<Integer> citiesChosen = new ArrayList<>();
+                Solver solver = new Solver();
+                CitiesAndDistances cad1 = new CitiesAndDistances();
+                double[][] distances = cad1.distances;
                 int citiesIndex;
                 int firstCityIndex = -1;
                 String[] cityNames = CitiesAndDistances.getCities();
-                
+                /* 
                 System.out.println("\nHello there fellow" + ANSI_CYAN + " RoadTripper" + ANSI_RESET + "! Welcome to the" + ANSI_CYAN + " RouteGenie " + ANSI_RESET + "application! Let's begin with your new trip!\n");
                 System.out.println("Please choose your" + ANSI_RED + " starting " + ANSI_RESET + "and" + ANSI_RED + " finishing " + ANSI_RESET +  "city by inserting the number which the city corresponds to from 0 to 14:");
-                
-                for (int i = 0; i < 15; i++) {
+                */
+                Menu mn = new Menu();
+                mn.PrintMenu();
+                ArrayList<Integer> citiesChosen = mn.ChooseCities(firstCityIndex, cityNames, citiesIndex);
+
+                /*for (int i = 0; i < 15; i++) {
                     System.out.println(ANSI_YELLOW + i + ") " + ANSI_RESET + cityNames[i]);
                 }
                 do {
@@ -68,7 +72,8 @@ public class Main {
                 } while (citiesIndex != -1);
                 // citiesChosen.add(firstCityIndex);
                 // CitiesAndDistances.printCities(citiesChosen);
-
+                */
+                /*
                 List<Integer> bestRoutesSolver = solver.solve(distances, firstCityIndex, citiesChosen);
                 double totalDistanceSolver = solver.totalDist(bestRoutesSolver, distances);
 
@@ -79,7 +84,10 @@ public class Main {
                 // for (int i = 0; i < bestRoutesSolver.size(); i++) {
                 // System.out.println(cityNames[bestRoutesSolver.get(i)]);
                 // }
-
+                */
+                Comparison comp = new Comparison();
+                
+                /*
                 if (totalDistanceNN > totalDistanceSolver) {
                     System.out.println("\nThe best algorithm for your trip is" + ANSI_GREEN + " Solver." + ANSI_RESET);
                     System.out.println("\nAccording to" + ANSI_GREEN + " Solver" + ANSI_RESET + ", the best route for your trip is: ");
@@ -107,7 +115,6 @@ public class Main {
                     System.out.printf("And then back to %s!\n", cityNames[firstCityIndex]);
                     System.out.println("\nIn this order, the distance covered is" + ANSI_CYAN + " only " + ANSI_RESET + "going to be " + ANSI_GREEN + totalDistanceNN + ANSI_RESET + " kilometers!\n");
                 }
-                
-                sc.close();      
+                */   
     }
 } 
