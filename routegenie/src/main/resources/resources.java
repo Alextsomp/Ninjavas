@@ -42,7 +42,7 @@ public class Main extends Application {
 
 			root = new BorderPane();
 
-			Scene scene = new Scene(root, 400, 400);
+			Scene scene = new Scene(root, 700, 700);
 
 			// Set up the scene
 
@@ -83,18 +83,18 @@ public class Main extends Application {
 
 		//ImageView to display the starting city image
 		ImageView cityImageView = new ImageView();
-		cityImageView.setFitWidth(300); // Set width for the image
+		cityImageView.setFitWidth(500); // Set width for the image
 	    cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
 		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 		
 		Label info = new Label("Please enter your first and last name);");
 		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
 
-		Label firstName = new Label("First Name"); // textfields for the user to fill with their name and submit with a
+		Label firstName = new Label("First Name:"); // textfields for the user to fill with their name and submit with a
 													// buttton
 		firstName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
 		
-		Label lastName = new Label("Last Name");
+		Label lastName = new Label("Last Name:");
 		lastName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
 
 		TextField tf1 = new TextField();
@@ -120,7 +120,7 @@ public class Main extends Application {
 
 		VBox nameFields = new VBox(20);
 		nameFields.setStyle("-fx-font-size: 14px;");
-		nameFields.setAlignment(Pos.CENTER_LEFT);
+		nameFields.setAlignment(Pos.CENTER);
 		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
 
 		CheckBox c1 = new CheckBox("1. Athens"); // creation of 14 checkboxes with the app's cities
@@ -159,10 +159,10 @@ public class Main extends Application {
 	        }
 		
 		VBox cities = new VBox(10);
+		cities.setStyle("-fx-font-size: 14px");
+		cities.setAlignment(Pos.CENTER);
 
 		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
-
-		cities.setSpacing(10);
 
 		Text selectedCitiesText = new Text("Selected cities: none");
 		selectedCitiesText.setStyle("-fx-font-size: 14px;");
@@ -198,6 +198,7 @@ public class Main extends Application {
 		originComboBox.setPrefWidth(200);
         
 		VBox originCitySelection = new VBox(10);
+		originCitySelection.setAlignment(Pos.BOTTOM_CENTER);
         originCitySelection.getChildren().addAll(originLabel, originComboBox);
 
 
@@ -276,7 +277,7 @@ public class Main extends Application {
        
         // Button to submit the selected cities
         Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
-		submitSelectedCitiesBtn.setStyle("-fx-font-size: 13px;");
+		submitSelectedCitiesBtn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
         
 		submitSelectedCitiesBtn.setOnAction(e -> {
             System.out.println(selectedCitiesText.getText());
@@ -284,19 +285,22 @@ public class Main extends Application {
 		
 		
 		VBox mainLayout = new VBox(20);
+		mainLayout.setAlignment(Pos.CENTER);
 		
-		mainLayout.setStyle("-fx-background-color: lightblue;");
+		mainLayout.setStyle("-fx-background-color: blanchedalmond;");
 		mainLayout.setPadding(new Insets(15));
 		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
 		
 		// Wrap the layout in a ScrollPane for overflow handling
 	    ScrollPane scrollPane = new ScrollPane(mainLayout);
+	   
 	    scrollPane.setFitToWidth(true);
 
 	    root.setCenter(scrollPane);
 
 	}
 
+	//method for loading the images
 	public Image loadCityImage(String imageUrl) {
 	    try {
 	        return new Image(imageUrl);
