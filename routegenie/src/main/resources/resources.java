@@ -1,8 +1,7 @@
 package application;
-	
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,7 +9,9 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.effect.Light;
@@ -30,117 +31,279 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class Main extends Application {
-	static VBox root;
-	
+
+	static BorderPane root;
 
 	@Override
-	public void start(Stage primaryStage) { //method that starts the application
+
+	public void start(Stage primaryStage) { // method that starts the application
+
 		try {
-			root = new VBox();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+			root = new BorderPane();
+
+			Scene scene = new Scene(root, 400, 400);
+
+			// Set up the scene
+
 			primaryStage.setScene(scene);
+
+			primaryStage.setTitle("RouteGenie App");
+
 			primaryStage.show();
-			
-			// Set background color for the root container
-            root.setStyle("-fx-background-color: lightblue;"); // Light blue background color
 
-            // Set up the scene
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Colorful Menu Example");
-            primaryStage.show();
-            
 			load();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	public static void main(String[] args) {
-		launch(args); //launches the javafx application
-	}
-	public void load() { //creates the necessary components
-		
-		Label firstName = new Label("First Name"); //textfields for the user to fill with their name and submit with a buttton
-		Label lastName = new Label("Last Name");
-		TextField tf1 = new TextField();
-		TextField tf2 = new TextField();
-		Button btn = new Button("Submit");
-		btn.setStyle("-fx-background-color: blue; -fx-text-fill: white;");
-		
-		btn.setOnAction(e -> { //Assigns an action to the button when clicked
-			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); //Prints the input from the text fields to the console
-			tf1.setText(""); //clears the textfields after submission
-			tf2.setText("");
-		});
-		
-		root.getChildren().addAll(firstName, tf1, lastName, tf2, btn);
-		
-		CheckBox c1 = new CheckBox("1. Athens"); //creation of 14 checkboxes with the app's cities
-		CheckBox c2 = new CheckBox("2. Thessaloniki");
-		CheckBox c3 = new CheckBox("3. Patras");
-		CheckBox c4 = new CheckBox("4. Ioannina");
-		CheckBox c5 = new CheckBox("5. Tirana");
-		CheckBox c6 = new CheckBox("6. Skopje");
-		CheckBox c7 = new CheckBox("7. Sofia");
-		CheckBox c8 = new CheckBox("8. Podgorica");
-		CheckBox c9 = new CheckBox("9. Bucharest");
-		CheckBox c10 = new CheckBox("10. Belgrade");
-		CheckBox c11 = new CheckBox("11. Sarajevo");
-		CheckBox c12 = new CheckBox("12. Zagreb");
-		CheckBox c13 = new CheckBox("13. Chisinau");
-		CheckBox c14 = new CheckBox("14. Ljubljana");
-		
-		VBox vbox = new VBox();
-		vbox.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
-		vbox.setSpacing(10);
-		
-		Text selectedCitiesText = new Text("Selected cities: none");
-		
-		vbox.getChildren().add(selectedCitiesText);
-		
-		
-		EventHandler<ActionEvent> updateSelectedCities = e -> {
-			StringBuilder selectedCities = new StringBuilder("Selected Cities: ");
-			if (c1.isSelected()) selectedCities.append("Athens, "); //checks if a city is selected
-            if (c2.isSelected()) selectedCities.append("Thessaloniki, ");
-            if (c3.isSelected()) selectedCities.append("Patras, ");
-            if (c4.isSelected()) selectedCities.append("Ioannina, ");
-            if (c5.isSelected()) selectedCities.append("Tirana, ");
-            if (c6.isSelected()) selectedCities.append("Skopje, ");
-            if (c7.isSelected()) selectedCities.append("Sofia, ");
-            if (c8.isSelected()) selectedCities.append("Podgorica, ");
-            if (c9.isSelected()) selectedCities.append("Bucharest, ");
-            if (c10.isSelected()) selectedCities.append("Belgrade, ");
-            if (c11.isSelected()) selectedCities.append("Sarajevo, ");
-            if (c12.isSelected()) selectedCities.append("Zagreb, ");
-            if (c13.isSelected()) selectedCities.append("Chisinau, ");
-            if (c14.isSelected()) selectedCities.append("Ljubljana, ");
 
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+		launch(args); // launches the javafx application
+
+	}
+
+	public void load() { // creates the necessary components
+
+		Label title = new Label("RouteGenie");
+		title.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: darkblue;");
+
+		Label welcome = new Label("Welcome to RouteGenie!");
+		welcome.setStyle("-fx-font-size: 20px;");
+
+		VBox topContent = new VBox(10);
+		topContent.setAlignment(Pos.CENTER);
+
+		topContent.getChildren().addAll(title, welcome);
+
+		//ImageView to display the starting city image
+		ImageView cityImageView = new ImageView();
+		cityImageView.setFitWidth(300); // Set width for the image
+	    cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
+		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
+		
+		Label info = new Label("Please enter your first and last name);");
+		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+
+		Label firstName = new Label("First Name"); // textfields for the user to fill with their name and submit with a
+													// buttton
+		firstName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+		
+		Label lastName = new Label("Last Name");
+		lastName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
+
+		TextField tf1 = new TextField();
+		tf1.setMaxWidth(300);
+
+		TextField tf2 = new TextField();
+		tf2.setMaxWidth(300);
+
+		Button btn = new Button("Submit");
+		btn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
+
+		btn.setOnAction(e -> { // Assigns an action to the button when clicked
+
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from
+																								// the text fields to
+																								// the console
+
+			tf1.setText(""); // clears the textfields after submission
+
+			tf2.setText("");
+
+		});
+
+		VBox nameFields = new VBox(20);
+		nameFields.setStyle("-fx-font-size: 14px;");
+		nameFields.setAlignment(Pos.CENTER_LEFT);
+		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
+
+		CheckBox c1 = new CheckBox("1. Athens"); // creation of 14 checkboxes with the app's cities
+
+		CheckBox c2 = new CheckBox("2. Thessaloniki");
+
+		CheckBox c3 = new CheckBox("3. Patras");
+
+		CheckBox c4 = new CheckBox("4. Ioannina");
+
+		CheckBox c5 = new CheckBox("5. Tirana");
+
+		CheckBox c6 = new CheckBox("6. Skopje");
+
+		CheckBox c7 = new CheckBox("7. Sofia");
+
+		CheckBox c8 = new CheckBox("8. Podgorica");
+
+		CheckBox c9 = new CheckBox("9. Bucharest");
+
+		CheckBox c10 = new CheckBox("10. Belgrade");
+
+		CheckBox c11 = new CheckBox("11. Sarajevo");
+
+		CheckBox c12 = new CheckBox("12. Zagreb");
+
+		CheckBox c13 = new CheckBox("13. Chisinau");
+
+		CheckBox c14 = new CheckBox("14. Ljubljana");
+
+		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14};
+
+	        // Initially disable all checkboxes
+	        for (CheckBox checkbox : checkboxes) {
+	            checkbox.setDisable(true);
+	        }
+		
+		VBox cities = new VBox(10);
+
+		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
+
+		cities.setSpacing(10);
+
+		Text selectedCitiesText = new Text("Selected cities: none");
+		selectedCitiesText.setStyle("-fx-font-size: 14px;");
+
+		cities.getChildren().add(selectedCitiesText);
+
+		// Event handler for updating selected cities
+        EventHandler<ActionEvent> updateSelectedCities = e -> {
+            StringBuilder selectedCities = new StringBuilder("Selected Cities: ");
+            for (CheckBox checkbox : checkboxes) {
+                if (checkbox.isSelected()) {
+                    selectedCities.append(checkbox.getText().substring(3)).append(", ");
+                }
+            }
             String result = selectedCities.toString().replaceAll(", $", "");
             if (result.equals("Selected Cities:")) {
                 result = "Selected Cities: None";
             }
-            selectedCitiesText.setText(result); // updates the text displaying the selected cities
+            selectedCitiesText.setText(result);
         };
-		
-		c1.setOnAction(updateSelectedCities); //Any possible change will trigger the update logic
-		c2.setOnAction(updateSelectedCities);
-		c3.setOnAction(updateSelectedCities);
-		c4.setOnAction(updateSelectedCities);
-		c5.setOnAction(updateSelectedCities);
-		c6.setOnAction(updateSelectedCities);
-		c7.setOnAction(updateSelectedCities);
-		c8.setOnAction(updateSelectedCities);
-		c9.setOnAction(updateSelectedCities);
-		c10.setOnAction(updateSelectedCities);
-		c11.setOnAction(updateSelectedCities);
-		c12.setOnAction(updateSelectedCities);
-		c13.setOnAction(updateSelectedCities);
-		c14.setOnAction(updateSelectedCities);
-		
-		root.getChildren().add(vbox);
-	}
-}
 
-	
+        for (CheckBox checkbox : checkboxes) {
+            checkbox.setOnAction(updateSelectedCities);
+        }
+
+        // ComboBox for starting city
+        Label originLabel = new Label("Please select your starting city");
+		originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+        
+		ComboBox<String> originComboBox = new ComboBox<>();
+        originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
+        originComboBox.setPromptText("Choose a city");
+		originComboBox.setPrefWidth(200);
+        
+		VBox originCitySelection = new VBox(10);
+        originCitySelection.getChildren().addAll(originLabel, originComboBox);
+
+
+        originComboBox.setOnAction(e -> {
+        	String selectedCity = originComboBox.getValue();
+
+            if (selectedCity != null) {
+                System.out.println("Starting City: " + selectedCity);
+
+                // Enable all checkboxes except the selected starting city
+                for (CheckBox checkbox : checkboxes) {
+                    checkbox.setDisable(false);
+                }
+
+                // Disable the checkbox corresponding to the selected starting city
+                switch (selectedCity) {
+                    case "Athens": 
+                    	c1.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://ipanematravels.com/wp-content/uploads/2023/10/Athens-Greece.jpg"));
+                    	break;
+                    case "Thessaloniki": 
+                    	c2.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://www.letsdrive.gr/sites/default/files/Thessaloniki%20750x500.jpg"));
+                    	break;
+                    case "Patras": 
+                    	c3.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://v9c9u8s9.delivery.rocketcdn.me/wp-content/uploads/2021/09/Upper-town-Patras-.jpg"));
+                    	break;
+                    case "Ioannina": 
+                    	c4.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://www.olympion-rehab.com/cache/files/fb10ef16219a69a5a02cb436efdb5ceda2fd0742.jpg"));
+                    	break;
+                    case "Tirana": 
+                    	c5.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://eia476h758b.exactdn.com/wp-content/uploads/2023/08/Tirana-1.jpg"));
+                    	break;
+                    case "Skopje": 
+                    	c6.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://tripjive.com/wp-content/uploads/2024/07/Is-Skopje-worth-visiting.jpg"));
+                    	break;
+                    case "Sofia": 
+                    	c7.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://cdn.getyourguide.com/img/tour/5c5424b437891.jpeg/146.jpg"));
+                    	break;
+                    case "Podgorica": 
+                    	c8.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://assets.enuygun.com/media/lib/570x400/uploads/image/podgorica-59036.jpeg"));
+                    	break;
+                    case "Bucharest": 
+                    	c9.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://www.wanderlustmagazine.com/wp-content/uploads/2023/11/2-palace-of-parliament-at-sunrise-shutterstock_1788823946-web.jpg"));
+                    	break;
+                    case "Belgrade": 
+                    	c10.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://i0.wp.com/mytravelation.com/wp-content/uploads/2023/12/Belgrade-Serbia.jpg"));
+                    	break;
+                    case "Sarajevo": 
+                    	c11.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://web-assets.transavia.com/78ae936f-d39d-01b0-c3ef-dc738304142f/472cea8d-c842-4343-8c2f-1e5ee7f43acd/Sarajevo.jpg"));
+                    	break;
+                    case "Zagreb": 
+                    	c12.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://www.travel.gr/wp-content/uploads/2021/12/zagreb-kentriki-scaled.jpg"));
+                    	break;
+                    case "Chisinau": 
+                    	c13.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://static.independent.co.uk/2021/09/24/16/iStock-1066138896.jpg"));
+                    	break;
+                    case "Ljubljana": 
+                    	c14.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://cdn.britannica.com/79/124479-050-DD359499/Ljubljana-Slovenia.jpg"));
+                    	break;
+                }
+            }
+        });
+       
+        // Button to submit the selected cities
+        Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
+		submitSelectedCitiesBtn.setStyle("-fx-font-size: 13px;");
+        
+		submitSelectedCitiesBtn.setOnAction(e -> {
+            System.out.println(selectedCitiesText.getText());
+        });
+		
+		
+		VBox mainLayout = new VBox(20);
+		
+		mainLayout.setStyle("-fx-background-color: lightblue;");
+		mainLayout.setPadding(new Insets(15));
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
+		
+		// Wrap the layout in a ScrollPane for overflow handling
+	    ScrollPane scrollPane = new ScrollPane(mainLayout);
+	    scrollPane.setFitToWidth(true);
+
+	    root.setCenter(scrollPane);
+
+	}
+
+	public Image loadCityImage(String imageUrl) {
+	    try {
+	        return new Image(imageUrl);
+	    } catch (Exception e) {
+	        System.out.println("Image not found: " + imageUrl);
+	        return null;
+	    }
+	}
+
+}
