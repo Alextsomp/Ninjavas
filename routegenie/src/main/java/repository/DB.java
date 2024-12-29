@@ -1,4 +1,4 @@
-package NinjavasDB;
+package repository;
 
 import java.sql.*;
 
