@@ -5,17 +5,40 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.sql.*;
 
 //Class that solves the tsp problem with dynamic programming
 public class DynamicProgramming {
+
+    // Method to fetch distances from the SQLite database
+    public double[][] fetchDistancesFromDB(DB dbManager, int numberOfCities) throws SQLException {
+        String query = "SELECT * FROM distances";
+        double[][] distances = new double[numberOfCities][numberOfCities];
+
+        try (Connection connection = dbManager.getConnection();
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                int fromCity = rs.getInt("from_city");
+                int toCity = rs.getInt("to_city");
+                double distance = rs.getDouble("distance");
+
+                distances[fromCity][toCity] = distance;
+            }
+        }
+        return distances;
+    }
+
     // algorithm
-    public List<Integer> dp(double[][] distances, int startCity, List<Integer> selected)
+    public List<Integer> dp(DB dbManager, int startCity, List<Integer> selected)
             throws IllegalArgumentException, IllegalStateException {
 
+        int N = selected.size(); // N stores the number of cities that was selected
+        double[][] distances = fetchDistancesFromDB(dbManager, N);
         DynamicProgramming dynamicProgramming = new DynamicProgramming();
         dynamicProgramming.validateInputs(distances, startCity, selected);
 
-        int N = selected.size(); // N stores the number of cities that was selected
         // Cities Map in the subset
         Map<Integer, Integer> cityToIndex = new HashMap<>(); // the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
