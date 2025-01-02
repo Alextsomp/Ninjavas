@@ -19,6 +19,10 @@ public class DB {
         }
     }
 
+    public Connection getConnection() {
+        return this.connection;
+    }
+
     // Close the database connection
     public void closeConnection() throws SQLException {
         if (this.connection != null && !this.connection.isClosed()) {
