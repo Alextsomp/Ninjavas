@@ -1,4 +1,4 @@
-package main.java.repository;
+package repository;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class Menu {
         System.out.println("\nNow we will provide the available cities ,from which you will choose the cities you want to visit");
     }
     //This method is used to add only the available cities you want to visit in a list
-    public <Integer> ChooseCities(int firstCityIndex, String[] cityNames, int citiesIndex){
+    public ArrayList<Integer> ChooseCities(int firstCityIndex, String[] cityNames, int citiesIndex){
         CitiesAndDistances cad2 = new CitiesAndDistances();
         ArrayList<Integer> citiesChosen = new ArrayList<>();
         for (int i = 0; i < 15; i++) {

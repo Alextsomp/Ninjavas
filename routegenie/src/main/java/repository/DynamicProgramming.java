@@ -32,7 +32,7 @@ public class DynamicProgramming {
 
     // algorithm
     public List<Integer> dp(DB dbManager, int startCity, List<Integer> selected)
-            throws IllegalArgumentException, IllegalStateException {
+            throws IllegalArgumentException, IllegalStateException, SQLException {
 
         int N = selected.size(); // N stores the number of cities that was selected
         double[][] distances = fetchDistancesFromDB(dbManager, N);
