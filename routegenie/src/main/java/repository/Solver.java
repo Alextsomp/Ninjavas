@@ -1,15 +1,11 @@
 package repository;
 
 import java.util.List;
-import java.util.Map;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
 //Class that finds the best route and the total distance
 public class Solver {
-
     public DynamicProgramming dpSolver = new DynamicProgramming();
     public NearestNeighbour nnSolver = new NearestNeighbour();
 
@@ -32,7 +28,6 @@ public class Solver {
         // (minus the 1st)
         // distances= table with the distances between cities
         // startCity= the starting city
-
         DB dbManager = new DB("ninjavas.db");
 
         List<Integer> bestRoute; // List for the best route

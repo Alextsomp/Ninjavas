@@ -7,10 +7,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.sql.*;
 
-//Class that solves the tsp problem with dynamic programming
+//Class that solves the TSP problem with Dynamic Programming
 public class DynamicProgramming {
 
-    // Method to fetch distances from the SQLite database
+    // Method to fetch distances from the SQLite Database
     public double[][] fetchDistancesFromDB(DB dbManager, int numberOfCities) throws SQLException {
         String query = "SELECT * FROM distances";
         double[][] distances = new double[numberOfCities][numberOfCities];

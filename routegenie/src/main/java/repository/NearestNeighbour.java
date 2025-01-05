@@ -1,10 +1,8 @@
 package repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+
 
 //Class that solves the tsp problem with algorithm Nearest Neighbour
 public class NearestNeighbour {

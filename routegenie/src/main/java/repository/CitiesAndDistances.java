@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class CitiesAndDistances {
     //Class that contains the 15 available cities and the distances between each one
     public static String[] cities = new String[15];
-    public static double[][] distances = new double[15][15];
+    public double[][] distances = new double[15][15];
 
-    static {
+    {
         Cities();    // Automatically initialize cities
         Distances(); // Automatically initialize distances
     }
@@ -34,7 +34,7 @@ public class CitiesAndDistances {
     public static String[] getCities() {
         return cities;
     }
-    public static void Distances() {
+    public void Distances() {
         distances[0][0] = 0;
         distances[1][1] = 0;
         distances[2][2] = 0;
@@ -163,17 +163,17 @@ public class CitiesAndDistances {
             }
         }
     }
-    public static double getDistances(int x,int y) {
+    public double getDistances(int x,int y) {
         return distances[x][y];
     }
-    public static void printDistances(){
+    public void printDistances(){
         for(int i=0 ; i<15;i++){
             for(int j=0;j<15;j++){
                 System.out.println(distances[i][j]);
             }
         }
     }
-    public static boolean checkExistance(String[] cities, int city) {
+    public boolean checkExistance(String[] cities, int city) {
         if (city >= 0 && city < cities.length) {
             return true;    
         }

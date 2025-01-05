@@ -1,9 +1,8 @@
 package repository;
 
 import java.util.ArrayList;
-
-import repository.CitiesAndDistances;
 import java.util.Scanner;
+
 public class Menu {
     Scanner sc = new Scanner(System.in);
     String ANSI_YELLOW = "\u001B[33m";
@@ -11,11 +10,13 @@ public class Menu {
     String ANSI_RED = "\u001B[31m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_CYAN = "\u001B[36m";
-    //The first messages of the app
+    
+    //The first messages of the application
     public void PrintMenu(){
         System.out.println("\nHello there fellow" + ANSI_CYAN + " RoadTripper" + ANSI_RESET + "! Welcome to the" + ANSI_CYAN + " RouteGenie " + ANSI_RESET + "application! Let's begin with your new trip!\n");
-        System.out.println("\nNow we will provide the available cities ,from which you will choose the cities you want to visit");
+        System.out.println("\nNow we will provide the available cities, from which you will choose the cities you want to visit");
     }
+    
     //This method is used to add only the available cities you want to visit in a list
     public ArrayList<Integer> ChooseCities(int firstCityIndex, String[] cityNames, int citiesIndex){
         CitiesAndDistances cad2 = new CitiesAndDistances();
@@ -46,7 +47,7 @@ public class Menu {
             if (citiesIndex == -1) {
                 break; // End input when user enters -1
             }
-            if (CitiesAndDistances.checkExistance(cityNames, citiesIndex)) {
+            if (cad2.checkExistance(cityNames, citiesIndex)) {
                 if (!citiesChosen.contains(citiesIndex)) {
                     citiesChosen.add(citiesIndex);
                 } else {
