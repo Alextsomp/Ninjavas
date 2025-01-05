@@ -1,4 +1,5 @@
 package repository;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,31 +7,33 @@ import java.util.List;
 // import main.java.repository.Comparsion;
 // import main.java.repository.Menu;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+       
         //Initiallizing all the necessery objects from the other classes.
-        Solver solver = new Solver();
         NearestNeighbour nn = new NearestNeighbour();
-        DynamicProgramming dp = new DynamicProgramming();
-        CitiesAndDistances cad1 = new CitiesAndDistances();
-        String[] cityNames = CitiesAndDistances.getCities();
-        Menu mn = new Menu();
+        Solver svr = new Solver();
+        DynamicProgramming dynamicProg = new DynamicProgramming();
+         //DB dbManager = new DB("ninjavas.db");
+        CitiesAndDistances cad = new CitiesAndDistances();
         Comparison comp = new Comparison();
+        Menu mn = new Menu();
+        String[] cityNames = CitiesAndDistances.getCities();
+        double[][] distances = cad.distances;
         int citiesIndex = 0;
-        int firstCityIndex = -1;
-        double[][] distances = cad1.distances;
-        
+        int firstCityIndex = 0;
+
+
         mn.PrintMenu();
         ArrayList<Integer> citiesChosen = mn.ChooseCities(firstCityIndex, cityNames, citiesIndex);
-        List<Integer> bestRouteNN = nn.nearestNeighbour(firstCityIndex, distances, citiesChosen);
-        List<Integer> bestRouteSolver = dp.buildTour(distances, null, firstCityIndex, null, null, citiesIndex, firstCityIndex);
+         // distances = dynamicProg.fetchDistancesFromDB(dbManager, citiesIndex);
 
-        comp.compareAlgorithms(
-        null,
-        null,
-        firstCityIndex, 
-        citiesIndex, 
-        firstCityIndex, 
-        cityNames);
+         //List<Integer> bestRouteSolver = dynamicProg.dp(dbManager, firstCityIndex, citiesChosen);
+        List<Integer> bestRouteNN = nn.nearestNeighbour(firstCityIndex, distances, bestRouteSolver);
+        double nnTotalDistance = svr.totalDist(bestRouteNN, distances);
+        double SolverTotalDistance = svr.totalDist(bestRouteSolver, distances);
+         //svr.bestRoute(nnTotalDistance, SolverTotalDistance, bestRouteNN, distances, firstCityIndex);
+    
+        comp.compareAlgorithms(bestRouteSolver, bestRouteNN, SolverTotalDistance, nnTotalDistance, firstCityIndex, cityNames);
         
                 
                 
