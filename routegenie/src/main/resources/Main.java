@@ -353,29 +353,28 @@ public class Main extends Application {
 
 		VBox mainLayout = new VBox(20);
 		mainLayout.setAlignment(Pos.CENTER);
-
+		
 		mainLayout.setStyle("-fx-background-color: blanchedalmond;");
 		mainLayout.setPadding(new Insets(15));
-		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities,
-				submitSelectedCitiesBtn, resultsBox);
-
+		
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
+		
 		// Wrap the layout in a ScrollPane for overflow handling
-		ScrollPane scrollPane = new ScrollPane(mainLayout);
+	    ScrollPane scrollPane = new ScrollPane(mainLayout);
+	    scrollPane.setFitToWidth(true);
 
-		scrollPane.setFitToWidth(true);
-
-		root.setCenter(scrollPane);
-
+	    root.setCenter(scrollPane);
 	}
-
-	// method for loading the images
+		
+	//method for loading images
 	public Image loadCityImage(String imageUrl) {
-		try {
-			return new Image(imageUrl);
-		} catch (Exception e) {
-			System.out.println("Image not found: " + imageUrl);
-			return null;
-		}
+	    try {
+	        return new Image(imageUrl);
+	    } catch (Exception e) {
+	        System.out.println("Image not found: " + imageUrl);
+	        return null;
+	    }
 	}
 
-}
+	
+}	
