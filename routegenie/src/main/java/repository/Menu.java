@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import repository.DB;
+// import repository.DB;
 
 public class Menu {
     Scanner sc = new Scanner(System.in);
@@ -30,7 +30,7 @@ public class Menu {
     }
     
     //This method is used to add only the available cities you want to visit in a list
-    public ArrayList<Integer> ChooseCities(int firstCityIndex, int citiesIndex){
+    public ArrayList<Integer> ChooseCities(int firstCityIndex, int citiesIndex) throws SQLException{
         
         ArrayList<Integer> citiesChosen = new ArrayList<>();
         String[] cityList = cityDistanceManager.getAllCities();
