@@ -1,10 +1,11 @@
-package application;
-	
+package repository;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -36,112 +37,145 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class Main extends Application {
+
 	static BorderPane root;
-	
 
 	@Override
-	public void start(Stage primaryStage) {
+
+	public void start(Stage primaryStage) { // method that starts the application
+
 		try {
+
 			root = new BorderPane();
-			Scene scene = new Scene(root, 700,700);
-			
-            // Set up the scene
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("RouteGenie App");
-            primaryStage.show();
-            
+
+			Scene scene = new Scene(root, 700, 700);
+
+			// Set up the scene
+
+			primaryStage.setScene(scene);
+
+			primaryStage.setTitle("RouteGenie App");
+
+			primaryStage.show();
+
 			load();
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
+
 			e.printStackTrace();
+
 		}
+
 	}
-	
+
 	public static void main(String[] args) {
-		launch(args);
+
+		launch(args); // launches the javafx application
+
 	}
+
 	public void load() { // creates the necessary components
-		
+
 		Label title = new Label("RouteGenie");
 		title.setStyle("-fx-font-size: 48px; -fx-font-weight: bold; -fx-text-fill: darkblue;");
-		
+
 		Label welcome = new Label("Welcome to RouteGenie!");
 		welcome.setStyle("-fx-font-size: 20px;");
-		
+
 		VBox topContent = new VBox(10);
 		topContent.setAlignment(Pos.CENTER);
+
 		topContent.getChildren().addAll(title, welcome);
-		
+
 		//ImageView to display the starting city image
 		ImageView cityImageView = new ImageView();
 		cityImageView.setFitWidth(500); // Set width for the image
 	    cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
-	    cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
-	    
-		Label info = new Label("Please enter your first and last name");
-		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 		
-		Label firstName = new Label("First Name:");
+		Label info = new Label("Please enter your first and last name);");
+		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+
+		Label firstName = new Label("First Name:"); // textfields for the user to fill with their name and submit with a
+													// buttton
 		firstName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
 		
 		Label lastName = new Label("Last Name:");
 		lastName.setStyle("-fx-font-weight: bold; -fx-font-size: 13px;");
-		
+
 		TextField tf1 = new TextField();
 		tf1.setMaxWidth(300);
-		
+
 		TextField tf2 = new TextField();
 		tf2.setMaxWidth(300);
-		
+
 		Button btn = new Button("Submit");
 		btn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
-		
+
 		btn.setOnAction(e -> { // Assigns an action to the button when clicked
-			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText());
-			tf1.setText("");
+
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from
+																								// the text fields to
+																								// the console
+
+			tf1.setText(""); // clears the textfields after submission
+
 			tf2.setText("");
+
 		});
-		
+
 		VBox nameFields = new VBox(20);
 		nameFields.setStyle("-fx-font-size: 14px;");
 		nameFields.setAlignment(Pos.CENTER);
 		nameFields.getChildren().addAll(info, firstName, tf1, lastName, tf2, btn);
-		
+
 		CheckBox c1 = new CheckBox("1. Athens"); // creation of 14 checkboxes with the app's cities
+
 		CheckBox c2 = new CheckBox("2. Thessaloniki");
+
 		CheckBox c3 = new CheckBox("3. Patras");
+
 		CheckBox c4 = new CheckBox("4. Ioannina");
+
 		CheckBox c5 = new CheckBox("5. Tirana");
+
 		CheckBox c6 = new CheckBox("6. Skopje");
+
 		CheckBox c7 = new CheckBox("7. Sofia");
+
 		CheckBox c8 = new CheckBox("8. Podgorica");
+
 		CheckBox c9 = new CheckBox("9. Bucharest");
+
 		CheckBox c10 = new CheckBox("10. Belgrade");
+
 		CheckBox c11 = new CheckBox("11. Sarajevo");
+
 		CheckBox c12 = new CheckBox("12. Zagreb");
+
 		CheckBox c13 = new CheckBox("13. Chisinau");
+
 		CheckBox c14 = new CheckBox("14. Ljubljana");
-		
-		 CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14};
+
+		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14};
 
 	        // Initially disable all checkboxes
 	        for (CheckBox checkbox : checkboxes) {
 	            checkbox.setDisable(true);
-	            
 	        }
 		
 		VBox cities = new VBox(10);
 		cities.setStyle("-fx-font-size: 14px");
 		cities.setAlignment(Pos.CENTER);
+
 		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
-		
+
 		Text selectedCitiesText = new Text("Selected cities: none");
-		selectedCitiesText.setStyle("-fx-font-size: 14px");
-		
+		selectedCitiesText.setStyle("-fx-font-size: 14px;");
+
 		cities.getChildren().add(selectedCitiesText);
-		
-		
-		  // Event handler for updating selected cities
+
+		// Event handler for updating selected cities
         EventHandler<ActionEvent> updateSelectedCities = e -> {
             StringBuilder selectedCities = new StringBuilder("Selected Cities: ");
             for (CheckBox checkbox : checkboxes) {
@@ -162,15 +196,15 @@ public class Main extends Application {
 
         // ComboBox for starting city
         Label originLabel = new Label("Please select your starting city");
-        originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+		originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
         
-        ComboBox<String> originComboBox = new ComboBox<>();
+		ComboBox<String> originComboBox = new ComboBox<>();
         originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
         originComboBox.setPromptText("Choose a city");
-        originComboBox.setPrefWidth(200);
+		originComboBox.setPrefWidth(200);
         
-        VBox originCitySelection = new VBox(10);
-        originCitySelection.setAlignment(Pos.BOTTOM_CENTER);
+		VBox originCitySelection = new VBox(10);
+		originCitySelection.setAlignment(Pos.BOTTOM_CENTER);
         originCitySelection.getChildren().addAll(originLabel, originComboBox);
 
 
@@ -249,124 +283,150 @@ public class Main extends Application {
        
         // Button to submit the selected cities
         Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
-        submitSelectedCitiesBtn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
-
+		submitSelectedCitiesBtn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
+		
 		Label totalDistLabel = new Label("Total Distance: ");
 		totalDistLabel.setStyle("-fx-font-size: 14px;");
 
-		Label bestRouteLabel = new Label("Best Route: ");
-		bestRouteLabel.setStyle("-fx-font-size: 14px;");
-
-		VBox resultsBox = new VBox(10);
-		resultsBox.setAlignment(Pos.CENTER);
-		resultsBox.getChildren().addAll(totalDistLabel, bestRouteLabel);
-		resultsBox.setVisible(false);
-
+        Label bestRouteLabel = new Label("Best Route: ");
+        bestRouteLabel.setStyle("-fx-font-size: 14px;");
+        
+        VBox resultsBox = new VBox(10);
+        resultsBox.setAlignment(Pos.CENTER);
+        resultsBox.getChildren().addAll(totalDistLabel, bestRouteLabel);
+        resultsBox.setVisible(false);
+        
 		submitSelectedCitiesBtn.setOnAction(e -> {
-			System.out.println(selectedCitiesText.getText());
+            System.out.println(selectedCitiesText.getText());
+            
+            List<Integer> selectedCitiesList = new ArrayList<>();
+            String selectedCity = originComboBox.getValue();
+            if (selectedCity != null) {
+                // Βρίσκουμε το index της πόλης εκκίνησης στη λίστα των πόλεων
+                String[] cityNames = CitiesAndDistances.getCities();
+                int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity); // Προσοχή στην περίπτωση που το selectedCity δεν υπάρχει στη λίστα
+                if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) {
+                    selectedCitiesList.add(startCityIndex); // Προσθέτουμε την πόλη εκκίνησης
+                }
+            }
+            for (CheckBox checkbox : checkboxes) {
+                if (checkbox.isSelected()) {
+                    String cityText = checkbox.getText().trim();
 
-			List<Integer> selectedCitiesList = new ArrayList<>();
-			String selectedCity = originComboBox.getValue();
-			if (selectedCity != null) {
-				// Βρίσκουμε το index της πόλης εκκίνησης στη λίστα των πόλεων
-				String[] cityNames = CitiesAndDistances.getCities();
-				int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity); // Προσοχή στην περίπτωση που το
-																						// selectedCity δεν υπάρχει στη
-																						// λίστα
-				if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) {
-					selectedCitiesList.add(startCityIndex); // Προσθέτουμε την πόλη εκκίνησης
-				}
-			}
-			for (CheckBox checkbox : checkboxes) {
-				if (checkbox.isSelected()) {
-					String cityText = checkbox.getText().trim();
+                    // Βρίσκουμε το πρώτο κενό για να διαχωρίσουμε αριθμό και όνομα
+                    int spaceIndex = cityText.indexOf(' '); // Βρίσκουμε το πρώτο κενό
+                    if (spaceIndex != -1) {
+                        // Παίρνουμε το νούμερο της πόλης και αφαιρούμε την τελεία αν υπάρχει
+                        String cityNumberStr = cityText.substring(0, spaceIndex).trim();
 
-					// Βρίσκουμε το πρώτο κενό για να διαχωρίσουμε αριθμό και όνομα
-					int spaceIndex = cityText.indexOf(' '); // Βρίσκουμε το πρώτο κενό
-					if (spaceIndex != -1) {
-						// Παίρνουμε το νούμερο της πόλης και αφαιρούμε την τελεία αν υπάρχει
-						String cityNumberStr = cityText.substring(0, spaceIndex).trim();
+                        // Αφαιρούμε την τελεία αν υπάρχει
+                        cityNumberStr = cityNumberStr.replace(".", "").trim();
 
-						// Αφαιρούμε την τελεία αν υπάρχει
-						cityNumberStr = cityNumberStr.replace(".", "").trim();
+                        try {
+                            // Μετατρέπουμε το νούμερο σε ακέραιο και αφαιρούμε 1 για μηδενική αναφορά
+                            int cityIndex = Integer.parseInt(cityNumberStr) - 1;
 
-						try {
-							// Μετατρέπουμε το νούμερο σε ακέραιο και αφαιρούμε 1 για μηδενική αναφορά
-							int cityIndex = Integer.parseInt(cityNumberStr) - 1;
+                            // Παίρνουμε το όνομα της πόλης
+                            String cityName = cityText.substring(spaceIndex).trim();
 
-							// Παίρνουμε το όνομα της πόλης
-							String cityName = cityText.substring(spaceIndex).trim();
-
-							// Εμφανίζουμε για έλεγχο
-							System.out.println("City: " + cityName + ", Index: " + cityIndex);
-							selectedCitiesList.add(cityIndex);
-						} catch (NumberFormatException ex) {
-							// Αν αποτύχει η μετατροπή σε αριθμό, εμφανίζουμε το σφάλμα
-							System.out.println("Invalid city number format: " + cityNumberStr);
-						}
-					}
-				}
-			}
-
-			if (!selectedCitiesList.isEmpty()) {
-				String[] cityNames = CitiesAndDistances.getCities();
-				int selectedIndex = originComboBox.getItems().indexOf(selectedCity);
-				Solver solver = new Solver();
-				double[][] distances = CitiesAndDistances.distances;
-
-				List<Integer> bestRouteSolver = solver.solve(distances, selectedIndex, selectedCitiesList);
-				double totalDistSolver = solver.totalDist(bestRouteSolver, distances);
-
-				List<Integer> bestRoutesNN = solver.nearestNeighbour(selectedIndex, distances, selectedCitiesList);
-				double totalDistNN = solver.totalDist(bestRoutesNN, distances);
-
-				if (totalDistNN > totalDistSolver) {
-					System.out.println("The best route for your trip is: ");
-					for (int i = 0; i < bestRouteSolver.size() - 1; i++) {
-						System.out.println(i + 1 + cityNames[bestRouteSolver.get(i)]);
-					}
-					System.out.printf("And then back to ", cityNames[selectedIndex]);
-					System.out.println("In this order, the distance covered is only going to be " + totalDistSolver
-							+ " kilometers!");
-
-				} else if (totalDistSolver > totalDistNN) {
-					System.out.println("The best route for your trip is: ");
-					for (int i = 0; i < bestRoutesNN.size() - 1; i++) {
-						System.out.println(i + 1 + cityNames[bestRoutesNN.get(i)]);
-					}
-					System.out.printf("And then back to ", cityNames[selectedIndex]);
-					System.out.println(
-							"In this order, the distance covered is only going to be " + totalDistNN + " kilometers!");
-				} else {
-					System.out.println("The best route for your trip is: ");
-					for (int i = 0; i < bestRoutesNN.size() - 1; i++) {
-						System.out.println(i + 1 + cityNames[bestRoutesNN.get(i)]);
-					}
-					System.out.printf("And then back to ", cityNames[selectedIndex]);
-					System.out.println(
-							"In this order, the distance covered is only going to be " + totalDistNN + " kilometers!");
-				}
-			}
-
-			resultsBox.setVisible(true);
-		});
-
+                            selectedCitiesList.add(cityIndex);
+                        } catch (NumberFormatException ex) {
+                            // Αν αποτύχει η μετατροπή σε αριθμό, εμφανίζουμε το σφάλμα
+                            System.out.println("Invalid city number format: " + cityNumberStr);
+                        }
+                    }
+                }
+            }
+            
+            if (!selectedCitiesList.isEmpty()) {
+            	String[] cityNames = CitiesAndDistances.getCities();
+            	int selectedIndex = originComboBox.getItems().indexOf(selectedCity);
+            	Solver solver = new Solver();
+            	double[][] distances = CitiesAndDistances.distances;
+            	
+            	List<Integer> bestRouteSolver = solver.solve(distances, selectedIndex, selectedCitiesList);
+            	double totalDistSolver = solver.totalDist(bestRouteSolver, distances);
+            	
+            	List<Integer> bestRoutesNN = solver.nearestNeighbour(selectedIndex, distances, selectedCitiesList);
+                double totalDistNN = solver.totalDist(bestRoutesNN, distances);
+                
+                if (totalDistNN > totalDistSolver) {
+                	
+                	 StringBuilder routeText = new StringBuilder("And the best route to follow is: ");
+                     totalDistLabel.setText("The total distance of your trip is: " + totalDistSolver + " km");
+                      
+                     System.out.println("The total distance of your trip is: " + totalDistSolver + " km");
+                     System.out.println("And the best route to follow is: ");
+                	
+                	for (int i = 0; i < bestRouteSolver.size()-1; i++) {
+                        
+                		routeText.append(cityNames[bestRouteSolver.get(i)]).append(" → ");
+                        System.out.println(cityNames[bestRouteSolver.get(i)]);
+                		
+                    }
+                	 System.out.println("And then back to " + cityNames[selectedIndex] + "!");
+                     routeText.append(cityNames[selectedIndex]);
+                     bestRouteLabel.setText(routeText.toString());
+                
+                } else if (totalDistSolver > totalDistNN) {
+                	
+                	StringBuilder routeTextNN = new StringBuilder("And the best route to follow is: ");
+                	totalDistLabel.setText("The total distance of your trip is: " + totalDistNN + " km");
+                    
+                    System.out.println("The total distance of your trip is: " + totalDistNN + " km");
+                    System.out.println("And the best route to follow is: ");
+                	
+                	for (int i = 0; i < bestRoutesNN.size()-1; i++) {
+                        
+                		 routeTextNN.append(cityNames[bestRoutesNN.get(i)]).append(" → ");
+                         System.out.println(cityNames[bestRoutesNN.get(i)]);
+                		
+                    }
+                	System.out.println("And then back to " + cityNames[selectedIndex] + "!");
+                    routeTextNN.append(cityNames[selectedIndex]);
+                    bestRouteLabel.setText(routeTextNN.toString());
+                
+                } else {
+                	
+                	StringBuilder routeText = new StringBuilder("And the best route to follow is: " + "!");
+                	totalDistLabel.setText("The total distance of your trip is: " + totalDistNN + " km");
+                	
+                	System.out.println("The total distance of your trip is: " + totalDistNN + " km");
+                	System.out.println("And the best route to follow is: ");
+                	
+                	for (int i = 0; i < bestRoutesNN.size()-1; i++) {
+                        
+                		routeText.append(cityNames[bestRouteSolver.get(i)]).append(" → ");
+                	    System.out.println(cityNames[bestRoutesNN.get(i)]);
+                		
+                    }
+                	System.out.println("And then back to " + cityNames[selectedIndex]);
+                	routeText.append(cityNames[selectedIndex]); // Επιστροφή στην αρχική πόλη
+                	bestRouteLabel.setText(routeText.toString());
+                }
+            }
+            
+            resultsBox.setVisible(true);
+        });
+		
+		
 		VBox mainLayout = new VBox(20);
 		mainLayout.setAlignment(Pos.CENTER);
 		
 		mainLayout.setStyle("-fx-background-color: blanchedalmond;");
 		mainLayout.setPadding(new Insets(15));
-		
-		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn);
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn, resultsBox);
 		
 		// Wrap the layout in a ScrollPane for overflow handling
 	    ScrollPane scrollPane = new ScrollPane(mainLayout);
+	   
 	    scrollPane.setFitToWidth(true);
 
 	    root.setCenter(scrollPane);
+
 	}
-		
-	//method for loading images
+
+	//method for loading the images
 	public Image loadCityImage(String imageUrl) {
 	    try {
 	        return new Image(imageUrl);
@@ -376,5 +436,4 @@ public class Main extends Application {
 	    }
 	}
 
-	
-}	
+}
