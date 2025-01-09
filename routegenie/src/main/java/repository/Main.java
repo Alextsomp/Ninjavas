@@ -3,9 +3,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.repository.CityDistanceManager;
-import main.java.repository.Comparison;
-import main.java.repository.Menu;
+// import main.java.repository.CityDistanceManager;
+// import main.java.repository.Comparison;
+// import main.java.repository.Menu;
 
 // import main.java.repository.Comparison;
 // import main.java.repository.Comparsion;
@@ -21,19 +21,27 @@ public class Main {
         Solver svr = new Solver();
         DynamicProgramming dynamicProg = new DynamicProgramming();
         Comparison comp = new Comparison();
-        Menu mn = new Menu();
+        Menu mn = new Menu("ninjavas.db");
 
         String[] cityNames = cityDistanceManager.getAllCities();
-        double[][] distances = cityDistanceManager.getDistance();
+        double[][] distances;
+        
+        // for(int i = 0 ; i < 14 ; i++) {
+        //     for (int j = 0 ; j< 14 ; j++){
+        //         if(i!=j){
+        //             distances[i] = cityDistanceManager.getDistance(cityNames[i],cityNames[j]);
+        //         }
+        //     }
+        // }
         int citiesIndex = 0;
         int firstCityIndex = 0;
 
 
         mn.PrintMenu();
         ArrayList<Integer> citiesChosen = mn.ChooseCities(firstCityIndex, citiesIndex);
-         // distances = dynamicProg.fetchDistancesFromDB(dbManager, citiesIndex);
+        distances = dynamicProg.fetchDistancesFromDB(dbManager, citiesIndex);
 
-         //List<Integer> bestRouteSolver = dynamicProg.dp(dbManager, firstCityIndex, citiesChosen);
+        List<Integer> bestRouteSolver = dynamicProg.dp(dbManager, firstCityIndex, citiesChosen);
         List<Integer> bestRouteNN = nn.nearestNeighbour(firstCityIndex, distances, bestRouteSolver);
         double nnTotalDistance = svr.totalDist(bestRouteNN, distances);
         double SolverTotalDistance = svr.totalDist(bestRouteSolver, distances);
