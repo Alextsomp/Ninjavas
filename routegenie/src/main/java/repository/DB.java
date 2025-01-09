@@ -19,7 +19,10 @@ public class DB {
         }
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
+        if (this.connection == null || this.connection.isClosed()) {
+            throw new SQLException("Database connection is closed.");
+        }
         return this.connection;
     }
 
@@ -30,32 +33,18 @@ public class DB {
             System.out.println("Connection closed.");
         }
     }
-    public int getDistances(int fromCity, int toCity) throws SQLException {
-        String query = "SELECT distance FROM distances WHERE (from_city = ? AND to_city = ?)";
-        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
-            stmt.setInt(1, fromCity);
-            stmt.setInt(2, toCity);
-            ResultSet resultSet = stmt.executeQuery();
-
-            if (resultSet.next()) {
-                return resultSet.getInt("distance");
-            } else {
-                System.out.println("No distance found between city " + fromCity + " and city " + toCity);
-                return -1;  // -1 to indicate no result found
-            }
-        }
-    }
 
     // Example usage
-   /* public static void main(String[] args) {
-        try {
-            DB dbManager = new DB("ninjavas.db");
-
-            // Close the connection
-            dbManager.closeConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-        */
+    /*
+     * public static void main(String[] args) {
+     * try {
+     * DB dbManager = new DB("ninjavas.db");
+     * 
+     * // Close the connection
+     * dbManager.closeConnection();
+     * } catch (SQLException e) {
+     * e.printStackTrace();
+     * }
+     * }
+     */
 }

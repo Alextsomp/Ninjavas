@@ -13,25 +13,29 @@ public class Menu {
     String ANSI_RED = "\u001B[31m";
     String ANSI_GREEN = "\u001B[32m";
     String ANSI_CYAN = "\u001B[36m";
-    
+
     private DB db;
     private CityDistanceManager cityDistanceManager;
-    
+
     public Menu(String databasePath) throws SQLException {
         // Δημιουργούμε σύνδεση με τη βάση δεδομένων και το CityDistanceManager
         db = new DB(databasePath);
         cityDistanceManager = new CityDistanceManager(db);
-    
+
     }
-    //The first messages of the application
-    public void PrintMenu(){
-        System.out.println("\nHello there fellow" + ANSI_CYAN + " RoadTripper" + ANSI_RESET + "! Welcome to the" + ANSI_CYAN + " RouteGenie " + ANSI_RESET + "application! Let's begin with your new trip!\n");
-        System.out.println("\nNow we will provide the available cities, from which you will choose the cities you want to visit");
+
+    // The first messages of the application
+    public void PrintMenu() {
+        System.out.println("\nHello there fellow" + ANSI_CYAN + " RoadTripper" + ANSI_RESET + "! Welcome to the"
+                + ANSI_CYAN + " RouteGenie " + ANSI_RESET + "application! Let's begin with your new trip!\n");
+        System.out.println(
+                "\nNow we will provide the available cities, from which you will choose the cities you want to visit");
     }
-    
-    //This method is used to add only the available cities you want to visit in a list
-    public ArrayList<Integer> ChooseCities(int firstCityIndex, int citiesIndex) throws SQLException{
-        
+
+    // This method is used to add only the available cities you want to visit in a
+    // list
+    public ArrayList<Integer> ChooseCities(int firstCityIndex, int citiesIndex) throws SQLException {
+
         ArrayList<Integer> citiesChosen = new ArrayList<>();
         String[] cityList = cityDistanceManager.getAllCities();
 
@@ -39,7 +43,8 @@ public class Menu {
             System.out.println(ANSI_YELLOW + i + ") " + ANSI_RESET + cityList[i]);
         }
         do {
-            System.out.println("Please choose your" + ANSI_RED + " starting " + ANSI_RESET + "and" + ANSI_RED + " finishing " + ANSI_RESET +  "city by inserting the number which the city corresponds to:");
+            System.out.println("Please choose your" + ANSI_RED + " starting " + ANSI_RESET + "and" + ANSI_RED
+                    + " finishing " + ANSI_RESET + "city by inserting the number which the city corresponds to:");
             firstCityIndex = sc.nextInt();
             if (firstCityIndex >= 0 && firstCityIndex < cityList.length) {
                 citiesChosen.add(firstCityIndex);
@@ -48,7 +53,8 @@ public class Menu {
             }
         } while (firstCityIndex < 0 || firstCityIndex >= cityList.length);
 
-        System.out.println("\nChoose the cities you want to visit by inserting the number which the city corresponds to:");
+        System.out.println(
+                "\nChoose the cities you want to visit by inserting the number which the city corresponds to:");
         do {
             System.out.println("Available cities:");
             // Εκτυπώνουμε τις πόλεις που δεν έχουν επιλεγεί ήδη
@@ -68,14 +74,16 @@ public class Menu {
                 if (!citiesChosen.contains(citiesIndex)) {
                     citiesChosen.add(citiesIndex);
                 } else {
-                    System.out.println("\nThis city has already been added. Please select a" + ANSI_RED + " different " + ANSI_RESET + "city that is still available.\n");
+                    System.out.println("\nThis city has already been added. Please select a" + ANSI_RED + " different "
+                            + ANSI_RESET + "city that is still available.\n");
                 }
             } else {
                 System.out.println("\nPlease enter a valid number corresponding to an available city.");
             }
 
             // Ερώτηση για αν θέλει να συνεχίσει ή να τελειώσει
-            System.out.println("\nChoose another city from the list or enter" + ANSI_RED + " -1 " + ANSI_RESET + "if you have added all the cities you desire already.");
+            System.out.println("\nChoose another city from the list or enter" + ANSI_RED + " -1 " + ANSI_RESET
+                    + "if you have added all the cities you desire already.");
 
         } while (citiesIndex != -1);
 
