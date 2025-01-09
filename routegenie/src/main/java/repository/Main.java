@@ -2,6 +2,11 @@ package repository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import main.java.repository.CityDistanceManager;
+import main.java.repository.Comparison;
+import main.java.repository.Menu;
 
 // import main.java.repository.CityDistanceManager;
 // import main.java.repository.Comparison;
@@ -22,8 +27,24 @@ public class Main {
         DynamicProgramming dynamicProg = new DynamicProgramming();
         Comparison comp = new Comparison();
         Menu mn = new Menu("ninjavas.db");
+        try {
+            // Δημιουργία σύνδεσης με την βάση
+            DB db = new DB("ninjavas.db");
+            
+            Scanner sc = new Scanner(System.in);
+            int city1 = sc.nextInt();
+            int city2 = sc.nextInt();            
+            // Βρίσκουμε και εκτυπώνουμε τις αποστάσεις για όλα τα ζευγάρια πόλεων στη λίστα
+            db.getDistances(city1,city2);
 
-        String[] cityNames = cityDistanceManager.getAllCities();
+            // Κλείσιμο σύνδεσης
+            db.closeConnection();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        /*String[] cityNames = cityDistanceManager.getAllCities();
         double[][] distances;
         
         // for(int i = 0 ; i < 14 ; i++) {
@@ -51,5 +72,6 @@ public class Main {
         
                 
                 
+    }*/
     }
 } 
