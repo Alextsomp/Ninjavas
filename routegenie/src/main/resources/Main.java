@@ -118,10 +118,6 @@ public class Main extends Application {
 																								// the text fields to
 																								// the console
 
-			tf1.setText(""); // clears the textfields after submission
-
-			tf2.setText("");
-
 		});
 
 		VBox nameFields = new VBox(20);
