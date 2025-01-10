@@ -47,15 +47,11 @@ public class Main extends Application {
 		try {
 
 			root = new BorderPane();
-
 			Scene scene = new Scene(root, 700, 700);
 
 			// Set up the scene
-
 			primaryStage.setScene(scene);
-
 			primaryStage.setTitle("RouteGenie App");
-
 			primaryStage.show();
 
 			load();
@@ -302,37 +298,46 @@ public class Main extends Application {
             
             List<Integer> selectedCitiesList = new ArrayList<>();
             String selectedCity = originComboBox.getValue();
-            if (selectedCity != null) {
-                // Βρίσκουμε το index της πόλης εκκίνησης στη λίστα των πόλεων
+            
+			if (selectedCity != null) {
+                
+				// Find the index of the starting city in the list of cities
                 String[] cityNames = CitiesAndDistances.getCities();
-                int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity); // Προσοχή στην περίπτωση που το selectedCity δεν υπάρχει στη λίστα
-                if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) {
-                    selectedCitiesList.add(startCityIndex); // Προσθέτουμε την πόλη εκκίνησης
+                
+				// Find the index of the starting city in the list of cities
+				// If the city is not found, indexOf() will return -1
+				int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity);
+                
+				if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) { // Check if the starting city exists in the list and is not already added to the selectedCitiesList
+                    selectedCitiesList.add(startCityIndex); // Add the starting city to the list
                 }
             }
-            for (CheckBox checkbox : checkboxes) {
-                if (checkbox.isSelected()) {
+            
+			for (CheckBox checkbox : checkboxes) {
+                
+				if (checkbox.isSelected()) {
                     String cityText = checkbox.getText().trim();
 
-                    // Βρίσκουμε το πρώτο κενό για να διαχωρίσουμε αριθμό και όνομα
-                    int spaceIndex = cityText.indexOf(' '); // Βρίσκουμε το πρώτο κενό
+					//Finds the first space to seperate the index from the name
+                    int spaceIndex = cityText.indexOf(' '); // Finds the first space
                     if (spaceIndex != -1) {
-                        // Παίρνουμε το νούμερο της πόλης και αφαιρούμε την τελεία αν υπάρχει
+                    
+						//Extracts the city's index from the text, up to the first space
                         String cityNumberStr = cityText.substring(0, spaceIndex).trim();
 
-                        // Αφαιρούμε την τελεία αν υπάρχει
+                        // Removes the dot if it exists from the city index
                         cityNumberStr = cityNumberStr.replace(".", "").trim();
 
                         try {
-                            // Μετατρέπουμε το νούμερο σε ακέραιο και αφαιρούμε 1 για μηδενική αναφορά
+                            //Converts the number to an integer and subtract 1 for zero-based indexing
                             int cityIndex = Integer.parseInt(cityNumberStr) - 1;
 
-                            // Παίρνουμε το όνομα της πόλης
+                            //Gets the name of the city
                             String cityName = cityText.substring(spaceIndex).trim();
 
                             selectedCitiesList.add(cityIndex);
                         } catch (NumberFormatException ex) {
-                            // Αν αποτύχει η μετατροπή σε αριθμό, εμφανίζουμε το σφάλμα
+                            //If the conversion to a number fails, we display the error
                             System.out.println("Invalid city number format: " + cityNumberStr);
                         }
                     }
@@ -340,7 +345,8 @@ public class Main extends Application {
             }
             
             if (!selectedCitiesList.isEmpty()) {
-            	String[] cityNames = CitiesAndDistances.getCities();
+            	
+				String[] cityNames = CitiesAndDistances.getCities();
             	int selectedIndex = originComboBox.getItems().indexOf(selectedCity);
             	Solver solver = new Solver();
             	double[][] distances = CitiesAndDistances.distances;
@@ -420,20 +426,22 @@ public class Main extends Application {
 		
 		// Wrap the layout in a ScrollPane for overflow handling
 	    ScrollPane scrollPane = new ScrollPane(mainLayout);
-	   
-	    scrollPane.setFitToWidth(true);
-
-	    root.setCenter(scrollPane);
+	   	scrollPane.setFitToWidth(true);
+		root.setCenter(scrollPane);
 
 	}
 
 	//method for loading the images
 	public Image loadCityImage(String imageUrl) {
 	    try {
+
 	        return new Image(imageUrl);
+
 	    } catch (Exception e) {
+
 	        System.out.println("Image not found: " + imageUrl);
 	        return null;
+			
 	    }
 	}
 
