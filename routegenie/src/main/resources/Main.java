@@ -114,9 +114,7 @@ public class Main extends Application {
 
 		btn.setOnAction(e -> { // Assigns an action to the button when clicked
 
-			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from
-																								// the text fields to
-																								// the console
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from the text fields to the console
 
 		});
 
@@ -277,7 +275,14 @@ public class Main extends Application {
             }
         });
        
-        // Button to submit the selected cities
+        Label textcities = new Label("Select the rest of the cities you would like to visit");
+        textcities.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+        
+        VBox textvbox = new VBox(10);
+        textvbox.setAlignment(Pos.BOTTOM_CENTER);
+        textvbox.getChildren().add(textcities);
+		
+		// Button to submit the selected cities
         Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
 		submitSelectedCitiesBtn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
 		
@@ -411,7 +416,7 @@ public class Main extends Application {
 		
 		mainLayout.setStyle("-fx-background-color: blanchedalmond;");
 		mainLayout.setPadding(new Insets(15));
-		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn, resultsBox);
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, textcities, cities, submitSelectedCitiesBtn, resultsBox);
 		
 		// Wrap the layout in a ScrollPane for overflow handling
 	    ScrollPane scrollPane = new ScrollPane(mainLayout);
