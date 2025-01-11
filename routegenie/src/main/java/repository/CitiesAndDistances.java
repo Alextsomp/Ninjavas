@@ -3,8 +3,7 @@ package repository;
 import java.util.ArrayList;
 
 public class CitiesAndDistances {
-    // Class that contains the 15 available cities and the distances between each
-    // one
+    // Class that contains the 15 available cities and the distances between each one
     public static String[] cities = new String[15];
     public static double[][] distances = new double[15][15];
 

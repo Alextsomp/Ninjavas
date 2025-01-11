@@ -6,16 +6,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {    
-    public static void main(String[] args) throws SQLException {
-        
-        DB dbManager = new DB("ninjavas.db");
-
-        try {
-            // Database Connection
-            Inserter ins = new Inserter();
-            ins.createAndInsertCitiesAndDistances(dbManager);
-            CityDistanceManager cityDistanceManager = new CityDistanceManager(dbManager);
-            Integer[] cityIdsInt = cityIdsList.toArray(new Integer[0]);
+        public static void main(String[] args) throws SQLException {
+            
+            DB dbManager = new DB("ninjavas.db");
+    
+            try {
+                // Database Connection
+                Inserter ins = new Inserter();
+                ins.createAndInsertCitiesAndDistances(dbManager);
+                CityDistanceManager cityDistanceManager = new CityDistanceManager(dbManager);
+                List<Integer> cityIdsList = cityDistanceManager.getAllCities();
+                Integer[] cityIdsInt = cityIdsList.toArray(new Integer[0]);
 
             int[] cityIds = new int[cityIdsInt.length];
             for (int i = 0; i < cityIdsInt.length; i++) {
