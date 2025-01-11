@@ -31,7 +31,7 @@ public class DB {
     public void connect() throws SQLException {
         if (this.connection == null || this.connection.isClosed()) {
             try {
-                String url = "jdbc:sqlite:ninjavas.db"; // Adjust the URL for your database
+                String url = "jdbc:sqlite:ninjavas.db";
                 this.connection = DriverManager.getConnection(url);
                 System.out.println("Connection successfully established.");
             } catch (SQLException e) {
@@ -48,18 +48,4 @@ public class DB {
             System.out.println("Connection closed.");
         }
     }
-
-    // Example usage
-    /*
-     * public static void main(String[] args) {
-     * try {
-     * DB dbManager = new DB("ninjavas.db");
-     * 
-     * // Close the connection
-     * dbManager.closeConnection();
-     * } catch (SQLException e) {
-     * e.printStackTrace();
-     * }
-     * }
-     */
 }
