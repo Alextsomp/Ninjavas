@@ -20,7 +20,7 @@ public class CityDistanceManager {
             ResultSet rs = stmt.executeQuery(query);
             List<Integer> cityNames = new ArrayList<>();
             while (rs.next()) {
-                cityNames.add(rs.getInt("name"));
+                cityNames.add(rs.getInt("id"));
             }
             return cityNames;
          }catch (SQLException e) {
