@@ -15,7 +15,7 @@ INSERT INTO cities (id, name) VALUES (11, 'Sarajevo');
 INSERT INTO cities (id, name) VALUES (12, 'Zagreb');
 INSERT INTO cities (id, name) VALUES (13, 'Chisinau');
 INSERT INTO cities (id, name) VALUES (14, 'Ljubljana');
-select * from cities;
+
 CREATE TABLE distances (
     from_city INT NOT NULL,
     to_city INT NOT NULL,
@@ -144,4 +144,123 @@ INSERT INTO distances (from_city, to_city, distance) VALUES (14, 11, 540);
 INSERT INTO distances (from_city, to_city, distance) VALUES (13, 12, 1335);
 INSERT INTO distances (from_city, to_city, distance) VALUES (14, 12, 141);
 INSERT INTO distances (from_city, to_city, distance) VALUES (14, 13, 1401);
-SELECT * FROM distances WHERE distance < 150 ;
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (14, 3, 1182);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 1, 494);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 2, 213);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 3, 412);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 4, 678);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 5, 698);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 6, 798);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 7, 862);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 8, 787);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 9, 1184);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 10,1095);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 11, 1061);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 12, 1485);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 13, 1651);
+INSERT INTO distances (from_city, to_city, distance) VALUES (0, 14, 1623);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 2, 468);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 3, 261);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 4, 397);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 5, 234);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 6, 292);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 7, 550);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 8, 323);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 9, 679);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 10, 631);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 11, 820);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 12, 1023);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 13, 1140);
+INSERT INTO distances (from_city, to_city, distance) VALUES (1, 14, 1162);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 3, 468);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 4, 538);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 5, 622);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 6, 756);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 7, 672);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 8, 744);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 9, 1143);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 10, 1057);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 11, 903);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 12, 1300);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 13, 1604);
+INSERT INTO distances (from_city, to_city, distance) VALUES (2, 14, 1438);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 4, 316);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 5, 415);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 6, 553);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 7, 449);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 8, 504);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 9, 940);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 10, 850);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 11, 680);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 12, 1164);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 13, 1407);
+INSERT INTO distances (from_city, to_city, distance) VALUES (3, 14, 1182);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 5, 223);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 6, 473);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 7, 158);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 8, 257);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 9, 858);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 10, 603);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 11, 389);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 12, 786);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 13, 1330);
+INSERT INTO distances (from_city, to_city, distance) VALUES (4, 14, 924);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 6, 236);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 7, 330);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 8, 91.3);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 9, 629);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 10, 432);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 11, 507);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 12, 825);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 13, 1100);
+INSERT INTO distances (from_city, to_city, distance) VALUES (5, 14, 963);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 7, 520);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 8, 333);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 9, 383);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 10, 392);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 11, 581);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 12, 785);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 13, 852);
+INSERT INTO distances (from_city, to_city, distance) VALUES (6, 14, 924);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 8, 254);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 9, 822);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 10, 447);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 11, 230);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 12, 627);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 13, 1314);
+INSERT INTO distances (from_city, to_city, distance) VALUES (7, 14, 773);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 9, 721);
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 10, 459);
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 11, 429);
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 12, 883);
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 13, 1193);
+INSERT INTO distances (from_city, to_city, distance) VALUES (8, 14, 1024);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (9, 10, 597);
+INSERT INTO distances (from_city, to_city, distance) VALUES (9, 11, 877);
+INSERT INTO distances (from_city, to_city, distance) VALUES (9, 12, 990);
+INSERT INTO distances (from_city, to_city, distance) VALUES (9, 13, 474);
+INSERT INTO distances (from_city, to_city, distance) VALUES (9, 14, 1128);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (10, 11, 301);
+INSERT INTO distances (from_city, to_city, distance) VALUES (10, 12, 396);
+INSERT INTO distances (from_city, to_city, distance) VALUES (10, 13, 960);
+INSERT INTO distances (from_city, to_city, distance) VALUES (10, 14, 534);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (11, 12, 402);
+INSERT INTO distances (from_city, to_city, distance) VALUES (11, 13, 1249);
+INSERT INTO distances (from_city, to_city, distance) VALUES (11, 14, 540);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (12, 13, 1335);
+INSERT INTO distances (from_city, to_city, distance) VALUES (12, 14, 141);
+
+INSERT INTO distances (from_city, to_city, distance) VALUES (13, 14, 1401);
