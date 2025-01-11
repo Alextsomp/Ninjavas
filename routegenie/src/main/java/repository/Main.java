@@ -46,7 +46,7 @@ public class Main {
             
             // Calculate the best routes, based on the implementation of two algorithms
             List<Integer> bestRouteSolver = dynamicProg.dp(distances, dbManager, citiesChosen);
-            List<Integer> bestRouteNN = nn.nearestNeighbour(distances, bestRouteSolver);
+            List<Integer> bestRouteNN = nn.nearestNeighbour(distances, citiesChosen);
 
             // Based on the best routes, calculate the total distance
             double nnTotalDistance = solver.totalDistance(bestRouteNN, distances);
