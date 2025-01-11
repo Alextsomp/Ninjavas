@@ -89,7 +89,7 @@ public class Main extends Application {
 		cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
 		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 
-		Label info = new Label("Please enter your first and last name);");
+		Label info = new Label("Please enter your first and last name");
 		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
 
 		Label firstName = new Label("First Name:"); // textfields for the user to fill with their name and submit with a
