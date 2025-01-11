@@ -250,7 +250,7 @@ public class CitiesAndDistances {
         distances[11][13] = 1249;
         distances[12][13] = 1335;
         distances[14][13] = 1401;
-        distances[0][14] = 1623;
+        distances[0][14] = 1623; // All the distances beginning from Ljubljana
         distances[1][14] = 1162;
         distances[2][14] = 1438;
         distances[3][14] = 1392;
