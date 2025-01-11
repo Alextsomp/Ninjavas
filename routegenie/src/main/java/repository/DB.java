@@ -19,11 +19,26 @@ public class DB {
         }
     }
 
+    //Method to create new connection
     public Connection getConnection() throws SQLException {
         if (this.connection == null || this.connection.isClosed()) {
-            throw new SQLException("Database connection is closed.");
+            System.out.println("Database connection is null or closed.");
+            connect();
         }
         return this.connection;
+    }
+
+    public void connect() throws SQLException {
+        if (this.connection == null || this.connection.isClosed()) {
+            try {
+                String url = "jdbc:sqlite:ninjavas.db"; // Adjust the URL for your database
+                this.connection = DriverManager.getConnection(url);
+                System.out.println("Connection successfully established.");
+            } catch (SQLException e) {
+                System.err.println("Failed to establish a database connection: " + e.getMessage());
+                throw e;
+            }
+        }
     }
 
     // Close the database connection
