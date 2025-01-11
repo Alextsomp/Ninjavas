@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -47,15 +46,11 @@ public class Main extends Application {
 		try {
 
 			root = new BorderPane();
-
 			Scene scene = new Scene(root, 700, 700);
 
 			// Set up the scene
-
 			primaryStage.setScene(scene);
-
 			primaryStage.setTitle("RouteGenie App");
-
 			primaryStage.show();
 
 			load();
@@ -93,7 +88,7 @@ public class Main extends Application {
 	    cityImageView.setPreserveRatio(true); // Maintain the aspect ratio
 		cityImageView.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
 		
-		Label info = new Label("Please enter your first and last name);");
+		Label info = new Label("Please enter your first and last name");
 		info.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
 
 		Label firstName = new Label("First Name:"); // textfields for the user to fill with their name and submit with a
@@ -114,13 +109,7 @@ public class Main extends Application {
 
 		btn.setOnAction(e -> { // Assigns an action to the button when clicked
 
-			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from
-																								// the text fields to
-																								// the console
-
-			tf1.setText(""); // clears the textfields after submission
-
-			tf2.setText("");
+			System.out.println("First Name:" + tf1.getText() + " Last Name:" + tf2.getText()); // Prints the input from the text fields to the console
 
 		});
 
@@ -144,20 +133,22 @@ public class Main extends Application {
 		CheckBox c7 = new CheckBox("7. Sofia");
 
 		CheckBox c8 = new CheckBox("8. Podgorica");
+		
+		CheckBox c9 = new CheckBox("9. Pristina");
 
-		CheckBox c9 = new CheckBox("9. Bucharest");
+		CheckBox c10 = new CheckBox("10. Bucharest");
 
-		CheckBox c10 = new CheckBox("10. Belgrade");
+		CheckBox c11 = new CheckBox("11. Belgrade");
 
-		CheckBox c11 = new CheckBox("11. Sarajevo");
+		CheckBox c12 = new CheckBox("12. Sarajevo");
 
-		CheckBox c12 = new CheckBox("12. Zagreb");
+		CheckBox c13 = new CheckBox("13. Zagreb");
 
-		CheckBox c13 = new CheckBox("13. Chisinau");
+		CheckBox c14 = new CheckBox("14. Chisinau");
 
-		CheckBox c14 = new CheckBox("14. Ljubljana");
+		CheckBox c15 = new CheckBox("15. Ljubljana");
 
-		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14};
+		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15};
 
 	        // Initially disable all checkboxes
 	        for (CheckBox checkbox : checkboxes) {
@@ -168,7 +159,7 @@ public class Main extends Application {
 		cities.setStyle("-fx-font-size: 14px");
 		cities.setAlignment(Pos.CENTER);
 
-		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
+		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15);
 
 		Text selectedCitiesText = new Text("Selected cities: none");
 		selectedCitiesText.setStyle("-fx-font-size: 14px;");
@@ -199,7 +190,7 @@ public class Main extends Application {
 		originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
         
 		ComboBox<String> originComboBox = new ComboBox<>();
-        originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
+        originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Pristina", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
         originComboBox.setPromptText("Choose a city");
 		originComboBox.setPrefWidth(200);
         
@@ -253,35 +244,46 @@ public class Main extends Application {
                     	c8.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://assets.enuygun.com/media/lib/570x400/uploads/image/podgorica-59036.jpeg"));
                     	break;
-                    case "Bucharest": 
+                    case "Pristina": 
                     	c9.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://lp-cms-production.imgix.net/2019-06/e228bf3be784ffff7a338ec8d9167d30-pristina.jpg"));
+                    	break;
+                    case "Bucharest": 
+                    	c10.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://www.wanderlustmagazine.com/wp-content/uploads/2023/11/2-palace-of-parliament-at-sunrise-shutterstock_1788823946-web.jpg"));
                     	break;
                     case "Belgrade": 
-                    	c10.setDisable(true); 
+                    	c11.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://i0.wp.com/mytravelation.com/wp-content/uploads/2023/12/Belgrade-Serbia.jpg"));
                     	break;
                     case "Sarajevo": 
-                    	c11.setDisable(true); 
+                    	c12.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://web-assets.transavia.com/78ae936f-d39d-01b0-c3ef-dc738304142f/472cea8d-c842-4343-8c2f-1e5ee7f43acd/Sarajevo.jpg"));
                     	break;
                     case "Zagreb": 
-                    	c12.setDisable(true); 
+                    	c13.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://www.travel.gr/wp-content/uploads/2021/12/zagreb-kentriki-scaled.jpg"));
                     	break;
                     case "Chisinau": 
-                    	c13.setDisable(true); 
+                    	c14.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://static.independent.co.uk/2021/09/24/16/iStock-1066138896.jpg"));
                     	break;
                     case "Ljubljana": 
-                    	c14.setDisable(true); 
+                    	c15.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://cdn.britannica.com/79/124479-050-DD359499/Ljubljana-Slovenia.jpg"));
                     	break;
                 }
             }
         });
        
-        // Button to submit the selected cities
+        Label textcities = new Label("Select the rest of the cities you would like to visit");
+        textcities.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
+        
+        VBox textvbox = new VBox(10);
+        textvbox.setAlignment(Pos.BOTTOM_CENTER);
+        textvbox.getChildren().add(textcities);
+		
+		// Button to submit the selected cities
         Button submitSelectedCitiesBtn = new Button("Submit Selected Cities");
 		submitSelectedCitiesBtn.setStyle("-fx-background-color: darkblue; -fx-text-fill: white; -fx-font-size: 13px;");
 		
@@ -301,37 +303,46 @@ public class Main extends Application {
             
             List<Integer> selectedCitiesList = new ArrayList<>();
             String selectedCity = originComboBox.getValue();
-            if (selectedCity != null) {
-                // Βρίσκουμε το index της πόλης εκκίνησης στη λίστα των πόλεων
+            
+			if (selectedCity != null) {
+                
+				// Find the index of the starting city in the list of cities
                 String[] cityNames = CitiesAndDistances.getCities();
-                int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity); // Προσοχή στην περίπτωση που το selectedCity δεν υπάρχει στη λίστα
-                if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) {
-                    selectedCitiesList.add(startCityIndex); // Προσθέτουμε την πόλη εκκίνησης
+                
+				// Find the index of the starting city in the list of cities
+				// If the city is not found, indexOf() will return -1
+				int startCityIndex = Arrays.asList(cityNames).indexOf(selectedCity);
+                
+				if (startCityIndex != -1 && !selectedCitiesList.contains(startCityIndex)) { // Check if the starting city exists in the list and is not already added to the selectedCitiesList
+                    selectedCitiesList.add(startCityIndex); // Add the starting city to the list
                 }
             }
-            for (CheckBox checkbox : checkboxes) {
-                if (checkbox.isSelected()) {
+            
+			for (CheckBox checkbox : checkboxes) {
+                
+				if (checkbox.isSelected()) {
                     String cityText = checkbox.getText().trim();
 
-                    // Βρίσκουμε το πρώτο κενό για να διαχωρίσουμε αριθμό και όνομα
-                    int spaceIndex = cityText.indexOf(' '); // Βρίσκουμε το πρώτο κενό
+					//Finds the first space to seperate the index from the name
+                    int spaceIndex = cityText.indexOf(' '); // Finds the first space
                     if (spaceIndex != -1) {
-                        // Παίρνουμε το νούμερο της πόλης και αφαιρούμε την τελεία αν υπάρχει
+                    
+						//Extracts the city's index from the text, up to the first space
                         String cityNumberStr = cityText.substring(0, spaceIndex).trim();
 
-                        // Αφαιρούμε την τελεία αν υπάρχει
+                        // Removes the dot if it exists from the city index
                         cityNumberStr = cityNumberStr.replace(".", "").trim();
 
                         try {
-                            // Μετατρέπουμε το νούμερο σε ακέραιο και αφαιρούμε 1 για μηδενική αναφορά
+                            //Converts the number to an integer and subtract 1 for zero-based indexing
                             int cityIndex = Integer.parseInt(cityNumberStr) - 1;
 
-                            // Παίρνουμε το όνομα της πόλης
+                            //Gets the name of the city
                             String cityName = cityText.substring(spaceIndex).trim();
 
                             selectedCitiesList.add(cityIndex);
                         } catch (NumberFormatException ex) {
-                            // Αν αποτύχει η μετατροπή σε αριθμό, εμφανίζουμε το σφάλμα
+                            //If the conversion to a number fails, we display the error
                             System.out.println("Invalid city number format: " + cityNumberStr);
                         }
                     }
@@ -339,15 +350,23 @@ public class Main extends Application {
             }
             
             if (!selectedCitiesList.isEmpty()) {
-            	String[] cityNames = CitiesAndDistances.getCities();
+            	
+				String[] cityNames = CitiesAndDistances.getCities();
             	int selectedIndex = originComboBox.getItems().indexOf(selectedCity);
+            	
+            	if (!selectedCitiesList.contains(selectedIndex)) {
+            	    selectedCitiesList.add(selectedIndex);
+            	}
+            	
             	Solver solver = new Solver();
+            	DynamicProgramming dynamicProg = new DynamicProgramming();
+            	NearestNeighbour nn = new NearestNeighbour();
             	double[][] distances = CitiesAndDistances.distances;
             	
-            	List<Integer> bestRouteSolver = solver.solve(distances, selectedIndex, selectedCitiesList);
+            	List<Integer> bestRouteSolver = dynamicProg.dp(distances, selectedIndex, selectedCitiesList);
             	double totalDistSolver = solver.totalDist(bestRouteSolver, distances);
             	
-            	List<Integer> bestRoutesNN = solver.nearestNeighbour(selectedIndex, distances, selectedCitiesList);
+            	List<Integer> bestRoutesNN = nn.nearestNeighbour(selectedIndex, distances, selectedCitiesList);
                 double totalDistNN = solver.totalDist(bestRoutesNN, distances);
                 
                 if (totalDistNN > totalDistSolver) {
@@ -415,24 +434,26 @@ public class Main extends Application {
 		
 		mainLayout.setStyle("-fx-background-color: blanchedalmond;");
 		mainLayout.setPadding(new Insets(15));
-		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, cities, submitSelectedCitiesBtn, resultsBox);
+		mainLayout.getChildren().addAll(topContent, nameFields, originCitySelection, cityImageView, textcities, cities, submitSelectedCitiesBtn, resultsBox);
 		
 		// Wrap the layout in a ScrollPane for overflow handling
 	    ScrollPane scrollPane = new ScrollPane(mainLayout);
-	   
-	    scrollPane.setFitToWidth(true);
-
-	    root.setCenter(scrollPane);
+	   	scrollPane.setFitToWidth(true);
+		root.setCenter(scrollPane);
 
 	}
 
 	//method for loading the images
 	public Image loadCityImage(String imageUrl) {
 	    try {
+
 	        return new Image(imageUrl);
+
 	    } catch (Exception e) {
+
 	        System.out.println("Image not found: " + imageUrl);
 	        return null;
+			
 	    }
 	}
 

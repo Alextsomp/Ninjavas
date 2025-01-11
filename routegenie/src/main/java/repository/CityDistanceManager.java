@@ -14,7 +14,7 @@ public class CityDistanceManager {
         this.db = db;
     }
 
-    public String[] getAllCities() throws SQLException {
+    public List<Integer> getAllCities() throws SQLException {
         try {
             String query = "SELECT name FROM cities";
             Connection connection = db.getConnection();

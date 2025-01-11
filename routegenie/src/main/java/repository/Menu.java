@@ -3,8 +3,7 @@ package repository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-// import repository.DB;
+import java.util.List;
 
 public class Menu {
     Scanner sc = new Scanner(System.in);
@@ -18,7 +17,7 @@ public class Menu {
     private CityDistanceManager cityDistanceManager;
 
     public Menu(String databasePath) throws SQLException {
-        // Δημιουργούμε σύνδεση με τη βάση δεδομένων και το CityDistanceManager
+        // Connection with Database and  CityDistanceManager
         db = new DB(databasePath);
         cityDistanceManager = new CityDistanceManager(db);
 
@@ -32,16 +31,19 @@ public class Menu {
                 "\nNow we will provide the available cities, from which you will choose the cities you want to visit");
     }
 
-    // This method is used to add only the available cities you want to visit in a
-    // list
-    public ArrayList<Integer> ChooseCities(int firstCityIndex, int citiesIndex) throws SQLException {
+    // This method is used to add only the available cities you want to visit in a list
+    public ArrayList<Integer> chooseCities() throws SQLException {
 
         ArrayList<Integer> citiesChosen = new ArrayList<>();
-        String[] cityList = cityDistanceManager.getAllCities();
+        List<String> citiesList = cityDistanceManager.getCityNames();
+
+        String[] cityList = citiesList.toArray(new String[0]);
 
         for (int i = 0; i < cityList.length; i++) {
             System.out.println(ANSI_YELLOW + i + ") " + ANSI_RESET + cityList[i]);
         }
+        int firstCityIndex;
+        int citiesIndex;
         do {
             System.out.println("Please choose your" + ANSI_RED + " starting " + ANSI_RESET + "and" + ANSI_RED
                     + " finishing " + ANSI_RESET + "city by inserting the number which the city corresponds to:");
@@ -57,7 +59,7 @@ public class Menu {
                 "\nChoose the cities you want to visit by inserting the number which the city corresponds to:");
         do {
             System.out.println("Available cities:");
-            // Εκτυπώνουμε τις πόλεις που δεν έχουν επιλεγεί ήδη
+            // Print the cities that have not been chosen yet
             for (int i = 0; i < cityList.length; i++) {
                 if (!citiesChosen.contains(i)) {
                     System.out.println(ANSI_YELLOW + i + ") " + ANSI_RESET + cityList[i]);
@@ -66,10 +68,10 @@ public class Menu {
 
             citiesIndex = sc.nextInt();
             if (citiesIndex == -1) {
-                break; // Τερματισμός όταν ο χρήστης εισάγει -1
+                break; // exit when user types -1
             }
 
-            // Ελέγχουμε αν η πόλη υπάρχει και αν δεν έχει ήδη επιλεγεί
+            // Check if city exists and if it has already been chosen
             if (citiesIndex >= 0 && citiesIndex < cityList.length) {
                 if (!citiesChosen.contains(citiesIndex)) {
                     citiesChosen.add(citiesIndex);
@@ -81,7 +83,7 @@ public class Menu {
                 System.out.println("\nPlease enter a valid number corresponding to an available city.");
             }
 
-            // Ερώτηση για αν θέλει να συνεχίσει ή να τελειώσει
+            // ask if he wants to continue
             System.out.println("\nChoose another city from the list or enter" + ANSI_RED + " -1 " + ANSI_RESET
                     + "if you have added all the cities you desire already.");
 

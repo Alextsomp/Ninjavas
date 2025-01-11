@@ -5,84 +5,59 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// import main.java.repository.CityDistanceManager;
-// import main.java.repository.Comparison;
-// import main.java.repository.Menu;
-
-// import main.java.repository.CityDistanceManager;
-// import main.java.repository.Comparison;
-// import main.java.repository.Menu;
-
-// import main.java.repository.Comparison;
-// import main.java.repository.Comparsion;
-// import main.java.repository.Menu;
-public class Main {
+public class Main {    
     public static void main(String[] args) throws SQLException {
-
-        /*
-         * DB dbManager = new DB("ninjavas.db");
-         * CityDistanceManager cityDistanceManager = new CityDistanceManager(dbManager);
-         * Inserter ins = new Inserter();
-         * ins.createAndInsertCitiesAndDistances(dbManager);
-         * 
-         * // Initiallizing all the necessery objects from the other classes.
-         * NearestNeighbour nn = new NearestNeighbour();
-         * Solver svr = new Solver();
-         * DynamicProgramming dynamicProg = new DynamicProgramming();
-         * Comparison comp = new Comparison();
-         * Menu mn = new Menu("ninjavas.db");
-         */
+        
         DB dbManager = new DB("ninjavas.db");
 
         try {
-            // Δημιουργία σύνδεσης με την βάση
+            // Database Connection
             Inserter ins = new Inserter();
             ins.createAndInsertCitiesAndDistances(dbManager);
             CityDistanceManager cityDistanceManager = new CityDistanceManager(dbManager);
-            String[] cityNames = cityDistanceManager.getAllCities();
+            Integer[] cityIdsInt = cityIdsList.toArray(new Integer[0]);
+
+            int[] cityIds = new int[cityIdsInt.length];
+            for (int i = 0; i < cityIdsInt.length; i++) {
+                cityIds[i] = cityIdsInt[i];
+            }
+
             // Initiallizing all the necessery objects from the other classes.
             NearestNeighbour nn = new NearestNeighbour();
-            Solver svr = new Solver();
+            Solver solver = new Solver();
             DynamicProgramming dynamicProg = new DynamicProgramming();
-            Comparison comp = new Comparison();
-            Menu mn = new Menu("ninjavas.db");
-            System.out.println("Cities in the database:");
-            // Εισαγωγή αποστάσεων
-            double[][] distances = new double[cityNames.length][cityNames.length]; // Δημιουργία πίνακα με βάση τον
-                                                                                   // αριθμό των πόλεων
-            for (int i = 0; i < cityNames.length; i++) {
-                for (int j = 0; j < cityNames.length; j++) {
-                    double distance = cityDistanceManager.getDistance(cityNames[i], cityNames[j]);
+            Comparison comparison = new Comparison();
+            Menu menu = new Menu("ninjavas.db");
+
+            // Store the distances between the cities in an array in order to not query the DB continually
+            double[][] distances = new double[cityIds.length][cityIds.length]; 
+            
+            for (int i = 0; i < cityIds.length; i++) {
+                for (int j = 0; j < cityIds.length; j++) {
+                    double distance = cityDistanceManager.getDistance(cityIds[i], cityIds[j]);
                     if (distance != -1) {
-                        distances[i][j] = distance; // Αποθήκευση της απόστασης στον πίνακα
-                    } else {
-                        System.out.println("No distance found between " + cityNames[i] + " and " + cityNames[j]);
-                    }
+                        distances[i][j] = distance; // Save the distance in the array
+                    } 
                 }
             }
 
-            int citiesIndex = 0;
-            int firstCityIndex = 0;
+            menu.PrintMenu();
+            ArrayList<Integer> citiesChosen = menu.chooseCities();
+            
+            // Calculate the best routes, based on the implementation of two algorithms
+            List<Integer> bestRouteSolver = dynamicProg.dp(distances, dbManager, citiesChosen);
+            List<Integer> bestRouteNN = nn.nearestNeighbour(distances, bestRouteSolver);
 
-            mn.PrintMenu();
-            ArrayList<Integer> citiesChosen = mn.ChooseCities(firstCityIndex, citiesIndex);
-            distances = dynamicProg.fetchDistancesFromDB(dbManager, citiesIndex);
+            // Based on the best routes, calculate the total distance
+            double nnTotalDistance = solver.totalDistance(bestRouteNN, distances);
+            double solverTotalDistance = solver.totalDistance(bestRouteSolver, distances);
 
-            List<Integer> bestRouteSolver = dynamicProg.dp(dbManager, firstCityIndex, citiesChosen);
-            List<Integer> bestRouteNN = nn.nearestNeighbour(firstCityIndex, distances, bestRouteSolver);
-            double nnTotalDistance = svr.totalDist(bestRouteNN, distances);
-            double SolverTotalDistance = svr.totalDist(bestRouteSolver, distances);
-            // svr.bestRoute(nnTotalDistance, SolverTotalDistance, bestRouteNN, distances,
-            // firstCityIndex);
-
-            comp.compareAlgorithms(bestRouteSolver, bestRouteNN, SolverTotalDistance, nnTotalDistance, firstCityIndex,
-                    cityNames);
-
-            // Κλείσιμο σύνδεσης
+            comparison.compareAlgorithms(bestRouteSolver, bestRouteNN, solverTotalDistance,
+                nnTotalDistance, 0, cityIds);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Κλείσιμο σύνδεσης
+            // Close the resources: Database connection
             if (dbManager != null) {
                 try {
                     dbManager.closeConnection();
