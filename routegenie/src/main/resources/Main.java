@@ -147,7 +147,9 @@ public class Main extends Application {
 
 		CheckBox c14 = new CheckBox("14. Ljubljana");
 
-		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14};
+		CheckBox c15 = new CheckBox("15. Pristina");
+
+		CheckBox[] checkboxes = {c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15};
 
 	        // Initially disable all checkboxes
 	        for (CheckBox checkbox : checkboxes) {
@@ -158,7 +160,7 @@ public class Main extends Application {
 		cities.setStyle("-fx-font-size: 14px");
 		cities.setAlignment(Pos.CENTER);
 
-		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14);
+		cities.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15);
 
 		Text selectedCitiesText = new Text("Selected cities: none");
 		selectedCitiesText.setStyle("-fx-font-size: 14px;");
@@ -189,7 +191,7 @@ public class Main extends Application {
 		originLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: purple; -fx-font-weight: bold;");
         
 		ComboBox<String> originComboBox = new ComboBox<>();
-        originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana");
+        originComboBox.getItems().addAll("Athens", "Thessaloniki", "Patras", "Ioannina", "Tirana", "Skopje", "Sofia", "Podgorica", "Bucharest", "Belgrade", "Sarajevo", "Zagreb", "Chisinau", "Ljubljana", "Pristina");
         originComboBox.setPromptText("Choose a city");
 		originComboBox.setPrefWidth(200);
         
@@ -266,6 +268,10 @@ public class Main extends Application {
                     case "Ljubljana": 
                     	c14.setDisable(true); 
                     	cityImageView.setImage(loadCityImage("https://cdn.britannica.com/79/124479-050-DD359499/Ljubljana-Slovenia.jpg"));
+                    	break;
+					case "Pristina": 
+                    	c15.setDisable(true); 
+                    	cityImageView.setImage(loadCityImage("https://lp-cms-production.imgix.net/2019-06/e228bf3be784ffff7a338ec8d9167d30-pristina.jpg"));
                     	break;
                 }
             }
