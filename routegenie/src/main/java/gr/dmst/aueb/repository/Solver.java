@@ -1,4 +1,4 @@
-package repository;
+package gr.dmst.aueb.repository;
 
 import java.util.List;
 import java.sql.SQLException;

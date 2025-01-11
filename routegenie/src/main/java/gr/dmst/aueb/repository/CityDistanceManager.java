@@ -1,4 +1,4 @@
-package repository;
+package gr.dmst.aueb.repository;
 
 import java.sql.*;
 import java.util.ArrayList;
