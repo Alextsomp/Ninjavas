@@ -31,18 +31,20 @@ public class DynamicProgramming {
     }
 
     // algorithm
-    public List<Integer> dp(DB dbManager, int startCity, List<Integer> selected)
+    public List<Integer> dp(double[][] distances, DB dbManager, List<Integer> selected)
             throws IllegalArgumentException, IllegalStateException, SQLException {
 
+        int startCity = selected.get(0); // fetch the first city in the chosen list
         int N = selected.size(); // N stores the number of cities that was selected
-        double[][] distances = fetchDistancesFromDB(dbManager, N);
-        DynamicProgramming dynamicProgramming = new DynamicProgramming();
-        dynamicProgramming.validateInputs(distances, startCity, selected);
+
+        // double[][] distances = fetchDistancesFromDB(dbManager, N);
+
+        validateInputs(distances, startCity, selected);
 
         // Cities Map in the subset
         Map<Integer, Integer> cityToIndex = new HashMap<>(); // the HashMaps store key-value pairs
         Map<Integer, Integer> indexToCity = new HashMap<>();
-        dynamicProgramming.initializeCityMappings(selected, cityToIndex, indexToCity);
+        initializeCityMappings(selected, cityToIndex, indexToCity);
 
         int startIndex = cityToIndex.get(startCity); // startIndex stores the index of the starting city
         // the state where all the cities have been visited
@@ -50,10 +52,10 @@ public class DynamicProgramming {
         // Stores the optimal values for the current state
         Double[][] memo = new Double[N][1 << N];
 
-        dynamicProgramming.initializeMemo(distances, memo, startIndex, N);
-        dynamicProgramming.calculateSubsets(distances, memo, startIndex, N);
+        initializeMemo(distances, memo, startIndex, N);
+        calculateSubsets(distances, memo, startIndex, N);
 
-        return dynamicProgramming.buildTour(distances, memo, startCity, cityToIndex, indexToCity, END_STATE,
+        return buildTour(distances, memo, startCity, cityToIndex, indexToCity, END_STATE,
                 startIndex);
     }
 

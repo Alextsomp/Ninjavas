@@ -9,14 +9,20 @@ public class Solver {
     public DynamicProgramming dpSolver = new DynamicProgramming();
     public NearestNeighbour nnSolver = new NearestNeighbour();
 
-    // The List "best" will be the output of method "nearestNeighbour".
-    public double totalDist(List<Integer> best, double dist[][]) {
-        int m = best.size();
-        double sum = 0;
-        for (int i = 0; i <= m - 2; i++) {
-            sum = sum + dist[best.get(i)][best.get(i + 1)];
+    /**
+     * Returns the total distances covered by the fiven route.
+     * 
+     * @param route
+     * @param distances
+     * @return totalDistance
+     */
+    public double totalDistance(List<Integer> route, double[][] distances) {
+        double totalDistance = 0;
+        for (int i = 0; i < route.size() - 1; i++) {
+            totalDistance += distances[route.get(i)][route.get(i + 1)];
         }
-        return sum;
+
+        return totalDistance;
     }
 
     // compare distances to find the best algorithm
@@ -32,9 +38,9 @@ public class Solver {
 
         List<Integer> bestRoute; // List for the best route
         if (sum1 <= sum2) {
-            bestRoute = dpSolver.dp(dbManager, startCity, selected); // Use 1st algorithm
+            bestRoute = dpSolver.dp(distances, dbManager, selected); // Use 1st algorithm
         } else {
-            bestRoute = nnSolver.nearestNeighbour(startCity, distances, new ArrayList<>(selected)); // Use 2nd algorithm
+            bestRoute = nnSolver.nearestNeighbour(distances, new ArrayList<>(selected)); // Use 2nd algorithm
         }
         return bestRoute;
     }
