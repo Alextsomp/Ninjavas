@@ -1,7 +1,9 @@
-package gr.aueb.dmst.NinJavas.Algorithms;
+package gr.aueb.dmst.NinJavas;
 
 import java.util.List;
 
+import gr.aueb.dmst.NinJavas.Algorithms.DynamicProgramming;
+import gr.aueb.dmst.NinJavas.Algorithms.NearestNeighbour;
 import gr.aueb.dmst.NinJavas.Data.DB;
 
 import java.sql.SQLException;
