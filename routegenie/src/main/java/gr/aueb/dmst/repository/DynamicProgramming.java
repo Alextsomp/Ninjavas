@@ -1,4 +1,4 @@
-package gr.dmst.aueb.repository;
+package gr.aueb.dmst.repository;
 
 import java.util.List;
 import java.util.Map;

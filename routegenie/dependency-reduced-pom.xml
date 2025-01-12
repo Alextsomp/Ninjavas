@@ -45,7 +45,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>gr.dmst.aueb.repository.Main</mainClass>
+          <mainClass>gr.aueb.dmst.repository.Main</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -85,7 +85,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>gr.dmst.aueb.repository.Main</mainClass>
+              <mainClass>gr.aueb.dmst.repository.Main</mainClass>
             </manifest>
           </archive>
         </configuration>
