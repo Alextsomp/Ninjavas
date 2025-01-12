@@ -3,11 +3,10 @@ package gr.aueb.dmst.repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.Scanner;
 
 public class Main {    
         public static void main(String[] args) throws SQLException {
-            
+
             DB dbManager = new DB("ninjavas.db");
     
             try {
@@ -17,11 +16,12 @@ public class Main {
                 CityDistanceManager cityDistanceManager = new CityDistanceManager(dbManager);
                 List<Integer> cityIdsList = cityDistanceManager.getAllCities();
                 Integer[] cityIdsInt = cityIdsList.toArray(new Integer[0]);
+                List<String> cityNames = cityDistanceManager.getCityNames();
+                int[] cityIds = new int[cityIdsInt.length];
 
-            int[] cityIds = new int[cityIdsInt.length];
-            for (int i = 0; i < cityIdsInt.length; i++) {
-                cityIds[i] = cityIdsInt[i];
-            }
+                for (int i = 0; i < cityIdsInt.length; i++) {
+                    cityIds[i] = cityIdsInt[i];
+                }
 
             // Initiallizing all the necessery objects from the other classes.
             NearestNeighbour nn = new NearestNeighbour();
@@ -29,7 +29,6 @@ public class Main {
             DynamicProgramming dynamicProg = new DynamicProgramming();
             Comparison comparison = new Comparison();
             Menu menu = new Menu("ninjavas.db");
-
             // Store the distances between the cities in an array in order to not query the DB continually
             double[][] distances = new double[cityIds.length][cityIds.length]; 
             
@@ -41,7 +40,7 @@ public class Main {
                     } 
                 }
             }
-
+       
             menu.PrintMenu();
             ArrayList<Integer> citiesChosen = menu.chooseCities();
             
@@ -53,8 +52,19 @@ public class Main {
             double nnTotalDistance = solver.totalDistance(bestRouteNN, distances);
             double solverTotalDistance = solver.totalDistance(bestRouteSolver, distances);
 
-            comparison.compareAlgorithms(bestRouteSolver, bestRouteNN, solverTotalDistance,
-                nnTotalDistance, 0, cityIds);
+            // Store total distance of cities chosen and first city chosen
+            double citiesChosenTotalDistance = 
+            solver.totalDistanceForCitiesChosen(citiesChosen, distances);
+            int firstCityIndex = citiesChosen.get(0);
+
+            comparison.compareAlgorithms(bestRouteSolver, 
+                                         bestRouteNN, 
+                                         solverTotalDistance,
+                                         nnTotalDistance, 
+                                         firstCityIndex, 
+                                         cityIds, 
+                                         cityNames, 
+                                         citiesChosenTotalDistance);      
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
