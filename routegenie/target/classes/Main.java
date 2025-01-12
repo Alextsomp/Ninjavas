@@ -1,4 +1,4 @@
-package repository;
+package gr.dmst.aueb.repository;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
