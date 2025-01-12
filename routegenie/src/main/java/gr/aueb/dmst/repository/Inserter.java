@@ -12,7 +12,7 @@ public class Inserter {
                         id INTEGER PRIMARY KEY,
                         name VARCHAR(100) NOT NULL
                     );
-                """;
+                      """;
 
         // SQL query για τη δημιουργία του πίνακα distances
         String createDistancesTableSQL = """
@@ -22,7 +22,7 @@ public class Inserter {
                         distance INTEGER NOT NULL,
                         PRIMARY KEY (from_city, to_city)
                     );
-                """;
+                      """;
 
         // SQL query για την εισαγωγή των δεδομένων των πόλεων
         String insertCitiesSQL = """
@@ -42,11 +42,11 @@ public class Inserter {
                         (12, 'Zagreb'),
                         (13, 'Chisinau'),
                         (14, 'Ljubljana');
-                """;
+                                          """;
 
         // SQL query για την εισαγωγή των δεδομένων των αποστάσεων
         String insertDistancesSQL = """
-                    INSERT OR IGNORE INTO distances (from_city, to_city, distance) VALUES
+                    INSERT OR REPLACE INTO distances (from_city, to_city, distance) VALUES
                         (0, 0, 0),
                         (1, 1, 0),
                         (2, 2, 0),
@@ -165,7 +165,7 @@ public class Inserter {
                         (14, 11, 540),
                         (13, 12, 1335),
                         (14, 12, 141),
-                        (14, 13, 1401);
+                        (14, 13, 1401),
                         (14, 3, 1182),
                         (0, 1, 494),
                         (0, 2, 213),
@@ -194,7 +194,7 @@ public class Inserter {
                         (1, 12, 1023),
                         (1, 13, 1140),
                         (1, 14, 1162),
-                        (2, 3, 468),
+                        (2, 3, 222),
                         (2, 4, 538),
                         (2, 5, 622),
                         (2, 6, 756),
@@ -272,28 +272,22 @@ public class Inserter {
                         (12, 13, 1335),
                         (12, 14, 141),
                         (13, 14, 1401);
-
-
-                                        """;
+                                       """;
 
         try (Connection conn = db.getConnection();
                 Statement stmt = conn.createStatement()) {
 
             // Δημιουργία του πίνακα cities αν δεν υπάρχει
             stmt.executeUpdate(createCitiesTableSQL);
-            System.out.println("Cities table created successfully.");
 
             // Δημιουργία του πίνακα distances αν δεν υπάρχει
             stmt.executeUpdate(createDistancesTableSQL);
-            System.out.println("Distances table created successfully.");
 
             // Εισαγωγή των δεδομένων των πόλεων
             stmt.executeUpdate(insertCitiesSQL);
-            System.out.println("Cities inserted successfully.");
 
             // Εισαγωγή των δεδομένων των αποστάσεων
             stmt.executeUpdate(insertDistancesSQL);
-            System.out.println("Distances inserted successfully.");
 
         } catch (SQLException e) {
             System.err.println("Error creating or inserting data: " + e.getMessage());
