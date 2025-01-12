@@ -42,7 +42,6 @@ public class NearestNeighbour {
             if (nextCity == -1) {
                 break;
             }
-
             bestRoute.add(nextCity);
             visited.add(nextCity);
             startingPoint = nextCity;
