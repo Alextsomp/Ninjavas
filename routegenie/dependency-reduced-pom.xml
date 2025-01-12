@@ -76,6 +76,9 @@
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+            </configuration>
           </execution>
         </executions>
       </plugin>
