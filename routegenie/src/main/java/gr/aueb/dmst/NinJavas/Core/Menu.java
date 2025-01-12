@@ -1,9 +1,13 @@
-package gr.aueb.dmst.repository;
+package gr.aueb.dmst.NinJavas.Core;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import gr.aueb.dmst.NinJavas.Controller.CityDistanceManager;
+import gr.aueb.dmst.NinJavas.Data.DB;
+
 import java.util.List;
 
 public class Menu {

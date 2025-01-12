@@ -2,7 +2,7 @@
 // Now, we have an actuall database for that and this is only used for the Front End,
 // as we did not manage to connect it to the database.
 
-package gr.aueb.dmst.repository;
+package gr.aueb.dmst.NinJavas.Data;
 
 import java.util.ArrayList;
 

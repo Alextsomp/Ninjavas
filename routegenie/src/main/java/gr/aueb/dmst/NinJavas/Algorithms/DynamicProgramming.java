@@ -1,7 +1,10 @@
-package gr.aueb.dmst.repository;
+package gr.aueb.dmst.NinJavas.Algorithms;
 
 import java.util.List;
 import java.util.Map;
+
+import gr.aueb.dmst.NinJavas.Data.DB;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
