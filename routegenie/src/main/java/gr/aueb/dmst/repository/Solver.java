@@ -21,11 +21,21 @@ public class Solver {
         for (int i = 0; i < route.size() - 1; i++) {
             totalDistance += distances[route.get(i)][route.get(i + 1)];
         }
-
         return totalDistance;
     }
 
-    // compare distances to find the best algorithm
+    public double totalDistanceForCitiesChosen(List<Integer> route, double[][] distances) {
+        double totalDistance = 0;
+        route.add(route.get(0));               // add the starting city in the end 
+        for (int i = 0; i < route.size() - 1; i++) { // to calculate actuall total distance
+            totalDistance += distances[route.get(i)][route.get(i + 1)];
+        }
+        return totalDistance;
+    }
+
+
+
+    // Compare distances to find the best algorithm
     public List<Integer> bestRoute(double sum1, double sum2, List<Integer> selected, double[][] distances,
             int startCity) throws SQLException {
         // sum1= total distance 1st algorithm
