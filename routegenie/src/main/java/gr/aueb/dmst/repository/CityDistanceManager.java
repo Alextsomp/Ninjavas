@@ -31,7 +31,6 @@ public class CityDistanceManager {
     
     public List<String> getCityNames() {
         try {
-
             String query = "SELECT name FROM cities";
             Connection connection = db.getConnection();
             Statement stmt = connection.createStatement();
@@ -82,7 +81,6 @@ public class CityDistanceManager {
 
     public void printTableContext() {
         String query = "SELECT * FROM distances;";
-
         try {
             PreparedStatement stmt = db.getConnection().prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -92,7 +90,5 @@ public class CityDistanceManager {
         } catch (SQLException e) {
             System.out.println("SQL: " + e);
         }
-
     }
-
-    }
+}
