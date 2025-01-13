@@ -1,9 +1,9 @@
-package gr.aueb.dmst.NinJavas.Algorithms;
+package gr.aueb.dmst.NinJavas.algorithms;
 
 import java.util.List;
 import java.util.Map;
 
-import gr.aueb.dmst.NinJavas.Data.DB;
+import gr.aueb.dmst.NinJavas.data.DB;
 
 import java.util.ArrayList;
 import java.util.Collections;

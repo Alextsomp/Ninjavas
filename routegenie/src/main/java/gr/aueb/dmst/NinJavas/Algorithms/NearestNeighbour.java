@@ -1,4 +1,4 @@
-package gr.aueb.dmst.NinJavas.Algorithms;
+package gr.aueb.dmst.NinJavas.algorithms;
 
 import java.util.List;
 import java.util.ArrayList;

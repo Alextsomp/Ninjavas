@@ -117,16 +117,6 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>releases</id>
-      <url>https://github.com/Alextsomp/Ninjavas.git/releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <url>https://github.com/Alextsomp/Ninjavas.git/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
   <properties>
     <maven.compiler.target>17</maven.compiler.target>
     <maven.compiler.source>17</maven.compiler.source>

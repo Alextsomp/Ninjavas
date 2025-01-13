@@ -1,8 +1,8 @@
-package gr.aueb.dmst.NinJavas.Algorithms;
+package gr.aueb.dmst.NinJavas.algorithms;
 
 import java.util.List;
 
-import gr.aueb.dmst.NinJavas.Data.DB;
+import gr.aueb.dmst.NinJavas.data.DB;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

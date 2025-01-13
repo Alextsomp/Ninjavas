@@ -1,10 +1,10 @@
-package gr.aueb.dmst.NinJavas.Controller;
+package gr.aueb.dmst.NinJavas.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import gr.aueb.dmst.NinJavas.Data.DB;
+import gr.aueb.dmst.NinJavas.data.DB;
 
 public class Inserter {
     public void createAndInsertCitiesAndDistances(DB db) {

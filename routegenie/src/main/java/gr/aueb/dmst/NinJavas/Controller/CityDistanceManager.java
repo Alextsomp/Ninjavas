@@ -1,10 +1,10 @@
-package gr.aueb.dmst.NinJavas.Controller;
+package gr.aueb.dmst.NinJavas.controller;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import gr.aueb.dmst.NinJavas.Data.DB;
+import gr.aueb.dmst.NinJavas.data.DB;
 
 public class CityDistanceManager {
 
