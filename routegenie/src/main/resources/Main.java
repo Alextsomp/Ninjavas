@@ -1,4 +1,4 @@
-package repository;
+package routegenie.src.main.resources;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
