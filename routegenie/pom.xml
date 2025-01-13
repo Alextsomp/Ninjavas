@@ -88,7 +88,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>gr.aueb.dmst.repository.Main</mainClass>
+                    <mainClass>gr.aueb.dmst.NinJavas.Core.Main</mainClass>
                 </configuration>
             </plugin>
 
