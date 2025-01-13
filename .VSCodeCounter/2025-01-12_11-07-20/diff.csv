@@ -1,0 +1,41 @@
+"filename", "language", "Markdown", "Java", "MS SQL", "XML", "comment", "blank", "total"
+"c:\Ninjavas\DB.class", "Java", 0, 19, 0, 0, 5, 0, 24
+"c:\Ninjavas\Main\.idea\workspace.xml", "XML", 0, 0, 0, 39, 0, 0, 39
+"c:\Ninjavas\Ninjavas.sql", "MS SQL", 0, 0, 249, 0, 0, 7, 256
+"c:\Ninjavas\README.md", "Markdown", 29, 0, 0, 0, 0, 17, 46
+"c:\Ninjavas\routegenie\dependency-reduced-pom.xml", "XML", 0, 0, 0, 121, 0, 1, 122
+"c:\Ninjavas\routegenie\pom.xml", "XML", 0, 0, 0, 59, 0, 8, 67
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\CitiesAndDistances.java", "Java", 0, 289, 0, 0, 3, 12, 304
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\CityDistanceManager.java", "Java", 0, 84, 0, 0, 1, 13, 98
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Comparison.java", "Java", 0, 43, 0, 0, 1, 8, 52
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\DB.java", "Java", 0, 39, 0, 0, 5, 8, 52
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\DynamicProgramming.java", "Java", 0, 149, 0, 0, 31, 35, 215
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Inserter.java", "Java", 0, 281, 0, 0, 8, 14, 303
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Main.java", "Java", 0, 53, 0, 0, 7, 12, 72
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Menu.java", "Java", 0, 72, 0, 0, 6, 17, 95
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\NearestNeighbour.java", "Java", 0, 33, 0, 0, 13, 9, 55
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Ninjavas.sql", "MS SQL", 0, 0, 249, 0, 0, 18, 267
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\Solver.java", "Java", 0, 26, 0, 0, 15, 6, 47
+"c:\Ninjavas\routegenie\src\main\java\gr\dmst\aueb\repository\testm1.class", "Java", 0, 29, 0, 0, 0, 0, 29
+"c:\Ninjavas\routegenie\src\main\java\repository\CitiesAndDistances.java", "Java", 0, -183, 0, 0, -2, -7, -192
+"c:\Ninjavas\routegenie\src\main\java\repository\Main.java", "Java", 0, -88, 0, 0, -10, -15, -113
+"c:\Ninjavas\routegenie\src\main\java\repository\Solver.java", "Java", 0, -156, 0, 0, -18, -32, -206
+"c:\Ninjavas\routegenie\src\main\resources\Main.java", "Java", 0, 321, 0, 0, 20, 119, 460
+"c:\Ninjavas\routegenie\src\test\java\CitiesandDistancesTest.java", "Java", 0, 0, 0, 0, 72, 15, 87
+"c:\Ninjavas\routegenie\src\test\java\SolverTest.java", "Java", 0, 0, 0, 0, 771, 129, 900
+"c:\Ninjavas\routegenie\target\classes\Main.java", "Java", 0, 321, 0, 0, 20, 119, 460
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\CitiesAndDistances.class", "Java", 0, 84, 0, 0, 0, 0, 84
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\CityDistanceManager.class", "Java", 0, 27, 0, 0, 0, 0, 27
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Comparison.class", "Java", 0, 36, 0, 0, 0, 0, 36
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\DB.class", "Java", 0, 18, 0, 0, 4, 0, 22
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\DynamicProgramming.class", "Java", 0, 82, 0, 0, 0, 0, 82
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Inserter.class", "Java", 0, 273, 0, 0, 0, 3, 276
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Main.class", "Java", 0, 54, 0, 0, 0, 0, 54
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Menu.class", "Java", 0, 31, 0, 0, 6, 0, 37
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\NearestNeighbour.class", "Java", 0, 20, 0, 0, 0, 0, 20
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Ninjavas.sql", "MS SQL", 0, 0, 249, 0, 0, 18, 267
+"c:\Ninjavas\routegenie\target\classes\gr\dmst\aueb\repository\Solver.class", "Java", 0, 19, 0, 0, 0, 0, 19
+"c:\Ninjavas\routegenie\target\classes\repository\CitiesAndDistances.class", "Java", 0, -58, 0, 0, 0, 0, -58
+"c:\Ninjavas\routegenie\target\classes\repository\Main.class", "Java", 0, -80, 0, 0, 0, -1, -81
+"c:\Ninjavas\routegenie\target\classes\repository\Solver.class", "Java", 0, -89, 0, 0, 0, 0, -89
+"Total", "-", 29, 1749, 747, 219, 958, 533, 4235

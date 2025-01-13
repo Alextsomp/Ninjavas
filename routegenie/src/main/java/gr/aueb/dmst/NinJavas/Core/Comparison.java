@@ -2,7 +2,7 @@ package gr.aueb.dmst.NinJavas.Core;
 
 import java.util.List;
 
-import gr.aueb.dmst.NinJavas.Solver;
+import gr.aueb.dmst.NinJavas.Algorithms.Solver;
 
 public class Comparison {
     String ANSI_YELLOW = "\u001B[33m";
