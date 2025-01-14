@@ -1,4 +1,4 @@
-package gr.aueb.dmst.NinJavas.data;
+package gr.aueb.dmst.NinJavas.Data;
 
 import java.sql.*;
 

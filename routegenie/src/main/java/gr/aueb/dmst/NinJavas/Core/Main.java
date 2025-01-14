@@ -1,15 +1,15 @@
-package gr.aueb.dmst.NinJavas.core;
+package gr.aueb.dmst.NinJavas.Core;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import gr.aueb.dmst.NinJavas.algorithms.DynamicProgramming;
-import gr.aueb.dmst.NinJavas.algorithms.NearestNeighbour;
-import gr.aueb.dmst.NinJavas.algorithms.Solver;
+import gr.aueb.dmst.NinJavas.Algorithms.DynamicProgramming;
+import gr.aueb.dmst.NinJavas.Algorithms.NearestNeighbour;
+import gr.aueb.dmst.NinJavas.Algorithms.Solver;
+import gr.aueb.dmst.NinJavas.Data.DB;
 import gr.aueb.dmst.NinJavas.controller.CityDistanceManager;
 import gr.aueb.dmst.NinJavas.controller.Inserter;
-import gr.aueb.dmst.NinJavas.data.DB;
 
 public class Main {    
         public static void main(String[] args) throws SQLException {

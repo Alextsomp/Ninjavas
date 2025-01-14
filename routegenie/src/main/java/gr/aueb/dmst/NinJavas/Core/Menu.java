@@ -1,12 +1,12 @@
-package gr.aueb.dmst.NinJavas.core;
+package gr.aueb.dmst.NinJavas.Core;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import gr.aueb.dmst.NinJavas.Data.DB;
 import gr.aueb.dmst.NinJavas.controller.CityDistanceManager;
-import gr.aueb.dmst.NinJavas.data.DB;
 
 import java.util.List;
 

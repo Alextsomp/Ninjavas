@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import gr.aueb.dmst.NinJavas.data.DB;
+import gr.aueb.dmst.NinJavas.Data.DB;
 
 public class Inserter {
     public void createAndInsertCitiesAndDistances(DB db) {
