@@ -1,4 +1,4 @@
-package gr.aueb.dmst.NinJavas.controller;
+package gr.aueb.dmst.NinJavas.Controller;
 
 import java.sql.*;
 import java.util.ArrayList;

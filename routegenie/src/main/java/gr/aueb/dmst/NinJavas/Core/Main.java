@@ -7,9 +7,9 @@ import java.util.List;
 import gr.aueb.dmst.NinJavas.Algorithms.DynamicProgramming;
 import gr.aueb.dmst.NinJavas.Algorithms.NearestNeighbour;
 import gr.aueb.dmst.NinJavas.Algorithms.Solver;
+import gr.aueb.dmst.NinJavas.Controller.CityDistanceManager;
+import gr.aueb.dmst.NinJavas.Controller.Inserter;
 import gr.aueb.dmst.NinJavas.Data.DB;
-import gr.aueb.dmst.NinJavas.controller.CityDistanceManager;
-import gr.aueb.dmst.NinJavas.controller.Inserter;
 
 public class Main {    
         public static void main(String[] args) throws SQLException {

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import gr.aueb.dmst.NinJavas.Controller.CityDistanceManager;
 import gr.aueb.dmst.NinJavas.Data.DB;
-import gr.aueb.dmst.NinJavas.controller.CityDistanceManager;
 
 import java.util.List;
 
