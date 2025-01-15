@@ -75,22 +75,15 @@
     </dependency>
 
     <dependency>
-    <groupId>org.mockito</groupId>
-    <artifactId>mockito-inline</artifactId>
-    <version>4.11.0</version>
-    <scope>test</scope>
-</dependency>
-
-    <dependency>
         <groupId>org.openjfx</groupId>
-        <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.8</version>
+        <artifactId>javafx-controls</artifactId>
+        <version>17</version>
     </dependency>
 
     <dependency>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.15.1</version>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-fxml</artifactId>
+        <version>17</version>
     </dependency>
 
 </dependencies>
@@ -178,5 +171,12 @@
     </plugin>
   </plugins>
 </build>
+
+<distributionManagement>
+    <repository>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/Jerry-trery/Ninjavas</url>
+    </repository>
+</distributionManagement>
 
 </project>
