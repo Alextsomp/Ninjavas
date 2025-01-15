@@ -1,14 +1,10 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import gr.aueb.dmst.NinJavas.Data.DB;
-import gr.aueb.dmst.NinJavas.Algorithms.DynamicProgramming;
-import gr.aueb.dmst.NinJavas.Algorithms.NearestNeighbour;
 import gr.aueb.dmst.NinJavas.Algorithms.Solver;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static org.mockito.Mockito.*;
 
 public class SolverTest {
     
@@ -122,31 +118,22 @@ public class SolverTest {
 
         @Test
     public void testBestRoute() throws SQLException {
-        DB mockDb = mock(DB.class);
-        DynamicProgramming mockDpSolver = mock(DynamicProgramming.class);
-        NearestNeighbour mockNnSolver = mock(NearestNeighbour.class);
+        var solver = new Solver();
 
-        Solver solver = new Solver();
-        solver.dpSolver = mockDpSolver;
-        solver.nnSolver = mockNnSolver;
-
-        List<Integer> selectedCities = Arrays.asList(1, 2, 3);
+        // Dummy data
         double[][] distances = {
-            {0, 10, 20, 30},
-            {10, 0, 25, 35},
-            {20, 25, 0, 15},
-            {30, 35, 15, 0}
+            {0, 10, 15, 20},
+            {10, 0, 35, 25},
+            {15, 35, 0, 30},
+            {20, 25, 30, 0}
         };
+
+        List<Integer> selectedCities = Arrays.asList(1, 2, 3); // Cities chosen by user (excluding startCity)
         int startCity = 0;
 
-        when(mockDpSolver.dp(distances, mockDb, selectedCities))
-            .thenReturn(Arrays.asList(0, 1, 2, 3));
-        when(mockNnSolver.nearestNeighbour(distances, selectedCities))
-            .thenReturn(Arrays.asList(0, 3, 2, 1));
-
-        List<Integer> bestRoute = solver.bestRoute(60.0, 70.0, selectedCities, distances, startCity);
-
-        assertEquals(Arrays.asList(0, 1, 2, 3), bestRoute);
+        List<Integer> resultRoute = solver.bestRoute(50, 60, selectedCities, distances, startCity);
+        System.out.println("Best route: " + resultRoute);
+        List<Integer> expectedRoute = Arrays.asList(1, 3, 2, 1); // Hypothetical expected result
+        assertEquals(expectedRoute, resultRoute);
     }
-    
-    }
+}
