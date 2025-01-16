@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 //Class that finds the best route and the total distance
 public class SolverGui {
-    public DynamicProgramming dpSolver = new DynamicProgramming();
-    public NearestNeighbour nnSolver = new NearestNeighbour();
+    public DynamicProgrammingGui dpSolver = new DynamicProgrammingGui();
+    public NearestNeighbourGui nnSolver = new NearestNeighbourGui();
 
     /**
      * Returns the total distances covered by the fiven route.
