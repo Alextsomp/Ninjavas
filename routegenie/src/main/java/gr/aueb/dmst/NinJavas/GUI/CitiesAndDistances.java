@@ -8,18 +8,19 @@ import java.util.ArrayList;
 
 public class CitiesAndDistances {
     
-    // Class that contains the 15 available cities and the distances between each one
+    // Class that contains the 15 available cities and the distances between each
+    // one
     public static String[] cities = new String[15];
     public static double[][] distances = new double[15][15];
 
-    {
+    static {
         Cities(); // Automatically initialize cities
         Distances(); // Automatically initialize distances
     }
 
     public static void Cities() {
-        
         // The first method that declares an array and then fills it with the cities
+
         cities[0] = "Athens";
         cities[1] = "Thessaloniki";
         cities[2] = "Patras";
@@ -41,13 +42,13 @@ public class CitiesAndDistances {
         return cities;
     }
 
-    public void Distances() {
+    public static void Distances() {
         distances[0][0] = 0;
         distances[1][1] = 0;
         distances[2][2] = 0;
         distances[3][3] = 0;
-        distances[4][4] = 0; // These are all the distances between the same cities so its always zero, 
-        distances[5][5] = 0; // for example Ioannina to Ioannina.
+        distances[4][4] = 0; 
+        distances[5][5] = 0;
         distances[6][6] = 0;
         distances[7][7] = 0;
         distances[8][8] = 0;

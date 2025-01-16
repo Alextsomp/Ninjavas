@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -408,7 +409,7 @@ public class Main extends Application {
                 
                 } else {
                 	
-                	StringBuilder routeText = new StringBuilder("And the best route to follow is: " + "!");
+                	StringBuilder routeText = new StringBuilder("And the best route to follow is: ");
                 	totalDistLabel.setText("The total distance of your trip is: " + totalDistNN + " km");
                 	
                 	System.out.println("The total distance of your trip is: " + totalDistNN + " km");
@@ -420,7 +421,7 @@ public class Main extends Application {
                 	    System.out.println(cityNames[bestRoutesNN.get(i)]);
                 		
                     }
-                	System.out.println("And then back to " + cityNames[selectedIndex]);
+                	System.out.println("And then back to " + cityNames[selectedIndex] + "!");
                 	routeText.append(cityNames[selectedIndex]); // Επιστροφή στην αρχική πόλη
                 	bestRouteLabel.setText(routeText.toString());
                 }
