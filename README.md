@@ -32,7 +32,7 @@ While at first Routegenie was just a project for an academic assignment, it evol
 Routegenie offers the flexibility to run in two distinct modes, allowing users to choose the interface that best suits their preferences and workflow. Whether you prefer the efficiency of _command-line interface (CLI)_ or the visual clarity of a _graphical user interface (GUI)_, Routegenie caters to your needs.
 
 ## 📘Manual
-To learn how to navigate and utilize our project in both versions, you can navigate [here](work in progress).
+To learn how to navigate and utilize our project in both versions, you can navigate [here](docs/Manual.md).
 
 ![Routegnie-mockup](pending)
 
@@ -40,7 +40,7 @@ To learn how to navigate and utilize our project in both versions, you can navig
 ![Routegenie-mock-up-gui](pending)
 
 ## 🚀Launch
-To launch our project in either CLI or GUI mode, click [here](work in progress).
+To launch our project in either CLI or GUI mode, click [here](docs/Launch.md).
 
 ## 🔗Project Structure
 For further insight into our project's structure, including package organization, [UML diagram](pending), utilized tools and documentation, you can refer to [this location](work in progress).
