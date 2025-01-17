@@ -77,13 +77,13 @@
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-controls</artifactId>
-        <version>17</version>
+        <version>21.0.2</version>
     </dependency>
 
     <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-        <version>17</version>
+        <version>21.0.2</version>
     </dependency>
 
 </dependencies>
@@ -95,7 +95,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>gr.aueb.dmst.NinJavas.core.Main</mainClass>
+                    <mainClass>gr.aueb.dmst.NinJavas.GUI.Main</mainClass>
                 </configuration>
             </plugin>
 
@@ -144,7 +144,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>gr.aueb.dmst.NinJavas.core.Main</mainClass>
+                        <mainClass>gr.aueb.dmst.NinJavas.GUI.Main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
