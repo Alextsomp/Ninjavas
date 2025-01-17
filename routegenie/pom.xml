@@ -144,7 +144,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>gr.aueb.dmst.NinJavas.GUI.Main</mainClass>
+                        <mainClass>gr.aueb.dmst.NinJavas.Core.Main</mainClass>
                     </manifest>
                 </archive>
             </configuration>
