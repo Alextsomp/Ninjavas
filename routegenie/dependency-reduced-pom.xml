@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.routegenie.maven</groupId>
-  <artifactId>route-genie</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>routegenie</artifactId>
+  <version>1.0</version>
   <description>RouteGenie is a roadtrip optimisation app where users can select their prefered
     cities to visit as well as their starting point, and RouteGenie will return them the optimal
     route for them to cover the least amount of distance in kilometers.</description>
@@ -45,7 +45,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>gr.aueb.dmst.NinJavas.GUI.Main</mainClass>
+          <mainClass>gr.aueb.dmst.NinJavas.Core.Main</mainClass>
         </configuration>
       </plugin>
       <plugin>
@@ -91,6 +91,14 @@
               <mainClass>gr.aueb.dmst.NinJavas.Core.Main</mainClass>
             </manifest>
           </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>gr.aueb.dmst.NinJavas.GUI.Main</mainClass>
         </configuration>
       </plugin>
       <plugin>
