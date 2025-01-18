@@ -34,10 +34,10 @@ Routegenie offers the flexibility to run in two distinct modes, allowing users t
 ## 📘Manual
 To learn how to navigate and utilize our project in both versions, you can navigate [here](docs/Manual.md).
 
-![Routegnie-mockup](pending)
+![Screenshot_1](<docs/CLI Demo.png>)
 
 
-![Routegenie-mock-up-gui](pending)
+![Screenshot_2](<docs/GUI Demo.png>)
 
 ## 🚀Launch
 To launch our project in either CLI or GUI mode, click [here](docs/Launch.md).

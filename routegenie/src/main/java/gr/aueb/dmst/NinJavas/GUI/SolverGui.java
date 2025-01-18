@@ -1,7 +1,6 @@
 package gr.aueb.dmst.NinJavas.GUI;
 
 import java.util.List;
-import java.util.ArrayList;
 
 //Class that finds the best route and the total distance
 public class SolverGui {
