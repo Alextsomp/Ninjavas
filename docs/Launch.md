@@ -1,6 +1,6 @@
 # 🚀Launch
 
-Welcome to the Routgenie Deployment Guide! This guide offers step-by-step instructions for deploying and launching our application. If you're already familiar with certain sections, feel free to navigate directly to the relevant part.
+Welcome to the RoutGenie Deployment Guide! This guide offers step-by-step instructions for deploying and launching our application. If you're already familiar with certain sections, feel free to navigate directly to the relevant part.
 
 ## Overview
 - [Prerequisites](#prerequisites)

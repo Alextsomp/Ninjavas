@@ -20,6 +20,13 @@ A comprehensive list of all available cities appears.
 
 3. Exit the selection process with the relevant input and you're done, our application will provide you with the best route possible!
 
+                                        *Note* 
+We encourage you to test our application's error handling in any of the following cases:
+- Enter a String value instead of Ιnteger.
+- Enter the index of an already chosen city.
+- Enter an index outside of the list given (e.g. 156).
+- Enter -1 to exit the application, even if you've only selected 1 or 2 cities (less than 3).
+
 
 ## GUI version
 

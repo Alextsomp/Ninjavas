@@ -6,7 +6,7 @@ Welcome to Routegenie, an innovative application that provides users with the ab
 - [Introduction](#introduction)
 - [Advertisement](#advertisement)
 - [About us](#about-us)
-- [Why Mobi?](#why-mobi)
+- [Why RouteGenie?](#why-mobi)
 - [Description](#description)
 - [Manual](#manual)
 - [Launch](#launch)
@@ -22,7 +22,7 @@ Explore the exciting features of Routegenie by checking out our [Advertisement](
 
 
 ## 📌About us
-Routegenie originated as a collaborative endeavor within an academic setting during the third semester of the Programming II course, hosted by the Department of Management Science and Technology (DMST) at the Athens University of Economics and Business (AUEB). This initiative was undertaken collectively by Ninjavas Team under the mentorship and supervision of Professor [Diomidis Spinellis](https://github.com/dspinellis), who offered guidance and oversight throughout the entirety of the project.
+Routegenie originated as a collaborative endeavor within an academic setting during the third semester of the Programming II course, hosted by the Department of Management Science and Technology (DMST) at the Athens University of Economics and Business (AUEB). This initiative was undertaken collectively by NinJavas Team under the mentorship and supervision of Professor [Diomidis Spinellis](https://github.com/dspinellis), who offered guidance and oversight throughout the entirety of the project.
 
 ## 💡Why Routegenie?
 While at first Routegenie was just a project for an academic assignment, it evolved and started meaning something for everyone involved in the team. It wasnt just a mean for a grade, but a full on challenge and passion for all of us. We worked hard to develop an application that facilitates the task of organizing a roadtrip to multiple cities, while providing our users a friendly interface to work with and ofcourse the best and most correct suggestions!
@@ -42,4 +42,4 @@ To learn how to navigate and utilize our project in both versions, you can navig
 To launch our project in either CLI or GUI mode, click [here](docs/Launch.md).
 
 ## 🔗Project Structure
-For further insight into our project's structure, including package organization, [UML diagram](docs/ProjectStructure.md), utilized tools and documentation, you can refer to [this location](work in progress).
+For further insight into our project's structure, including package organization, [UML diagram](docs/UML.png), utilized tools and documentation, you can refer to [this location](docs/ProjectStructure.md).
