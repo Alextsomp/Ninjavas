@@ -20,7 +20,7 @@ A comprehensive list of all available cities appears.
 
 3. Exit the selection process with the relevant input and you're done, our application will provide you with the best route possible!
 
-                                        *Note* 
+                                    
 We encourage you to test our application's error handling in any of the following cases:
 - Enter a String value instead of Ιnteger.
 - Enter the index of an already chosen city.
