@@ -43,4 +43,4 @@ To learn how to navigate and utilize our project in both versions, you can navig
 To launch our project in either CLI or GUI mode, click [here](docs/Launch.md).
 
 ## 🔗Project Structure
-For further insight into our project's structure, including package organization, [UML diagram](pending), utilized tools and documentation, you can refer to [this location](work in progress).
+For further insight into our project's structure, including package organization, [UML diagram](docs/ProjectStructure.md), utilized tools and documentation, you can refer to [this location](work in progress).
