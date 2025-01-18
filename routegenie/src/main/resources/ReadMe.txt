@@ -1,1 +1,0 @@
-Here are the front-end files for our project.

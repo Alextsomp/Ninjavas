@@ -27,6 +27,39 @@ Mobi relies on the embedded form of the sqlite Database, offering a lightweight 
 Visually, the structure follows this plan: 
 
 ```
+C:.
+├───.vscode
+├───docs
+├───Main
+│   └───.idea
+└───routegenie
+    ├───.vscode
+    ├───src
+    │   ├───main
+    │   │   └───java
+    │   │       └───gr
+    │   │           └───aueb
+    │   │               └───dmst
+    │   │                   └───NinJavas
+    │   │                       ├───Algorithms
+    │   │                       ├───Controller
+    │   │                       ├───Core
+    │   │                       ├───Data
+    │   │                       └───GUI
+    │   └───test
+    │       └───java
+    └───target
+        ├───classes
+        │   └───gr
+        │       └───aueb
+        │           └───dmst
+        │               └───NinJavas
+        │                   ├───Algorithms
+        │                   ├───Controller
+        │                   ├───Core
+        │                   ├───Data
+        │                   └───GUI
+        └───test-classes
 
 ```
 

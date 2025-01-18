@@ -7,10 +7,14 @@ This section provides clear instructions on how to effectively utilize the proje
 - [GUI version](#gui-version)
 
 ## CLI version 
-![routegenie-mockup](https://github.com/OnePercent-ProgrammingTeam/Mobi/assets/147170967/8b3fa7f1-e72f-4f03-aa5e-cd9a25a5b521)
+
+![Screenshot 1](<CLI Demo2.1.png>)
+![Screenshot 2](<CLI Demo2.2.png>)
+
 
 1. The CLI version, despite of running on command line is user-friendly and will guide you through your roadtrip planning journey.
-   A comprehensive list of all available cities appears.
+   
+A comprehensive list of all available cities appears.
 
 2. Choose the starting city that best suites you and then pick the cities you want to visit from the list available. Exit the selection process and you're done!
 
@@ -19,7 +23,10 @@ This section provides clear instructions on how to effectively utilize the proje
 
 ## GUI version
 
-![routegenie-mock-up-gui](https://github.com/OnePercent-ProgrammingTeam/Mobi/assets/147170967/084ae74c-e5ca-4918-8d2d-bbbe4e4472ee)
+![Screenshot 1](<GUI Demo.png>)
+
+![Screenshot 2](<GUI Demo2.png>)
+
 
 1.  Start of by providing us with your name, so our application will be more direct and friendly.
 

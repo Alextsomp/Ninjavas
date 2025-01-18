@@ -18,7 +18,7 @@ Welcome to Routegenie, an innovative application that provides users with the ab
 Routegenie is an application thats based on solving the Travelling Salesperson Problem (TSP) and more precisely, its field of work is at Roadtrip planning at the Balkans for our fellow users, so that they traverse the least necessary distance on their trip!
 
 ## 📢Advertisement
-Explore the exciting features of Routegenie by checking out our [advertisement](pending) on YouTube.
+Explore the exciting features of Routegenie by checking out our [Advertisement](https://youtu.be/FlLnWWClaSk?feature=shared) on YouTube.
 
 
 ## 📌About us
@@ -35,7 +35,6 @@ Routegenie offers the flexibility to run in two distinct modes, allowing users t
 To learn how to navigate and utilize our project in both versions, you can navigate [here](docs/Manual.md).
 
 ![Screenshot_1](<docs/CLI Demo.png>)
-
 
 ![Screenshot_2](<docs/GUI Demo.png>)
 
