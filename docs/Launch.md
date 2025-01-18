@@ -67,7 +67,7 @@ java Main.java
 Navigate inside the path: `target`and run the command:
 ```
 java -jar routegenie-1.0.jar
-
+```
 ### _GUI version_
 To run the _GUI version_:\
 Run the command: 
